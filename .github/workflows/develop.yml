@@ -26,6 +26,3 @@ jobs:
       
     - name: Build with Maven
       run: mvn clean package -Pproduction
-
-    - name: Verify no unstaged changes
-      run: __tests__/verify-no-unstaged-changes.sh
