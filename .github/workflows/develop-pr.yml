@@ -1,7 +1,7 @@
-name: Develop CI
+name: Develop PR CI
 
 on:
-  push:
+  pull_request:
     branches: [ develop ]
 
 jobs:
