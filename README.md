@@ -1,6 +1,8 @@
 # vaadin-date-range-picker
 A Vaadin Flow DateRangePicker implementation
 
+![demo](demo.png)
+
 ## Run the Demo
 * Checkout the repo
 * Run ``mvn clean package``
