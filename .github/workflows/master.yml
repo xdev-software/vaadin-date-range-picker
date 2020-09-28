@@ -21,11 +21,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      working-directory: vaadin-date-range-picker
+#    - name: Publish to GitHub Packages Apache Maven
+#      run: mvn deploy
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      working-directory: vaadin-date-range-picker
 
     - name: Set up Apache Maven Central
       uses: actions/setup-java@v1
