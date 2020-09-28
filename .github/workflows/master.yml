@@ -19,7 +19,7 @@ jobs:
         server-id: github
       
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -P ossrh
 
 #    - name: Publish to GitHub Packages Apache Maven
 #      run: mvn deploy
