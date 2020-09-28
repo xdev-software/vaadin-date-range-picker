@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest    
 
     steps:
-    # https://github.com/keybase/keybase-issues/issues/2798
-    - name: Fix GPG
-      run: export GPG_TTY=$(tty)
-
     - uses: actions/checkout@v2
 
     - name: Set up JDK 1.8
