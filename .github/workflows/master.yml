@@ -64,6 +64,6 @@ jobs:
     - name: Upload asset
       uses: actions/upload-artifact@v2
       with:
-        name: vaadin-date-range-picker
+        name: vaadin-directory-files
         path: vaadin-date-range-picker/target/vaadin-date-range-picker-*.zip
         if-no-files-found: error
