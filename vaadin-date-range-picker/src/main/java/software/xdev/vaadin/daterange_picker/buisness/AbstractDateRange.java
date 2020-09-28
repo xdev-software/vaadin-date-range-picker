@@ -30,7 +30,7 @@ import java.util.function.Function;
  * Basic implementation of {@link DateRange}
  * @author AB
  *
- * @param <SELF>
+ * @param <SELF> implementer
  */
 public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> implements DateRange
 {

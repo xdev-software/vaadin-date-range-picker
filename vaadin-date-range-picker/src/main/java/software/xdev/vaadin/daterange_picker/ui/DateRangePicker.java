@@ -308,7 +308,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected void tryFixInvalidModell()
 	{
 		// @formatter:off
-		
 		this.modell.getDateRange()
 			.calcFor(this.modell.getStart())
 			.ifPresent(result -> {
