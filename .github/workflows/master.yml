@@ -19,7 +19,7 @@ jobs:
         server-id: github
       
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -P ossrh
+      run: mvn -B package --file pom.xml
 
 #    - name: Publish to GitHub Packages Apache Maven
 #      run: mvn deploy
@@ -38,7 +38,7 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to Apache Maven Central
-      run: mvn deploy -Possrh
+      run: mvn clean deploy -Possrh
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
