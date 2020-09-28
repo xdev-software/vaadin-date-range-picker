@@ -38,7 +38,7 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to Apache Maven Central
-      run: mvn clean deploy -Possrh
+      run: mvn --no-transfer-progress clean deploy -Possrh
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
