@@ -13,7 +13,7 @@ Add the following lines to your pom:
 <dependency>
    <groupId>com.xdev-software</groupId>
    <artifactId>vaadin-date-range-picker</artifactId>
-   <version>LATEST</version>
+   <version>1.0.0</version>
 </dependency>
 ```
 
