@@ -9,7 +9,7 @@
 	<artifactId>vaadin-date-range-picker</artifactId>
 
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<name>Vaadin DateRangePicker</name>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
