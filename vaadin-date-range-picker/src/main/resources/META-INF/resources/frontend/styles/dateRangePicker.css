@@ -1,0 +1,32 @@
+.date-range-picker-clickable {
+	cursor: pointer;
+}
+
+.date-range-picker-button {
+	color: black;
+	margin-bottom: 0;
+}
+
+.date-range-picker-overlay-base {
+	position: relative;
+}
+
+.date-range-picker-overlay-layout {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-color: #dcdcdc;
+}
+
+.flex-container {
+	display: flex;
+}
+
+.flex-child-autogrow {
+	flex: 1 1 auto;
+}
+
+.flex-child-contentsize {
+	flex: 0 1 auto;
+}
