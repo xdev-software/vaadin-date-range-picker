@@ -58,7 +58,7 @@ jobs:
         java-version: 1.8
       
     - name: Build for Vaadin Directory
-      run: mvn deploy -Pdirectory
+      run: mvn install -Pdirectory
       working-directory: vaadin-date-range-picker
       
     - name: Upload asset
