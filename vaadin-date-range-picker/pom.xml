@@ -264,6 +264,14 @@
 								<goals>
 									<goal>sign</goal>
 								</goals>
+								<configuration>
+									<!-- Fixes "gpg: signing failed: Inappropriate ioctl for device" -->
+					                <!-- Prevent `gpg` from using pinentry programs -->
+					                <gpgArguments>
+					                    <arg>--pinentry-mode</arg>
+					                    <arg>loopback</arg>
+					                </gpgArguments>
+					            </configuration>
 							</execution>
 						</executions>
 					</plugin>
