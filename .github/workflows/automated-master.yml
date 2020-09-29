@@ -60,7 +60,7 @@ jobs:
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
-        draft: false
+        draft: true
         prerelease: false
 
     - name: Save Release Asset Upload URL to File
