@@ -8,14 +8,7 @@ A Vaadin Flow DateRangePicker implementation
 ![demo](demo.png)
 
 ## Installation
-Add the following lines to your pom:
-```XML
-<dependency>
-   <groupId>com.xdev-software</groupId>
-   <artifactId>vaadin-date-range-picker</artifactId>
-   <version>1.0.1</version>
-</dependency>
-```
+[Installation guide of the latest release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest#Installation)
 
 ## Run the Demo
 * Checkout the repo
