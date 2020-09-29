@@ -79,7 +79,13 @@ jobs:
     needs: [prepare_release]
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+    
     - name: Set up JDK 1.8 Apache Maven Central
       uses: actions/setup-java@v1
       with: # running setup-java again overwrites the settings.xml
@@ -103,6 +109,12 @@ jobs:
     needs: [prepare_release]
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
     
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
@@ -152,10 +164,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Configure Git
+    - name: Init Git and pull
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
+        git pull
         
     - name: Inc Version and SNAP root
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
@@ -168,9 +181,8 @@ jobs:
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
       working-directory: vaadin-date-range-picker
 
-    - name: Commit and Push
+    - name: Git Commit and Push
       run: |
-        git pull
         git add -A
         git commit -m "Release ${{ steps.version.outputs.release }}"
         git push origin
