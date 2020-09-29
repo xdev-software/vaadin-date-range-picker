@@ -2,8 +2,8 @@ name: Automated Master TEST CI
 
 on:
   workflow_dispatch:
-#  push:
-#    branches: [ automated-master ]
+  push:
+    branches: [ automated-master ]
 
 jobs:
   prepare_release:
