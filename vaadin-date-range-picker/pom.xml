@@ -12,14 +12,28 @@
 	<version>1.0.1-SNAPSHOT</version>
 
 	<name>Vaadin DateRangePicker</name>
+	<description>Vaadin DateRangePicker</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
+	
+	<scm>
+		<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
+		<connection>https://github.com/xdev-software/vaadin-date-range-picker.git</connection>
+	</scm>
 
 	<inceptionYear>2020</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.com</url>
+		<url>https://xdev-software.de</url>
 	</organization>
+	
+	<developers>
+		<developer>
+			<name>XDEV Software</name>
+			<organization>XDEV Software</organization>
+			<url>https://www.xdev-software.de</url>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
