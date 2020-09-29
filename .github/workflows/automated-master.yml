@@ -18,14 +18,14 @@ jobs:
         git config --global user.name "GitHub Actions"
       
     - name: Un-SNAP root
-      run: mvn versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
     
     - name: Un-SNAP demo
-      run: mvn versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
       working-directory: vaadin-date-range-picker-demo
   
     - name: Un-SNAP 
-      run: mvn versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
       working-directory: vaadin-date-range-picker
   
     - name: Get version
@@ -110,7 +110,7 @@ jobs:
         java-version: 1.8
       
     - name: Build for Vaadin Directory
-      run: mvn install -Pdirectory
+      run: mvn -B install -Pdirectory
       working-directory: vaadin-date-range-picker
       
     - name: Upload asset
@@ -158,18 +158,19 @@ jobs:
         git config --global user.name "GitHub Actions"
         
     - name: Inc Version and SNAP root
-      run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
     
     - name: Inc Version and SNAP demo
-      run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
       working-directory: vaadin-date-range-picker-demo
   
     - name: Inc Version and SNAP 
-      run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
+      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
       working-directory: vaadin-date-range-picker
 
     - name: Commit and Push
       run: |
+        git pull
         git add -A
         git commit -m "Release ${{ steps.version.outputs.release }}"
         git push origin
