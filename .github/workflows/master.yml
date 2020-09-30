@@ -132,7 +132,7 @@ jobs:
         if-no-files-found: error
 
     - name: Download Release Asset Upload URL
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: release_asset_upload_url
         path: temp_artf/release_asset_upload_url
