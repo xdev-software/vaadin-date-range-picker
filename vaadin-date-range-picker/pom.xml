@@ -14,7 +14,7 @@
 	<name>DateRangePicker for Vaadin</name>
 	<description>DateRangePicker for Vaadin</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
-	
+
 	<scm>
 		<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 		<connection>https://github.com/xdev-software/vaadin-date-range-picker.git</connection>
@@ -26,7 +26,7 @@
 		<name>XDEV Software</name>
 		<url>https://xdev-software.de</url>
 	</organization>
-	
+
 	<developers>
 		<developer>
 			<name>XDEV Software</name>
@@ -95,7 +95,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -233,17 +233,17 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
-					 <archive>
-                        <index>true</index>
-                        <manifest>
-                            <addClasspath>false</addClasspath>
-                            <addDefaultImplementationEntries>true
-                            </addDefaultImplementationEntries>
-                        </manifest>
-                        <manifestEntries>
-                            <Vaadin-Package-Version>1</Vaadin-Package-Version>
-                        </manifestEntries>
-                    </archive>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>false</addClasspath>
+							<addDefaultImplementationEntries>true
+							</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Vaadin-Package-Version>1</Vaadin-Package-Version>
+						</manifestEntries>
+					</archive>
 					<!-- Generated file that shouldn't be included in add-ons -->
 					<excludes>
 						<exclude>
@@ -272,12 +272,12 @@
 								</goals>
 								<configuration>
 									<!-- Fixes "gpg: signing failed: Inappropriate ioctl for device" -->
-					                <!-- Prevent `gpg` from using pinentry programs -->
-					                <gpgArguments>
-					                    <arg>--pinentry-mode</arg>
-					                    <arg>loopback</arg>
-					                </gpgArguments>
-					            </configuration>
+									<!-- Prevent `gpg` from using pinentry programs -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -319,18 +319,18 @@
 						</executions>
 					</plugin>
 					<plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <configuration>
-                            <!-- Generated file that shouldn't be included in add-ons -->
-                            <excludes>
-                                <exclude>
-                                    META-INF/VAADIN/config/flow-build-info.json
-                                </exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<!-- Generated file that shouldn't be included in add-ons -->
+							<excludes>
+								<exclude>
+									META-INF/VAADIN/config/flow-build-info.json
+								</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
