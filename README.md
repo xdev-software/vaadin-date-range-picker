@@ -19,3 +19,13 @@ A Vaadin Flow DateRangePicker implementation
 
 Example:<br/>
 ![demo](demo.gif)
+
+
+## Releasing
+If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
+
+When the release is finished do the following:
+* Merge the auto-generated PR (with the incremented version number) back into the ``develop``
+* Log into https://oss.sonatype.org/#stagingRepositories and close + release the staging deployment<br/>See also [this guide](https://central.sonatype.org/pages/releasing-the-deployment.html)
+* Add the release notes to the [GitHub release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest)
+* Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory)
