@@ -29,3 +29,6 @@ When the release is finished do the following:
 * Log into https://oss.sonatype.org/#stagingRepositories and close + release the staging deployment<br/>See also [this guide](https://central.sonatype.org/pages/releasing-the-deployment.html)
 * Add the release notes to the [GitHub release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest)
 * Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory)
+
+## Dependencies and Licenses
+View the [license of the current project](LICENSE) or the [summary including all dependencies](https://xdev-software.github.io/vaadin-date-range-picker/dependencies/)
