@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-maven-:  
 
       - name: Build dependencies/licenses files
-        run: mvn project-info-reports:dependencies
+        run: mvn -B project-info-reports:dependencies
 
       - name: Upload licenses - Upload Artifact
         uses: actions/upload-artifact@v2
