@@ -29,18 +29,19 @@ jobs:
 
       - name: Build dependencies/licenses files
         run: mvn -B project-info-reports:dependencies
+        working-directory: vaadin-date-range-picker
 
       - name: Upload licenses - Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: dependencies-licenses
-          path: target/site
+          path: vaadin-date-range-picker/target/site
 
       - name: Generate docs/dependencies dir
         run: mkdir -p docs/dependencies
 
       - name: Move built files into docs/dependencies
-        run: mv target/site/* docs/dependencies
+        run: mv vaadin-date-range-picker/target/site/* docs/dependencies
 
       - name: Rename dependencies.html to index.html
         working-directory: docs/dependencies
