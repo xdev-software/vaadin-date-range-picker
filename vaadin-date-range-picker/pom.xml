@@ -144,22 +144,7 @@
 	</dependencies>
 
 	<build>
-		<defaultGoal>jetty:run</defaultGoal>
 		<plugins>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.31.v20200723</version>
-				<configuration>
-					<scanIntervalSeconds>-1</scanIntervalSeconds>
-					<!-- Use test scope because the UI/test classes are in the test package. -->
-					<useTestScope>true</useTestScope>
-					<supportedPackagings>
-						<supportedPackaging>jar</supportedPackaging>
-					</supportedPackagings>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
