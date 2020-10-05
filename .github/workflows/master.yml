@@ -162,7 +162,6 @@ jobs:
         path: vaadin-date-range-picker/target/vaadin-date-range-picker-*.zip
         if-no-files-found: error
 
-
     - name: Get version
       id: version
       run: |
