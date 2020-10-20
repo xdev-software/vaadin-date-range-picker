@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -397,6 +398,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 */
 	public void setStartLabel(final String label)
 	{
+		Objects.requireNonNull(label);
 		this.getOverlay().getDpStart().setLabel(label);
 	}
 	
@@ -406,6 +408,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 */
 	public void setEndLabel(final String label)
 	{
+		Objects.requireNonNull(label);
 		this.getOverlay().getDpEnd().setLabel(label);
 	}
 	
@@ -415,6 +418,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 */
 	public void setDateRangeOptionsLabel(final String label)
 	{
+		Objects.requireNonNull(label);
 		this.getOverlay().getCbDateRange().setLabel(label);
 	}
 	
