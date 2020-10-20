@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker;
+package software.xdev.vaadin.daterange_picker.example;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -29,7 +29,9 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	protected static final List<SimpleDateRange> DATERANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 	
-	private final DateRangePicker<SimpleDateRange> dateRangePicker = new DateRangePicker<>(
+	// @formatter:off
+	private final DateRangePicker<SimpleDateRange> dateRangePicker =
+		new DateRangePicker<>(
 			() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 			DATERANGE_VALUES)
 		.withDatePickerI18n(getDatePickerI18n())
@@ -68,9 +70,14 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 			}
 			
 			return "?";
-		});
+		})
+		.withStartLabel("Start - Anfang")
+		.withEndLabel("End - Ende")
+		.withDateRangeOptionsLabel("Period - Zeitraum");
+	// @formatter:on
 	
-	private final TextArea taResult = new TextArea();
+	private final TextArea taResult =
+		new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
 	
 	/*
 	 * Fields
@@ -83,17 +90,21 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	protected void initUI()
 	{
+		this.taResult.setSizeFull();
 		this.getContent().add(this.dateRangePicker, this.taResult);
 		
-		this.dateRangePicker.addValueChangeListener(ev -> {
+		this.dateRangePicker.addValueChangeListener(ev ->
+		{
 			final DateRangeModell<SimpleDateRange> modell = ev.getModell();
 			
 			this.taResult.clear();
+			// @formatter:off
 			this.taResult.setValue(
-				"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
+					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
 					"Start: " + modell.getStart() + "\r\n" +
 					"End: " + modell.getEnd()
 				);
+			// @formatter:on
 		});
 	}
 	
