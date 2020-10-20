@@ -11,7 +11,7 @@ public class CustomDateRange extends AbstractDateRange<CustomDateRange>
 	
 	public CustomDateRange withTag(final String tag)
 	{
-		this.tag = tag;
+		this.tag = tag != null ? tag : "";
 		return this;
 	}
 	
