@@ -129,6 +129,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this(defaultModellSupplier.get(), items);
 	}
 	
+	// -- Initializers --
+	
 	public DateRangePicker<D> withCloseOnOutsideClick(final boolean closeOnOutsideClick)
 	{
 		this.closeOnOutsideClick = closeOnOutsideClick;
@@ -172,7 +174,42 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		return this.dateRangeLocalizerFunction;
 	}
-
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setStartLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withStartLabel(final String label)
+	{
+		this.setStartLabel(label);
+		return this;
+	}
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setEndLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withEndLabel(final String label)
+	{
+		this.setEndLabel(label);
+		return this;
+	}
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setDateRangeOptionsLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withDateRangeOptionsLabel(final String label)
+	{
+		this.setDateRangeOptionsLabel(label);
+		return this;
+	}
+	
+	// -- END Initializers --
+	
 	protected void initUI()
 	{
 		// Set an unique ID for each element
@@ -350,6 +387,35 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public Div getOverlayContainer()
 	{
 		return this.overlayContainer;
+	}
+	
+	// -- LABELS --
+	
+	/**
+	 * Sets the label for the overlay Start-DatePicker
+	 * @param label
+	 */
+	public void setStartLabel(final String label)
+	{
+		this.getOverlay().getDpStart().setLabel(label);
+	}
+	
+	/**
+	 * Sets the label for the overlay End-DatePicker
+	 * @param label
+	 */
+	public void setEndLabel(final String label)
+	{
+		this.getOverlay().getDpEnd().setLabel(label);
+	}
+	
+	/**
+	 * Sets the label for the overlay DateRange-ComboBox
+	 * @param label
+	 */
+	public void setDateRangeOptionsLabel(final String label)
+	{
+		this.getOverlay().getCbDateRange().setLabel(label);
 	}
 	
 	// --- DATA ---
