@@ -1,6 +1,6 @@
 package software.xdev.vaadin.daterange_picker.example.customized;
 
-import software.xdev.vaadin.daterange_picker.buisness.AbstractDateRange;
+import software.xdev.vaadin.daterange_picker.business.AbstractDateRange;
 
 public class CustomDateRange extends AbstractDateRange<CustomDateRange>
 {

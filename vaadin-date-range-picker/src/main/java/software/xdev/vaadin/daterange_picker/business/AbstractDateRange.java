@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker.buisness;
+package software.xdev.vaadin.daterange_picker.business;
 
 /*-
  * #%L

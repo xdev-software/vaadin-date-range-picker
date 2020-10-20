@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker.buisness;
+package software.xdev.vaadin.daterange_picker.business;
 
 /*-
  * #%L
@@ -20,35 +20,13 @@ package software.xdev.vaadin.daterange_picker.buisness;
  * #L%
  */
 
-import java.time.LocalDate;
-
 /**
- * Simple implementation of {@link DateRangeResult}
+ * Simple implementation if {@link AbstractDateRange}
  * 
  * @author AB
  *
  */
-public class SimpleDateRangeResult implements DateRangeResult
+public class SimpleDateRange extends AbstractDateRange<SimpleDateRange>
 {
-	private final LocalDate start;
-	private final LocalDate end;
-	
-	public SimpleDateRangeResult(final LocalDate start, final LocalDate end)
-	{
-		super();
-		this.start = start;
-		this.end = end;
-	}
-
-	@Override
-	public LocalDate getStart()
-	{
-		return this.start;
-	}
-
-	@Override
-	public LocalDate getEnd()
-	{
-		return this.end;
-	}
+	// Simple impl
 }

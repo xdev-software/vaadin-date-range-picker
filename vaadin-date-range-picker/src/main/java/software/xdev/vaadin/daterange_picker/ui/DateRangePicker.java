@@ -48,9 +48,9 @@ import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.shared.Registration;
 
-import software.xdev.vaadin.daterange_picker.buisness.DateRange;
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeActions;
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRange;
+import software.xdev.vaadin.daterange_picker.business.DateRangeActions;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
 
 
 /**

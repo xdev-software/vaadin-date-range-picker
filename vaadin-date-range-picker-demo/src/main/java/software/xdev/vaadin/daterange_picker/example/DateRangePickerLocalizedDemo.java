@@ -16,9 +16,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeModell;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRange;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRanges;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
 
