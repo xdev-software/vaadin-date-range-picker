@@ -92,7 +92,6 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		
 		this.cbDateRange.addClassName(DateRangePickerStyles.FLEX_CHILD_AUTOGROW);
 		this.setTextFieldDefaultWidthFlexConform(this.cbDateRange);
-		this.cbDateRange.setItemLabelGenerator(this.dateRangePicker.getDateRangeLocalizerFunction());
 		
 		this.btnForwardRange.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
 		
@@ -130,6 +129,8 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	@Override
 	protected void onAttach(final AttachEvent attachEvent)
 	{
+		this.cbDateRange.setItemLabelGenerator(this.dateRangePicker.getDateRangeLocalizerFunction());
+		
 		this.dateRangePicker.getDatePickerI18n().ifPresent(i18n -> {
 			this.dpStart.setI18n(i18n);
 			this.dpEnd.setI18n(i18n);
