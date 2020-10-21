@@ -21,3 +21,6 @@ drivers/
 error-screenshots/
 
 webpack.generated.js
+
+#JRebel
+rebel.xml

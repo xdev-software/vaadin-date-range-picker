@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -47,9 +48,9 @@ import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.shared.Registration;
 
-import software.xdev.vaadin.daterange_picker.buisness.DateRange;
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeActions;
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRange;
+import software.xdev.vaadin.daterange_picker.business.DateRangeActions;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
 
 
 /**
@@ -129,6 +130,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this(defaultModellSupplier.get(), items);
 	}
 	
+	// -- Initializers --
+	
 	public DateRangePicker<D> withCloseOnOutsideClick(final boolean closeOnOutsideClick)
 	{
 		this.closeOnOutsideClick = closeOnOutsideClick;
@@ -172,7 +175,42 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		return this.dateRangeLocalizerFunction;
 	}
-
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setStartLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withStartLabel(final String label)
+	{
+		this.setStartLabel(label);
+		return this;
+	}
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setEndLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withEndLabel(final String label)
+	{
+		this.setEndLabel(label);
+		return this;
+	}
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setDateRangeOptionsLabel(String)}
+	 * @param label
+	 * @return
+	 */
+	public DateRangePicker<D> withDateRangeOptionsLabel(final String label)
+	{
+		this.setDateRangeOptionsLabel(label);
+		return this;
+	}
+	
+	// -- END Initializers --
+	
 	protected void initUI()
 	{
 		// Set an unique ID for each element
@@ -350,6 +388,38 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public Div getOverlayContainer()
 	{
 		return this.overlayContainer;
+	}
+	
+	// -- LABELS --
+	
+	/**
+	 * Sets the label for the overlay Start-DatePicker
+	 * @param label
+	 */
+	public void setStartLabel(final String label)
+	{
+		Objects.requireNonNull(label);
+		this.getOverlay().getDpStart().setLabel(label);
+	}
+	
+	/**
+	 * Sets the label for the overlay End-DatePicker
+	 * @param label
+	 */
+	public void setEndLabel(final String label)
+	{
+		Objects.requireNonNull(label);
+		this.getOverlay().getDpEnd().setLabel(label);
+	}
+	
+	/**
+	 * Sets the label for the overlay DateRange-ComboBox
+	 * @param label
+	 */
+	public void setDateRangeOptionsLabel(final String label)
+	{
+		Objects.requireNonNull(label);
+		this.getOverlay().getCbDateRange().setLabel(label);
 	}
 	
 	// --- DATA ---

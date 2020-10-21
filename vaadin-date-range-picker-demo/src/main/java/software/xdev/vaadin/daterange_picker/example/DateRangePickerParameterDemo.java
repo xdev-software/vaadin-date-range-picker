@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker;
+package software.xdev.vaadin.daterange_picker.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -21,16 +21,16 @@ import com.vaadin.flow.router.Location;
 import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeModell;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRange;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRanges;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
 
-@Route(DateRangePickerDemo.NAV)
-public class DateRangePickerDemo extends Composite<VerticalLayout> implements AfterNavigationObserver
+@Route(DateRangePickerParameterDemo.NAV)
+public class DateRangePickerParameterDemo extends Composite<VerticalLayout> implements AfterNavigationObserver
 {
-	public static final String NAV = "";
+	public static final String NAV = "parameter";
 	
 	protected static final List<SimpleDateRange> DATERANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 	
@@ -47,7 +47,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 	 */
 	private boolean blockUpdates = true;
 	
-	public DateRangePickerDemo()
+	public DateRangePickerParameterDemo()
 	{
 		this.initUI();
 	}
@@ -79,7 +79,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 	
 	private void updateCurrentUrlSetDefault()
 	{
-		this.updateCurrentUrl(new Location(DateRangePickerDemo.NAV));
+		this.updateCurrentUrl(new Location(DateRangePickerParameterDemo.NAV));
 	}
 	
 	private void updateCurrentUrl()
@@ -104,7 +104,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 			queryParas.put(entry.getKey(), Collections.singletonList(entry.getValue()));
 		}
 		
-		this.updateCurrentUrl(new Location(DateRangePickerDemo.NAV, new QueryParameters(queryParas)));
+		this.updateCurrentUrl(new Location(DateRangePickerParameterDemo.NAV, new QueryParameters(queryParas)));
 	}
 	
 	private void updateCurrentUrl(final Location location)
