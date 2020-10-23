@@ -66,7 +66,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 			return;
 		}
 		
-		final DateRangeModel<SimpleDateRange> dateRangeModell = this.dateRangePicker.getModell();
+		final DateRangeModel<SimpleDateRange> dateRangeModell = this.dateRangePicker.getModel();
 		if(ChronoUnit.DAYS.between(dateRangeModell.getStart(), dateRangeModell.getEnd()) >= 400)
 		{
 			Notification.show("Selected period too long");
@@ -187,7 +187,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		{
 			if(start != null && end != null && !start.isAfter(end))
 			{
-				this.dateRangePicker.setModell(new DateRangeModel<>(start, end, dateRange));
+				this.dateRangePicker.setModel(new DateRangeModel<>(start, end, dateRange));
 			}
 			else
 			{
@@ -201,7 +201,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 			// @formatter:off
 			dateRange.calcFor(start)
 				.ifPresent(drcr ->
-						this.dateRangePicker.setModell(
+						this.dateRangePicker.setModel(
 							new DateRangeModel<>(drcr.getStart(), drcr.getEnd(), dr)));
 			// @formatter:on
 			

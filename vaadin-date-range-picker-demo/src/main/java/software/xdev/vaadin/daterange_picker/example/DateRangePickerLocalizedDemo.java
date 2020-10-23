@@ -95,7 +95,7 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 		
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
-			final DateRangeModel<SimpleDateRange> modell = ev.getModell();
+			final DateRangeModel<SimpleDateRange> modell = ev.getModel();
 			
 			this.taResult.clear();
 			// @formatter:off
