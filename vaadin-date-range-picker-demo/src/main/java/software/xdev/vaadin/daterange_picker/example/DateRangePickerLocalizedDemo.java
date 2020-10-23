@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker.DatePickerI18n;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -79,6 +80,8 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	private final TextArea taResult =
 		new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
 	
+	private final Button btnToogleReadonly = new Button("Toogle Readonly");
+	
 	/*
 	 * Fields
 	 */
@@ -91,7 +94,9 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	protected void initUI()
 	{
 		this.taResult.setSizeFull();
-		this.getContent().add(this.dateRangePicker, this.taResult);
+		this.getContent().add(this.dateRangePicker, this.taResult, this.btnToogleReadonly);
+		
+		this.btnToogleReadonly.addClickListener(ev -> this.dateRangePicker.setReadOnly(!this.dateRangePicker.isReadOnly()));
 		
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
