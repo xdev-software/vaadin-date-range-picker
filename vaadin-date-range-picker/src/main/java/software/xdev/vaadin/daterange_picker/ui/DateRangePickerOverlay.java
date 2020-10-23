@@ -202,7 +202,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected void updateFromModel()
 	{
-		final boolean datepickerReadonly = !this.model.getDateRange().isSetable();
+		final boolean datepickerReadonly = !this.model.getDateRange().isSettable();
 		this.dpStart.setReadOnly(datepickerReadonly);
 		this.dpEnd.setReadOnly(datepickerReadonly);
 		
