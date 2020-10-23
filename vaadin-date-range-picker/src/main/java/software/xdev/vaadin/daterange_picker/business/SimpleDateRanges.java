@@ -43,7 +43,7 @@ public final class SimpleDateRanges
 		.withKey("TODAY")
 		.withDefaultDesc("Today")
 		.withMovable(false)
-		.withSetable(false)
+		.withSettable(false)
 		.withCalcForFunc(date -> new SimpleDateRangeResult(LocalDate.now(), LocalDate.now()));
 	
 	public static final SimpleDateRange DAY = new SimpleDateRange()

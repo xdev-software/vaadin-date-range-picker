@@ -43,7 +43,7 @@ import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.daterange_picker.business.DateRange;
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.business.DateRangeResult;
 
 
@@ -62,9 +62,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	 * Fields
 	 */
 	protected DateRangePicker<D> dateRangePicker;
-	protected DateRangeModell<D> modell;
+	protected DateRangeModel<D> modell;
 	
-	protected Binder<DateRangeModell<D>> binder = new Binder<>();
+	protected Binder<DateRangeModel<D>> binder = new Binder<>();
 	
 	/*
 	 * UI-Comp
@@ -144,9 +144,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected void bind()
 	{
-		this.binder.bind(this.dpStart, DateRangeModell::getStart, DateRangeModell::setStart);
-		this.binder.bind(this.dpEnd, DateRangeModell::getEnd, DateRangeModell::setEnd);
-		this.binder.bind(this.cbDateRange, DateRangeModell::getDateRange, DateRangeModell::setDateRange);
+		this.binder.bind(this.dpStart, DateRangeModel::getStart, DateRangeModel::setStart);
+		this.binder.bind(this.dpEnd, DateRangeModel::getEnd, DateRangeModel::setEnd);
+		this.binder.bind(this.cbDateRange, DateRangeModel::getDateRange, DateRangeModel::setDateRange);
 	}
 	
 	protected void registerListeners()
@@ -237,12 +237,12 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	}
 
 	// -- DATA --
-	public DateRangeModell<D> getModell()
+	public DateRangeModel<D> getModell()
 	{
 		return this.modell;
 	}
 
-	public void setModell(final DateRangeModell<D> modell)
+	public void setModell(final DateRangeModel<D> modell)
 	{
 		this.modell = modell;
 		this.updateFromModell();

@@ -16,7 +16,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
@@ -32,7 +32,7 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	// @formatter:off
 	private final DateRangePicker<SimpleDateRange> dateRangePicker =
 		new DateRangePicker<>(
-			() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
+			() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 			DATERANGE_VALUES)
 		.withDatePickerI18n(getDatePickerI18n())
 		.withDateRangeLocalizerFunction(dr -> {
@@ -95,7 +95,7 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 		
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
-			final DateRangeModell<SimpleDateRange> modell = ev.getModell();
+			final DateRangeModel<SimpleDateRange> modell = ev.getModell();
 			
 			this.taResult.clear();
 			// @formatter:off

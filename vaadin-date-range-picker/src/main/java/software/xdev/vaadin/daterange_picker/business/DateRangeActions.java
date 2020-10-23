@@ -23,7 +23,7 @@ package software.xdev.vaadin.daterange_picker.business;
 import java.time.LocalDate;
 
 /**
- * Actions which can be done with a {@link DateRangeModell}
+ * Actions which can be done with a {@link DateRangeModel}
  * 
  * @author AB
  *

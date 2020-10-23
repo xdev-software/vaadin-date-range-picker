@@ -21,7 +21,7 @@ import com.vaadin.flow.router.Location;
 import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
@@ -39,7 +39,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 	public static final String QP_RANGE_END = "range_end";
 	
 	private final DateRangePicker<SimpleDateRange> dateRangePicker = new DateRangePicker<>(
-		() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
+		() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 		DATERANGE_VALUES);
 	
 	/*
@@ -66,7 +66,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 			return;
 		}
 		
-		final DateRangeModell<SimpleDateRange> dateRangeModell = this.dateRangePicker.getModell();
+		final DateRangeModel<SimpleDateRange> dateRangeModell = this.dateRangePicker.getModell();
 		if(ChronoUnit.DAYS.between(dateRangeModell.getStart(), dateRangeModell.getEnd()) >= 400)
 		{
 			Notification.show("Selected period too long");
@@ -187,7 +187,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		{
 			if(start != null && end != null && !start.isAfter(end))
 			{
-				this.dateRangePicker.setModell(new DateRangeModell<>(start, end, dateRange));
+				this.dateRangePicker.setModell(new DateRangeModel<>(start, end, dateRange));
 			}
 			else
 			{
@@ -202,7 +202,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 			dateRange.calcFor(start)
 				.ifPresent(drcr ->
 						this.dateRangePicker.setModell(
-							new DateRangeModell<>(drcr.getStart(), drcr.getEnd(), dr)));
+							new DateRangeModel<>(drcr.getStart(), drcr.getEnd(), dr)));
 			// @formatter:on
 			
 			if(dateRange != this.dateRangePicker.getDateRange() ||

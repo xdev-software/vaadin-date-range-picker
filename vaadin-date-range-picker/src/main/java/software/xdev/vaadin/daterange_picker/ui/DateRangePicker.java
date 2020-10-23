@@ -50,7 +50,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.daterange_picker.business.DateRange;
 import software.xdev.vaadin.daterange_picker.business.DateRangeActions;
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 
 
 /**
@@ -77,14 +77,14 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 * Fields
 	 */
 	protected boolean expanded = false;
-	protected DateRangeModell<D> modell;
+	protected DateRangeModel<D> modell;
 		
 	/*
 	 * Config
 	 */
 	
 	protected Optional<Locale> formatLocale = Optional.empty();
-	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDesc;
+	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
 	protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
 	protected boolean closeOnOutsideClick = true;
 	
@@ -96,17 +96,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected final Div overlayContainer = new Div();
 	protected final DateRangePickerOverlay<D> overlay = new DateRangePickerOverlay<>(this);
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell)
+	public DateRangePicker(final DateRangeModel<D> defaultModell)
 	{
 		this(defaultModell, new ArrayList<>());
 	}
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell, final D[] items)
+	public DateRangePicker(final DateRangeModel<D> defaultModell, final D[] items)
 	{
 		this(defaultModell, new ArrayList<>(Arrays.asList(items)));
 	}
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell, final Collection<D> items)
+	public DateRangePicker(final DateRangeModel<D> defaultModell, final Collection<D> items)
 	{
 		this.modell = defaultModell;
 		this.overlay.setItems(items);
@@ -115,17 +115,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.registerListeners();
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModellSupplier)
 	{
 		this(defaultModellSupplier.get());
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier, final D[] items)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModellSupplier, final D[] items)
 	{
 		this(defaultModellSupplier.get(), items);
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier, final Collection<D> items)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModellSupplier, final Collection<D> items)
 	{
 		this(defaultModellSupplier.get(), items);
 	}
@@ -427,16 +427,16 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public void setModellForTodayAndByDateRange(final D range)
 	{
 		range.calcFor(LocalDate.now())
-			.ifPresent(result -> this.setModell(new DateRangeModell<>(result.getStart(), result.getEnd(), range)));
+			.ifPresent(result -> this.setModell(new DateRangeModel<>(result.getStart(), result.getEnd(), range)));
 	}
 	
-	public void setModell(final DateRangeModell<D> modell)
+	public void setModell(final DateRangeModel<D> modell)
 	{
 		this.modell = modell;
 		this.updateFromModell();
 	}
 	
-	public DateRangeModell<D> getModell()
+	public DateRangeModel<D> getModell()
 	{
 		return this.modell;
 	}
@@ -497,15 +497,15 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	public class DateRangeValueChangeEvent extends ComponentEvent<DateRangePicker<D>>
 	{
-		protected final DateRangeModell<D> modell;
+		protected final DateRangeModel<D> modell;
 		
-		public DateRangeValueChangeEvent(final DateRangePicker<D> source, final DateRangeModell<D> modell)
+		public DateRangeValueChangeEvent(final DateRangePicker<D> source, final DateRangeModel<D> modell)
 		{
 			super(source, false);
 			this.modell = modell;
 		}
 
-		public DateRangeModell<D> getModell()
+		public DateRangeModel<D> getModell()
 		{
 			return this.modell;
 		}
