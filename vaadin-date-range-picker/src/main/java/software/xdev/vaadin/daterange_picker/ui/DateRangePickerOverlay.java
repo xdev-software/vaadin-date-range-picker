@@ -257,6 +257,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.binder.setReadOnly(readOnly);
 		this.btnBackwardRange.setEnabled(!readOnly);
 		this.btnForwardRange.setEnabled(!readOnly);
+		
+		if(!readOnly)
+			this.updateFromModel();
 	}
 	
 	public boolean isReadOnly()
