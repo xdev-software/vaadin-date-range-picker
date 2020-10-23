@@ -93,5 +93,5 @@ public interface DateRange
 	 * </ul>
 	 * @return if the {@link DateRange} is settable from a date
 	 */
-	boolean isSetable();
+	boolean isSettable();
 }

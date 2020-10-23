@@ -120,7 +120,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 		this.moveFunc = dateRange.getMoveFunc();
 		this.movable = dateRange.isMovable();
 		this.calcable = dateRange.isCalcable();
-		this.setable = dateRange.isSetable();
+		this.setable = dateRange.isSettable();
 		
 		return this.self();
 	}
@@ -158,7 +158,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 	}
 	
 	@Override
-	public boolean isSetable()
+	public boolean isSettable()
 	{
 		return this.setable;
 	}
