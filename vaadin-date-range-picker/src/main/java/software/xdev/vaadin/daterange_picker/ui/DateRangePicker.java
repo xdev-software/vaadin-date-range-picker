@@ -423,13 +423,23 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	}
 	
 	// --- DATA ---
-
-	public void setModellForTodayAndByDateRange(final D range)
+	
+	/**
+	 * Uses the given {@link DateRange} and calculates with the current Date 
+	 * the {@link DateRangeModel}, which is then 
+	 * set by {@link DateRangePicker#setModell(DateRangeModel)} 
+	 * @param range
+	 */
+	public void setDateRangeForToday(final D range)
 	{
 		range.calcFor(LocalDate.now())
 			.ifPresent(result -> this.setModell(new DateRangeModel<>(result.getStart(), result.getEnd(), range)));
 	}
 	
+	/**
+	 * Sets the give {@link DateRangeModel} and updates the component
+	 * @param modell
+	 */
 	public void setModell(final DateRangeModel<D> modell)
 	{
 		this.modell = modell;
