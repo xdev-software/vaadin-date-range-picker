@@ -13,6 +13,7 @@ A Vaadin Flow DateRangePicker implementation
 ## Run the Demo
 * Checkout the repo
 * Run ``mvn clean package``
+  * You may use the maven wrapper ``./mvnw ...`` or ``./mvnw.cmd ...``
 * Navigate into ``vaadin-date-range-picker-demo`` 
 * Run ``mvn jetty:run``
 * Open http://localhost:8080
