@@ -17,8 +17,12 @@ A Vaadin Flow DateRangePicker implementation
 * Run ``mvn jetty:run``
 * Open http://localhost:8080
 
-Example:<br/>
-![demo](demo.gif)
+
+<details>
+  <summary>Show example</summary>
+  
+  ![demo](demo.gif)
+</details>
 
 
 ## Releasing
