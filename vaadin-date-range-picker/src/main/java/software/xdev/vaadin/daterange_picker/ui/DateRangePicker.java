@@ -33,9 +33,10 @@ import java.util.function.Supplier;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
-import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.ItemLabelGenerator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker.DatePickerI18n;
@@ -50,7 +51,7 @@ import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.daterange_picker.business.DateRange;
 import software.xdev.vaadin.daterange_picker.business.DateRangeActions;
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 
 
 /**
@@ -63,7 +64,8 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
 public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayout> implements
 	FlexComponent<VerticalLayout>,
 	HasItems<D>,
-	DateRangeActions<D, DateRangePicker<D>>
+	DateRangeActions<D, DateRangePicker<D>>,
+	HasValue<DateRangeValueChangeEvent<D>, DateRangeModel<D>>
 {
 	public static final Locale DEFAULT_LOCALE = Locale.US;
 	protected static int nextID = 0;
@@ -77,14 +79,14 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 * Fields
 	 */
 	protected boolean expanded = false;
-	protected DateRangeModell<D> modell;
+	protected DateRangeModel<D> model;
 		
 	/*
 	 * Config
 	 */
 	
 	protected Optional<Locale> formatLocale = Optional.empty();
-	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDesc;
+	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
 	protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
 	protected boolean closeOnOutsideClick = true;
 	
@@ -96,38 +98,38 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected final Div overlayContainer = new Div();
 	protected final DateRangePickerOverlay<D> overlay = new DateRangePickerOverlay<>(this);
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell)
+	public DateRangePicker(final DateRangeModel<D> defaultModel)
 	{
-		this(defaultModell, new ArrayList<>());
+		this(defaultModel, new ArrayList<>());
 	}
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell, final D[] items)
+	public DateRangePicker(final DateRangeModel<D> defaultModel, final D[] items)
 	{
-		this(defaultModell, new ArrayList<>(Arrays.asList(items)));
+		this(defaultModel, new ArrayList<>(Arrays.asList(items)));
 	}
 	
-	public DateRangePicker(final DateRangeModell<D> defaultModell, final Collection<D> items)
+	public DateRangePicker(final DateRangeModel<D> defaultModel, final Collection<D> items)
 	{
-		this.modell = defaultModell;
+		this.model = defaultModel;
 		this.overlay.setItems(items);
 		
 		this.initUI();
 		this.registerListeners();
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier)
 	{
-		this(defaultModellSupplier.get());
+		this(defaultModelSupplier.get());
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier, final D[] items)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier, final D[] items)
 	{
-		this(defaultModellSupplier.get(), items);
+		this(defaultModelSupplier.get(), items);
 	}
 	
-	public DateRangePicker(final Supplier<DateRangeModell<D>> defaultModellSupplier, final Collection<D> items)
+	public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier, final Collection<D> items)
 	{
-		this(defaultModellSupplier.get(), items);
+		this(defaultModelSupplier.get(), items);
 	}
 	
 	// -- Initializers --
@@ -247,18 +249,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		});
 		this.overlay.addValueChangeListener(ev ->
 		{
-			this.updateFromModell();
-			this.fireEvent(new DateRangeValueChangeEvent(this, this.modell));
+			this.updateFromModel();
+			this.fireEvent(new DateRangeValueChangeEvent<>(this));
 		});
 	}
-	
 	
 	@Override
 	protected void onAttach(final AttachEvent attachEvent)
 	{
 		this.setLocaleFromClient();
 		
-		this.updateFromModell();
+		this.updateFromModel();
 		
 		this.addClickOutsideListener();
 	}
@@ -323,34 +324,34 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		}
 	}
 	
-	public void updateFromModell()
+	public void updateFromModel()
 	{
-		this.tryFixInvalidModell();
+		this.tryFixInvalidModel();
 		
 		final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
 		
 		// @formatter:off
 		this.btnOverview.setText(
-			this.modell.getStart().format(formatter) +
+			this.model.getStart().format(formatter) +
 			(
-				this.modell.getStart().equals(this.modell.getEnd()) ?
+				this.model.getStart().equals(this.model.getEnd()) ?
 					"" :
-					" - " + this.modell.getEnd().format(formatter)
+					" - " + this.model.getEnd().format(formatter)
 			)
 		);
 		// @formatter:on
 		
-		this.overlay.setModell(this.modell);
+		this.overlay.setModel(this.model);
 	}
 	
-	protected void tryFixInvalidModell()
+	protected void tryFixInvalidModel()
 	{
 		// @formatter:off
-		this.modell.getDateRange()
-			.calcFor(this.modell.getStart())
+		this.model.getDateRange()
+			.calcFor(this.model.getStart())
 			.ifPresent(result -> {
-				this.modell.setStart(result.getStart());
-				this.modell.setEnd(result.getEnd());
+				this.model.setStart(result.getStart());
+				this.model.setEnd(result.getEnd());
 			});
 		// @formatter:on
 	}
@@ -423,22 +424,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	}
 	
 	// --- DATA ---
-
-	public void setModellForTodayAndByDateRange(final D range)
+	
+	/**
+	 * Uses the given {@link DateRange} and calculates with the current Date 
+	 * the {@link DateRangeModel}, which is then 
+	 * set by {@link DateRangePicker#setModel(DateRangeModel)} 
+	 * @param range
+	 */
+	public void setDateRangeForToday(final D range)
 	{
 		range.calcFor(LocalDate.now())
-			.ifPresent(result -> this.setModell(new DateRangeModell<>(result.getStart(), result.getEnd(), range)));
-	}
-	
-	public void setModell(final DateRangeModell<D> modell)
-	{
-		this.modell = modell;
-		this.updateFromModell();
-	}
-	
-	public DateRangeModell<D> getModell()
-	{
-		return this.modell;
+			.ifPresent(result -> this.setValue(new DateRangeModel<>(result.getStart(), result.getEnd(), range)));
 	}
 	
 	@Override
@@ -450,64 +446,90 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	@Override
 	public LocalDate getStart()
 	{
-		return this.modell.getStart();
+		return this.model.getStart();
 	}
 
 	@Override
 	public DateRangePicker<D> setStart(final LocalDate start)
 	{
-		this.modell.setStart(start);
-		this.updateFromModell();
+		this.model.setStart(start);
+		this.updateFromModel();
 		return this;
 	}
 
 	@Override
 	public LocalDate getEnd()
 	{
-		return this.modell.getEnd();
+		return this.model.getEnd();
 	}
 
 	@Override
 	public DateRangePicker<D> setEnd(final LocalDate end)
 	{
-		this.modell.setEnd(end);
-		this.updateFromModell();
+		this.model.setEnd(end);
+		this.updateFromModel();
 		return this;
 	}
 
 	@Override
 	public D getDateRange()
 	{
-		return this.modell.getDateRange();
+		return this.model.getDateRange();
 	}
 
 	@Override
 	public DateRangePicker<D> setDateRange(final D dateRange)
 	{
-		this.modell.setDateRange(dateRange);
-		this.updateFromModell();
+		this.model.setDateRange(dateRange);
+		this.updateFromModel();
 		return this;
 	}
-	
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public Registration addValueChangeListener(final ComponentEventListener<DateRangeValueChangeEvent> listener)
-	{
-		return this.addListener(DateRangeValueChangeEvent.class, (ComponentEventListener)listener);
-	}
-	
-	public class DateRangeValueChangeEvent extends ComponentEvent<DateRangePicker<D>>
-	{
-		protected final DateRangeModell<D> modell;
-		
-		public DateRangeValueChangeEvent(final DateRangePicker<D> source, final DateRangeModell<D> modell)
-		{
-			super(source, false);
-			this.modell = modell;
-		}
 
-		public DateRangeModell<D> getModell()
-		{
-			return this.modell;
-		}
+	@Override
+	public void setValue(DateRangeModel<D> value)
+	{
+		this.model = value;
+		this.updateFromModel();
+	}
+
+	@Override
+	public DateRangeModel<D> getValue()
+	{
+		return this.model;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Registration addValueChangeListener(ValueChangeListener<? super DateRangeValueChangeEvent<D>> listener)
+	{
+		@SuppressWarnings("rawtypes")
+		ComponentEventListener componentListener = event -> 
+			listener.valueChanged((DateRangeValueChangeEvent<D>)event);
+        
+        return ComponentUtil.addListener(this, DateRangeValueChangeEvent.class, componentListener);
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly)
+	{
+		this.getOverlay().setReadOnly(readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly()
+	{
+		return this.getOverlay().isReadOnly();
+	}
+
+	@Override
+	public void setRequiredIndicatorVisible(boolean requiredIndicatorVisible)
+	{
+		// Not required/implemented
+	}
+
+	@Override
+	public boolean isRequiredIndicatorVisible()
+	{
+		return false;
 	}
 }

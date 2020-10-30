@@ -9,7 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.example.customized.CustomDateRange;
 import software.xdev.vaadin.daterange_picker.example.customized.CustomDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
@@ -24,7 +24,7 @@ public class DateRangePickerCustomizedDemo extends Composite<VerticalLayout>
 	
 	private final DateRangePicker<CustomDateRange> dateRangePicker =
 		new DateRangePicker<>(
-			() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), CustomDateRanges.DAY),
+			() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), CustomDateRanges.DAY),
 			DATERANGE_VALUES);
 	
 	private final TextArea taResult =
@@ -46,7 +46,7 @@ public class DateRangePickerCustomizedDemo extends Composite<VerticalLayout>
 		
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
-			final DateRangeModell<CustomDateRange> modell = ev.getModell();
+			final DateRangeModel<CustomDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
 			// @formatter:off

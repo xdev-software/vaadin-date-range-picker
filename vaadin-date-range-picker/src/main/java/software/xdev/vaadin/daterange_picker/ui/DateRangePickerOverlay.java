@@ -43,7 +43,7 @@ import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.shared.Registration;
 
 import software.xdev.vaadin.daterange_picker.business.DateRange;
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.business.DateRangeResult;
 
 
@@ -61,10 +61,12 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	/*
 	 * Fields
 	 */
-	protected DateRangePicker<D> dateRangePicker;
-	protected DateRangeModell<D> modell;
+	protected boolean readOnly = false;
 	
-	protected Binder<DateRangeModell<D>> binder = new Binder<>();
+	protected DateRangePicker<D> dateRangePicker;
+	protected DateRangeModel<D> model;
+	
+	protected Binder<DateRangeModel<D>> binder = new Binder<>();
 	
 	/*
 	 * UI-Comp
@@ -79,7 +81,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	public DateRangePickerOverlay(final DateRangePicker<D> dateRangePicker)
 	{
 		this.dateRangePicker = dateRangePicker;
-		this.modell = this.dateRangePicker.getModell();
+		this.model = this.dateRangePicker.getValue();
 		
 		this.initUI();
 		this.bind();
@@ -144,9 +146,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected void bind()
 	{
-		this.binder.bind(this.dpStart, DateRangeModell::getStart, DateRangeModell::setStart);
-		this.binder.bind(this.dpEnd, DateRangeModell::getEnd, DateRangeModell::setEnd);
-		this.binder.bind(this.cbDateRange, DateRangeModell::getDateRange, DateRangeModell::setDateRange);
+		this.binder.bind(this.dpStart, DateRangeModel::getStart, DateRangeModel::setStart);
+		this.binder.bind(this.dpEnd, DateRangeModel::getEnd, DateRangeModel::setEnd);
+		this.binder.bind(this.cbDateRange, DateRangeModel::getDateRange, DateRangeModel::setDateRange);
 	}
 	
 	protected void registerListeners()
@@ -166,7 +168,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		{
 			return;
 		}
-		this.setValuesFrom(this.modell.getDateRange().calcFor(ev.getValue()));
+		this.setValuesFrom(this.model.getDateRange().calcFor(ev.getValue()));
 	}
 	
 	protected void onComboBoxDateRangeValueChanged(final ComponentValueChangeEvent<ComboBox<D>, D> ev)
@@ -175,12 +177,12 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		{
 			return;
 		}
-		this.setValuesFrom(this.modell.getDateRange().calcFor(this.modell.getStart()));
+		this.setValuesFrom(this.model.getDateRange().calcFor(this.model.getStart()));
 	}
 	
 	protected void moveRange(final int dif)
 	{
-		this.setValuesFrom(this.modell.getDateRange().moveDateRange(this.modell.getStart(), dif));
+		this.setValuesFrom(this.model.getDateRange().moveDateRange(this.model.getStart(), dif));
 	}
 	
 	protected void setValuesFrom(final Optional<DateRangeResult> optResult)
@@ -191,27 +193,27 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		}
 		
 		final DateRangeResult result = optResult.get();
-		this.modell.setStart(result.getStart());
-		this.modell.setEnd(result.getEnd());
+		this.model.setStart(result.getStart());
+		this.model.setEnd(result.getEnd());
 		
-		this.updateFromModell();
+		this.updateFromModel();
 		this.fireEvent(new DateRangeOverlayValueChangeEvent(this));
 	}
 	
-	protected void updateFromModell()
+	protected void updateFromModel()
 	{
-		final boolean datepickerReadonly = !this.modell.getDateRange().isSetable();
+		final boolean datepickerReadonly = !this.model.getDateRange().isSettable();
 		this.dpStart.setReadOnly(datepickerReadonly);
 		this.dpEnd.setReadOnly(datepickerReadonly);
 		
-		final boolean fastNavEnabled = this.modell.getDateRange().isMovable();
+		final boolean fastNavEnabled = this.model.getDateRange().isMovable();
 		this.btnBackwardRange.setEnabled(fastNavEnabled);
 		this.btnForwardRange.setEnabled(fastNavEnabled);
 		
-		this.dpEnd.setMin(this.modell.getStart());
-		this.dpStart.setMax(this.modell.getEnd());
+		this.dpEnd.setMin(this.model.getStart());
+		this.dpStart.setMax(this.model.getEnd());
 		
-		this.binder.setBean(this.modell);
+		this.binder.setBean(this.model);
 	}
 	
 	@Override
@@ -237,15 +239,32 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	}
 
 	// -- DATA --
-	public DateRangeModell<D> getModell()
+	public DateRangeModel<D> getModel()
 	{
-		return this.modell;
+		return this.model;
 	}
 
-	public void setModell(final DateRangeModell<D> modell)
+	public void setModel(final DateRangeModel<D> model)
 	{
-		this.modell = modell;
-		this.updateFromModell();
+		this.model = model;
+		this.updateFromModel();
+	}
+	
+	public void setReadOnly(boolean readOnly)
+	{
+		this.readOnly = readOnly;
+		
+		this.binder.setReadOnly(readOnly);
+		this.btnBackwardRange.setEnabled(!readOnly);
+		this.btnForwardRange.setEnabled(!readOnly);
+		
+		if(!readOnly)
+			this.updateFromModel();
+	}
+	
+	public boolean isReadOnly()
+	{
+		return this.readOnly;
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})

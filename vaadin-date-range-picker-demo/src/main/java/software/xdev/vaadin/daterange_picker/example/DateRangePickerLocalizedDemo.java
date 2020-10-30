@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker.DatePickerI18n;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.business.DateRangeModell;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
@@ -32,7 +33,7 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	// @formatter:off
 	private final DateRangePicker<SimpleDateRange> dateRangePicker =
 		new DateRangePicker<>(
-			() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
+			() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 			DATERANGE_VALUES)
 		.withDatePickerI18n(getDatePickerI18n())
 		.withDateRangeLocalizerFunction(dr -> {
@@ -79,6 +80,8 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	private final TextArea taResult =
 		new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
 	
+	private final Button btnToogleReadonly = new Button("Toogle Readonly");
+	
 	/*
 	 * Fields
 	 */
@@ -91,11 +94,13 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	protected void initUI()
 	{
 		this.taResult.setSizeFull();
-		this.getContent().add(this.dateRangePicker, this.taResult);
+		this.getContent().add(this.dateRangePicker, this.taResult, this.btnToogleReadonly);
+		
+		this.btnToogleReadonly.addClickListener(ev -> this.dateRangePicker.setReadOnly(!this.dateRangePicker.isReadOnly()));
 		
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
-			final DateRangeModell<SimpleDateRange> modell = ev.getModell();
+			final DateRangeModel<SimpleDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
 			// @formatter:off

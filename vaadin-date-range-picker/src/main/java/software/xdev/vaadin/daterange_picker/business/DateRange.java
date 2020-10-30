@@ -42,7 +42,7 @@ public interface DateRange
 	 * Retunns the default description, e.g. "Day" or "Half year"
 	 * @return default description
 	 */
-	String getDefaultDesc();
+	String getDefaultDescription();
 	
 	/**
 	 *  Trys to return the calculated {@link DateRangeResult} for the supplied date
@@ -93,5 +93,5 @@ public interface DateRange
 	 * </ul>
 	 * @return if the {@link DateRange} is settable from a date
 	 */
-	boolean isSetable();
+	boolean isSettable();
 }
