@@ -32,7 +32,6 @@ public class HomeView extends Composite<VerticalLayout>
 				final Anchor anchor = new Anchor(example.getRoute(), example.getName());
 				
 				final Span spDesc = new Span(example.getDesc());
-				//spDesc.getStyle().set("font-style", "italic");
 				spDesc.getStyle().set("font-size", "90%");
 				
 				final VerticalLayout vl = new VerticalLayout(anchor, spDesc);
