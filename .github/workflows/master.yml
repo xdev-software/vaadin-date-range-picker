@@ -90,6 +90,7 @@ jobs:
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
+        commitish: master
         body: |
           ## Installation
           Add the following lines to your pom:
