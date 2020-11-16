@@ -16,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerCustomizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerLocalizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerParameterDemo;
+import software.xdev.vaadin.daterange_picker.example.DateRangePickerStyledDemo;
 
 @PageTitle("DateRangePicker Examples")
 @Route("")
@@ -31,7 +32,6 @@ public class HomeView extends Composite<VerticalLayout>
 				final Anchor anchor = new Anchor(example.getRoute(), example.getName());
 				
 				final Span spDesc = new Span(example.getDesc());
-				spDesc.getStyle().set("font-style", "italic");
 				spDesc.getStyle().set("font-size", "90%");
 				
 				final VerticalLayout vl = new VerticalLayout(anchor, spDesc);
@@ -54,8 +54,9 @@ public class HomeView extends Composite<VerticalLayout>
 	{
 		// @formatter:off
 		this.grExamples.setItems(Arrays.asList(
+			new Example(DateRangePickerStyledDemo.NAV, "Styled-Demo", "dark mode 🌑  and more"),
 			new Example(DateRangePickerParameterDemo.NAV, "Parameter-Demo", "configuration is stored in QueryParameters"),
-			new Example(DateRangePickerLocalizedDemo.NAV, "Localized-Demo", "simple localization"),
+			new Example(DateRangePickerLocalizedDemo.NAV, "Localized-Demo", "🌐 simple localization"),
 			new Example(DateRangePickerCustomizedDemo.NAV, "Customized-Demo", "usage of a customized DateRange")
 		));
 		// @formatter:on

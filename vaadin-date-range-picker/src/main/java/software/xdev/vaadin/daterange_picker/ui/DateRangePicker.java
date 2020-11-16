@@ -80,7 +80,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 */
 	protected boolean expanded = false;
 	protected DateRangeModel<D> model;
-		
+	
 	/*
 	 * Config
 	 */
@@ -172,7 +172,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.dateRangeLocalizerFunction = dateRangeLocalizerFunction;
 		return this;
 	}
-			
+	
 	public ItemLabelGenerator<D> getDateRangeLocalizerFunction()
 	{
 		return this.dateRangeLocalizerFunction;
@@ -180,6 +180,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setStartLabel(String)}
+	 * 
 	 * @param label
 	 * @return
 	 */
@@ -191,6 +192,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setEndLabel(String)}
+	 * 
 	 * @param label
 	 * @return
 	 */
@@ -202,6 +204,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setDateRangeOptionsLabel(String)}
+	 * 
 	 * @param label
 	 * @return
 	 */
@@ -220,6 +223,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		
 		this.btnOverview.addClassNames(DateRangePickerStyles.BUTTON, DateRangePickerStyles.CLICKABLE);
 		this.btnOverview.setMinWidth("20em");
+		this.btnOverview.setWidthFull();
 		
 		this.btnOverview.setDisableOnClick(true);
 		
@@ -328,7 +332,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		this.tryFixInvalidModel();
 		
-		final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
+		final DateTimeFormatter formatter =
+			DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
 		
 		// @formatter:off
 		this.btnOverview.setText(
@@ -385,7 +390,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		return this.btnOverview;
 	}
-
+	
 	public Div getOverlayContainer()
 	{
 		return this.overlayContainer;
@@ -395,6 +400,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay Start-DatePicker
+	 * 
 	 * @param label
 	 */
 	public void setStartLabel(final String label)
@@ -405,6 +411,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay End-DatePicker
+	 * 
 	 * @param label
 	 */
 	public void setEndLabel(final String label)
@@ -415,6 +422,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay DateRange-ComboBox
+	 * 
 	 * @param label
 	 */
 	public void setDateRangeOptionsLabel(final String label)
@@ -426,15 +434,16 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	// --- DATA ---
 	
 	/**
-	 * Uses the given {@link DateRange} and calculates with the current Date 
-	 * the {@link DateRangeModel}, which is then 
-	 * set by {@link DateRangePicker#setModel(DateRangeModel)} 
+	 * Uses the given {@link DateRange} and calculates with the current Date
+	 * the {@link DateRangeModel}, which is then
+	 * set by {@link DateRangePicker#setModel(DateRangeModel)}
+	 * 
 	 * @param range
 	 */
 	public void setDateRangeForToday(final D range)
 	{
-		range.calcFor(LocalDate.now())
-			.ifPresent(result -> this.setValue(new DateRangeModel<>(result.getStart(), result.getEnd(), range)));
+		range.calcFor(LocalDate.now()).ifPresent(
+			result -> this.setValue(new DateRangeModel<>(result.getStart(), result.getEnd(), range)));
 	}
 	
 	@Override
@@ -442,13 +451,13 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		this.overlay.setItems(items);
 	}
-
+	
 	@Override
 	public LocalDate getStart()
 	{
 		return this.model.getStart();
 	}
-
+	
 	@Override
 	public DateRangePicker<D> setStart(final LocalDate start)
 	{
@@ -456,13 +465,13 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.updateFromModel();
 		return this;
 	}
-
+	
 	@Override
 	public LocalDate getEnd()
 	{
 		return this.model.getEnd();
 	}
-
+	
 	@Override
 	public DateRangePicker<D> setEnd(final LocalDate end)
 	{
@@ -470,13 +479,13 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.updateFromModel();
 		return this;
 	}
-
+	
 	@Override
 	public D getDateRange()
 	{
 		return this.model.getDateRange();
 	}
-
+	
 	@Override
 	public DateRangePicker<D> setDateRange(final D dateRange)
 	{
@@ -484,49 +493,49 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.updateFromModel();
 		return this;
 	}
-
+	
 	@Override
-	public void setValue(DateRangeModel<D> value)
+	public void setValue(final DateRangeModel<D> value)
 	{
 		this.model = value;
 		this.updateFromModel();
 	}
-
+	
 	@Override
 	public DateRangeModel<D> getValue()
 	{
 		return this.model;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Registration addValueChangeListener(ValueChangeListener<? super DateRangeValueChangeEvent<D>> listener)
+	public Registration addValueChangeListener(final ValueChangeListener<? super DateRangeValueChangeEvent<D>> listener)
 	{
 		@SuppressWarnings("rawtypes")
-		ComponentEventListener componentListener = event -> 
-			listener.valueChanged((DateRangeValueChangeEvent<D>)event);
-        
-        return ComponentUtil.addListener(this, DateRangeValueChangeEvent.class, componentListener);
+		final ComponentEventListener componentListener =
+			event -> listener.valueChanged((DateRangeValueChangeEvent<D>)event);
+		
+		return ComponentUtil.addListener(this, DateRangeValueChangeEvent.class, componentListener);
 	}
-
+	
 	@Override
-	public void setReadOnly(boolean readOnly)
+	public void setReadOnly(final boolean readOnly)
 	{
 		this.getOverlay().setReadOnly(readOnly);
 	}
-
+	
 	@Override
 	public boolean isReadOnly()
 	{
 		return this.getOverlay().isReadOnly();
 	}
-
+	
 	@Override
-	public void setRequiredIndicatorVisible(boolean requiredIndicatorVisible)
+	public void setRequiredIndicatorVisible(final boolean requiredIndicatorVisible)
 	{
 		// Not required/implemented
 	}
-
+	
 	@Override
 	public boolean isRequiredIndicatorVisible()
 	{
