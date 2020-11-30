@@ -47,11 +47,6 @@ jobs:
           exit 1
         fi
 
-    - run: |
-        ls -lha vaadin-date-range-picker-demo
-        ls -lha vaadin-date-range-picker-demo/target
-        
-
     - name: Upload demo files
       uses: actions/upload-artifact@v2
       with:
