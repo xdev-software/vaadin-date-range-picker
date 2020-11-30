@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker.buisness;
+package software.xdev.vaadin.daterange_picker.business;
 
 /*-
  * #%L
@@ -23,21 +23,12 @@ package software.xdev.vaadin.daterange_picker.buisness;
 import java.time.LocalDate;
 
 /**
- * Actions which can be done with a {@link DateRangeModell}
- * 
+ * Result of a {@link DateRange} calculation
  * @author AB
  *
- * @param <D> DateRange
- * @param <T> Implementer; returned as "Builder"
  */
-public interface DateRangeActions<D extends DateRange,T>
+public interface DateRangeResult
 {
 	LocalDate getStart();
-	T setStart(final LocalDate start);
-	
 	LocalDate getEnd();
-	T setEnd(final LocalDate end);
-	
-	D getDateRange();
-	T setDateRange(final D dateRange);
 }

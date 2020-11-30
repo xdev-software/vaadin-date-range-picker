@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker;
+package software.xdev.vaadin.daterange_picker.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -21,16 +21,16 @@ import com.vaadin.flow.router.Location;
 import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 
-import software.xdev.vaadin.daterange_picker.buisness.DateRangeModell;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRange;
-import software.xdev.vaadin.daterange_picker.buisness.SimpleDateRanges;
+import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
+import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
 
-@Route(DateRangePickerDemo.NAV)
-public class DateRangePickerDemo extends Composite<VerticalLayout> implements AfterNavigationObserver
+@Route(DateRangePickerParameterDemo.NAV)
+public class DateRangePickerParameterDemo extends Composite<VerticalLayout> implements AfterNavigationObserver
 {
-	public static final String NAV = "";
+	public static final String NAV = "parameter";
 	
 	protected static final List<SimpleDateRange> DATERANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 	
@@ -39,7 +39,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 	public static final String QP_RANGE_END = "range_end";
 	
 	private final DateRangePicker<SimpleDateRange> dateRangePicker = new DateRangePicker<>(
-		() -> new DateRangeModell<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
+		() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 		DATERANGE_VALUES);
 	
 	/*
@@ -47,7 +47,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 	 */
 	private boolean blockUpdates = true;
 	
-	public DateRangePickerDemo()
+	public DateRangePickerParameterDemo()
 	{
 		this.initUI();
 	}
@@ -66,7 +66,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 			return;
 		}
 		
-		final DateRangeModell<SimpleDateRange> dateRangeModell = this.dateRangePicker.getModell();
+		final DateRangeModel<SimpleDateRange> dateRangeModell = this.dateRangePicker.getValue();
 		if(ChronoUnit.DAYS.between(dateRangeModell.getStart(), dateRangeModell.getEnd()) >= 400)
 		{
 			Notification.show("Selected period too long");
@@ -79,7 +79,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 	
 	private void updateCurrentUrlSetDefault()
 	{
-		this.updateCurrentUrl(new Location(DateRangePickerDemo.NAV));
+		this.updateCurrentUrl(new Location(DateRangePickerParameterDemo.NAV));
 	}
 	
 	private void updateCurrentUrl()
@@ -104,7 +104,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 			queryParas.put(entry.getKey(), Collections.singletonList(entry.getValue()));
 		}
 		
-		this.updateCurrentUrl(new Location(DateRangePickerDemo.NAV, new QueryParameters(queryParas)));
+		this.updateCurrentUrl(new Location(DateRangePickerParameterDemo.NAV, new QueryParameters(queryParas)));
 	}
 	
 	private void updateCurrentUrl(final Location location)
@@ -187,7 +187,7 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 		{
 			if(start != null && end != null && !start.isAfter(end))
 			{
-				this.dateRangePicker.setModell(new DateRangeModell<>(start, end, dateRange));
+				this.dateRangePicker.setValue(new DateRangeModel<>(start, end, dateRange));
 			}
 			else
 			{
@@ -201,8 +201,8 @@ public class DateRangePickerDemo extends Composite<VerticalLayout> implements Af
 			// @formatter:off
 			dateRange.calcFor(start)
 				.ifPresent(drcr ->
-						this.dateRangePicker.setModell(
-							new DateRangeModell<>(drcr.getStart(), drcr.getEnd(), dr)));
+						this.dateRangePicker.setValue(
+							new DateRangeModel<>(drcr.getStart(), drcr.getEnd(), dr)));
 			// @formatter:on
 			
 			if(dateRange != this.dateRangePicker.getDateRange() ||

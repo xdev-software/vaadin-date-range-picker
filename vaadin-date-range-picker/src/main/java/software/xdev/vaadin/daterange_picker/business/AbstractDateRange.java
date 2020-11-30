@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker.buisness;
+package software.xdev.vaadin.daterange_picker.business;
 
 /*-
  * #%L
@@ -105,7 +105,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 		return this.self();
 	}
 	
-	public SELF withSetable(final boolean settable)
+	public SELF withSettable(final boolean settable)
 	{
 		this.setable = settable;
 		return this.self();
@@ -115,12 +115,12 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 	{
 		this.key = dateRange.getKey();
 		this.optMovePeriod = dateRange.getOptMovePeriod();
-		this.defaultDesc = dateRange.getDefaultDesc();
+		this.defaultDesc = dateRange.getDefaultDescription();
 		this.calcForFunc = dateRange.getCalcForFunc();
 		this.moveFunc = dateRange.getMoveFunc();
 		this.movable = dateRange.isMovable();
 		this.calcable = dateRange.isCalcable();
-		this.setable = dateRange.isSetable();
+		this.setable = dateRange.isSettable();
 		
 		return this.self();
 	}
@@ -140,7 +140,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 	}
 	
 	@Override
-	public String getDefaultDesc()
+	public String getDefaultDescription()
 	{
 		return this.defaultDesc;
 	}
@@ -158,7 +158,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 	}
 	
 	@Override
-	public boolean isSetable()
+	public boolean isSettable()
 	{
 		return this.setable;
 	}

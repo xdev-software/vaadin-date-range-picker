@@ -1,4 +1,4 @@
-package software.xdev.vaadin.daterange_picker.buisness;
+package software.xdev.vaadin.daterange_picker.business;
 
 /*-
  * #%L
@@ -25,18 +25,18 @@ import java.time.LocalDate;
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
 /**
- * Modell for {@link DateRangePicker}
+ * Model for {@link DateRangePicker}
  * 
  * @author AB
  *
  */
-public class DateRangeModell<D extends DateRange> implements DateRangeActions<D, DateRangeModell<D>>
+public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, DateRangeModel<D>>
 {
 	private LocalDate start;
 	private LocalDate end;
 	private D dateRange;
 	
-	public DateRangeModell(final LocalDate start, final LocalDate end, final D dateRange)
+	public DateRangeModel(final LocalDate start, final LocalDate end, final D dateRange)
 	{
 		super();
 		this.start = start;
@@ -51,7 +51,7 @@ public class DateRangeModell<D extends DateRange> implements DateRangeActions<D,
 	}
 	
 	@Override
-	public DateRangeModell<D> setStart(final LocalDate start)
+	public DateRangeModel<D> setStart(final LocalDate start)
 	{
 		this.start = start;
 		return this;
@@ -64,7 +64,7 @@ public class DateRangeModell<D extends DateRange> implements DateRangeActions<D,
 	}
 	
 	@Override
-	public DateRangeModell<D> setEnd(final LocalDate end)
+	public DateRangeModel<D> setEnd(final LocalDate end)
 	{
 		this.end = end;
 		return this;
@@ -77,7 +77,7 @@ public class DateRangeModell<D extends DateRange> implements DateRangeActions<D,
 	}
 	
 	@Override
-	public DateRangeModell<D> setDateRange(final D dateRange)
+	public DateRangeModel<D> setDateRange(final D dateRange)
 	{
 		this.dateRange = dateRange;
 		return this;

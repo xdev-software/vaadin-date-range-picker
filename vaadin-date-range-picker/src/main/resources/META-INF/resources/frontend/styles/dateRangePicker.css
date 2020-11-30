@@ -3,8 +3,9 @@
 }
 
 .date-range-picker-button {
-	color: black;
 	margin-bottom: 0;
+	border-radius: 0;
+	color: var(--lumo-body-text-color);
 }
 
 .date-range-picker-overlay-base {
@@ -16,7 +17,9 @@
 	left: 0;
 	right: 0;
 	z-index: 1;
-	background-color: #dcdcdc;
+	background-color: var(--lumo-base-color);
+	border: 1px solid var(--lumo-contrast-5pct);
+	border-top: none;
 }
 
 .flex-container {
