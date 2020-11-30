@@ -51,5 +51,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: demo-files
-        path: vaadin-maps-leaflet-flow-demo/target/vaadin-maps-leaflet-flow-demo-*.war
+        path: vaadin-date-range-picker-demo\target\vaadin-date-range-picker-demo.war
         if-no-files-found: error
