@@ -282,11 +282,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			return;
 		}
 		
-		/*
-		 * JS-Explanation
-		 * Base Function (see https://stackoverflow.com/a/28432139/13122067)
-		 * If a click was trigger, check if it originated from this element
-		 */
 		final String funcName = "outsideClickFunc" + this.getId().get();
 		
 		// @formatter:off
@@ -310,7 +305,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"    spEl.$server.clickOutsideOccured()\r\n" +
 			"  }\r\n" +
 			"}; \r\n" +
-			"document.addEventListener('click'," + funcName + ");";
+			"document.body.addEventListener('click'," + funcName + ");";
 		// @formatter:on
 		
 		this.getContent().getElement().executeJs(jsCommand);
