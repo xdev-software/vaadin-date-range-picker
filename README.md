@@ -8,7 +8,7 @@ A Vaadin Flow DateRangePicker implementation
 ![demo](demo.png)
 
 ## Installation
-[Installation guide of the latest release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest#Installation)
+[Installation guide for the latest release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest#Installation)
 
 ## Run the Demo
 * Checkout the repo
