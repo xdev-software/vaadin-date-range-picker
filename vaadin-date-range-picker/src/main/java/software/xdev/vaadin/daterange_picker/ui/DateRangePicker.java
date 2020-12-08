@@ -253,8 +253,10 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		});
 		this.overlay.addValueChangeListener(ev ->
 		{
-			this.updateFromModel();
-			this.fireEvent(new DateRangeValueChangeEvent<>(this));
+			this.model = ev.getSource().getModel();
+			
+			this.updateFromModel(false);
+			this.fireEvent(new DateRangeValueChangeEvent<>(this, ev.getOldValue(), ev.isFromClient()));
 		});
 	}
 	
@@ -263,7 +265,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		this.setLocaleFromClient();
 		
-		this.updateFromModel();
+		this.updateFromModel(true);
 		
 		this.addClickOutsideListener();
 	}
@@ -280,11 +282,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			return;
 		}
 		
-		/*
-		 * JS-Explanation
-		 * Base Function (see https://stackoverflow.com/a/28432139/13122067)
-		 * If a click was trigger, check if it originated from this element
-		 */
 		final String funcName = "outsideClickFunc" + this.getId().get();
 		
 		// @formatter:off
@@ -308,7 +305,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"    spEl.$server.clickOutsideOccured()\r\n" +
 			"  }\r\n" +
 			"}; \r\n" +
-			"document.addEventListener('click'," + funcName + ");";
+			"document.body.addEventListener('click'," + funcName + ");";
 		// @formatter:on
 		
 		this.getContent().getElement().executeJs(jsCommand);
@@ -328,9 +325,12 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		}
 	}
 	
-	public void updateFromModel()
+	protected void updateFromModel(final boolean updateOverlay)
 	{
-		this.tryFixInvalidModel();
+		if(updateOverlay)
+		{
+			this.tryFixInvalidModel();
+		}
 		
 		final DateTimeFormatter formatter =
 			DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
@@ -346,7 +346,10 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		);
 		// @formatter:on
 		
-		this.overlay.setModel(this.model);
+		if(updateOverlay)
+		{
+			this.overlay.setModel(this.model);
+		}
 	}
 	
 	protected void tryFixInvalidModel()
@@ -462,7 +465,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public DateRangePicker<D> setStart(final LocalDate start)
 	{
 		this.model.setStart(start);
-		this.updateFromModel();
+		this.updateFromModel(true);
 		return this;
 	}
 	
@@ -476,7 +479,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public DateRangePicker<D> setEnd(final LocalDate end)
 	{
 		this.model.setEnd(end);
-		this.updateFromModel();
+		this.updateFromModel(true);
 		return this;
 	}
 	
@@ -490,7 +493,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public DateRangePicker<D> setDateRange(final D dateRange)
 	{
 		this.model.setDateRange(dateRange);
-		this.updateFromModel();
+		this.updateFromModel(true);
 		return this;
 	}
 	
@@ -498,7 +501,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public void setValue(final DateRangeModel<D> value)
 	{
 		this.model = value;
-		this.updateFromModel();
+		this.updateFromModel(true);
 	}
 	
 	@Override

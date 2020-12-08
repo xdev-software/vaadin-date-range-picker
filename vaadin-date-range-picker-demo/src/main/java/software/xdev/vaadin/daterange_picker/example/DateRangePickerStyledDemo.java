@@ -81,7 +81,15 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout>
 			this.taResult.setValue(
 					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
 					"Start: " + modell.getStart() + "\r\n" +
-					"End: " + modell.getEnd()
+					"End: " + modell.getEnd() + "\r\n" +
+					(ev.getOldValue() != null ?
+						"OldValue-DateRange: " + ev.getOldValue().getDateRange().getKey() + "\r\n" +
+						"OldValue-Start: " + ev.getOldValue().getStart() + "\r\n" +
+						"OldValue-End: " + ev.getOldValue().getEnd()
+						: "OldValue: null")
+					+ "\r\n"
+					+ "IsFromClient: " + ev.isFromClient()
+					
 				);
 			// @formatter:on
 		});
