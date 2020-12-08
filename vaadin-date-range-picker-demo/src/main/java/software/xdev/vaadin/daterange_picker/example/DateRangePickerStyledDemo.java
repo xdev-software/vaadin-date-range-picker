@@ -75,7 +75,7 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout>
 		this.dateRangePicker.addValueChangeListener(ev ->
 		{
 			final DateRangeModel<SimpleDateRange> modell = ev.getValue();
-						
+			
 			this.taResult.clear();
 			// @formatter:off
 			this.taResult.setValue(
