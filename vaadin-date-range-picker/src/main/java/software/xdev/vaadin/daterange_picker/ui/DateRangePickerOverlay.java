@@ -23,6 +23,7 @@ package software.xdev.vaadin.daterange_picker.ui;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Function;
 
 import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
 import com.vaadin.flow.component.AttachEvent;
@@ -38,7 +39,6 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.shared.Registration;
 
@@ -64,9 +64,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	protected boolean readOnly = false;
 	
 	protected DateRangePicker<D> dateRangePicker;
-	protected DateRangeModel<D> model;
-	
-	protected Binder<DateRangeModel<D>> binder = new Binder<>();
+	protected DateRangeModel<D> currentModel;
 	
 	/*
 	 * UI-Comp
@@ -81,21 +79,22 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	public DateRangePickerOverlay(final DateRangePicker<D> dateRangePicker)
 	{
 		this.dateRangePicker = dateRangePicker;
-		this.model = this.dateRangePicker.getValue();
+		this.currentModel = this.dateRangePicker.getValue();
 		
 		this.initUI();
-		this.bind();
 		this.registerListeners();
 	}
 	
 	protected void initUI()
 	{
-		this.btnBackwardRange.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
+		this.btnBackwardRange
+			.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
 		
 		this.cbDateRange.addClassName(DateRangePickerStyles.FLEX_CHILD_AUTOGROW);
 		this.setTextFieldDefaultWidthFlexConform(this.cbDateRange);
 		
-		this.btnForwardRange.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
+		this.btnForwardRange
+			.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
 		
 		final HorizontalLayout hlRange = new HorizontalLayout();
 		hlRange.addClassNames(DateRangePickerStyles.FLEX_CHILD_AUTOGROW, DateRangePickerStyles.FLEX_CONTAINER);
@@ -133,10 +132,12 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	{
 		this.cbDateRange.setItemLabelGenerator(this.dateRangePicker.getDateRangeLocalizerFunction());
 		
-		this.dateRangePicker.getDatePickerI18n().ifPresent(i18n -> {
-			this.dpStart.setI18n(i18n);
-			this.dpEnd.setI18n(i18n);
-		});
+		this.dateRangePicker.getDatePickerI18n()
+			.ifPresent(i18n ->
+			{
+				this.dpStart.setI18n(i18n);
+				this.dpEnd.setI18n(i18n);
+			});
 	}
 	
 	protected void setTextFieldDefaultWidthFlexConform(final HasStyle component)
@@ -144,31 +145,13 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		component.getStyle().set("--vaadin-text-field-default-width", "auto");
 	}
 	
-	protected void bind()
-	{
-		this.binder.bind(this.dpStart, DateRangeModel::getStart, DateRangeModel::setStart);
-		this.binder.bind(this.dpEnd, DateRangeModel::getEnd, DateRangeModel::setEnd);
-		this.binder.bind(this.cbDateRange, DateRangeModel::getDateRange, DateRangeModel::setDateRange);
-	}
-	
 	protected void registerListeners()
 	{
-		this.dpStart.addValueChangeListener(this::onDatePickerValueChanged);
-		this.dpEnd.addValueChangeListener(this::onDatePickerValueChanged);
 		this.cbDateRange.addValueChangeListener(this::onComboBoxDateRangeValueChanged);
 		this.btnBackwardRange.addClickListener(ev -> this.moveRange(-1));
-		this.btnForwardRange.addClickListener(ev ->	this.moveRange(+1));
-		
-		this.binder.addValueChangeListener(ev -> this.fireEvent(new DateRangeOverlayValueChangeEvent(this)));
-	}
-	
-	protected void onDatePickerValueChanged(final ComponentValueChangeEvent<DatePicker, LocalDate> ev)
-	{
-		if(!ev.isFromClient())
-		{
-			return;
-		}
-		this.setValuesFrom(this.model.getDateRange().calcFor(ev.getValue()));
+		this.btnForwardRange.addClickListener(ev -> this.moveRange(+1));
+		this.dpStart.addValueChangeListener(this::onDatePickerValueChanged);
+		this.dpEnd.addValueChangeListener(this::onDatePickerValueChanged);
 	}
 	
 	protected void onComboBoxDateRangeValueChanged(final ComponentValueChangeEvent<ComboBox<D>, D> ev)
@@ -177,15 +160,24 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		{
 			return;
 		}
-		this.setValuesFrom(this.model.getDateRange().calcFor(this.model.getStart()));
+		this.onValueChange(model -> model.getDateRange().calcFor(model.getStart()));
+	}
+	
+	protected void onDatePickerValueChanged(final ComponentValueChangeEvent<DatePicker, LocalDate> ev)
+	{
+		if(!ev.isFromClient())
+		{
+			return;
+		}
+		this.onValueChange(model -> model.getDateRange().calcFor(ev.getValue()));
 	}
 	
 	protected void moveRange(final int dif)
 	{
-		this.setValuesFrom(this.model.getDateRange().moveDateRange(this.model.getStart(), dif));
+		this.onValueChange(model -> model.getDateRange().moveDateRange(model.getStart(), dif));
 	}
 	
-	protected void setValuesFrom(final Optional<DateRangeResult> optResult)
+	protected void calcModel(final Optional<DateRangeResult> optResult, final DateRangeModel<D> model)
 	{
 		if(!optResult.isPresent())
 		{
@@ -193,27 +185,54 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		}
 		
 		final DateRangeResult result = optResult.get();
-		this.model.setStart(result.getStart());
-		this.model.setEnd(result.getEnd());
-		
-		this.updateFromModel();
-		this.fireEvent(new DateRangeOverlayValueChangeEvent(this));
+		model.setStart(result.getStart());
+		model.setEnd(result.getEnd());
 	}
 	
-	protected void updateFromModel()
+	protected void onValueChange(final Function<DateRangeModel<D>, Optional<DateRangeResult>> calcFunc)
 	{
-		final boolean datepickerReadonly = !this.model.getDateRange().isSettable();
+		final DateRangeModel<D> model = this.getModelFromComponents();
+		
+		this.calcModel(calcFunc.apply(model), model);
+		this.updateComponentsFromModel(model);
+		
+		final DateRangeModel<D> oldValue = this.currentModel;
+		this.setCurrentModel(model);
+		
+		this.fireValueChanged(oldValue, true);
+	}
+	
+	protected DateRangeModel<D> getModelFromComponents()
+	{
+		return new DateRangeModel<>(this.dpStart.getValue(), this.dpEnd.getValue(), this.cbDateRange.getValue());
+	}
+	
+	protected void updateComponentsFromModel(final DateRangeModel<D> model)
+	{
+		final boolean datepickerReadonly = !model.getDateRange().isSettable();
 		this.dpStart.setReadOnly(datepickerReadonly);
 		this.dpEnd.setReadOnly(datepickerReadonly);
 		
-		final boolean fastNavEnabled = this.model.getDateRange().isMovable();
+		final boolean fastNavEnabled = model.getDateRange().isMovable();
 		this.btnBackwardRange.setEnabled(fastNavEnabled);
 		this.btnForwardRange.setEnabled(fastNavEnabled);
 		
-		this.dpEnd.setMin(this.model.getStart());
-		this.dpStart.setMax(this.model.getEnd());
+		this.dpEnd.setMin(model.getStart());
+		this.dpStart.setMax(model.getEnd());
 		
-		this.binder.setBean(this.model);
+		this.cbDateRange.setValue(model.getDateRange());
+		this.dpStart.setValue(model.getStart());
+		this.dpEnd.setValue(model.getEnd());
+	}
+	
+	protected void setCurrentModel(final DateRangeModel<D> model)
+	{
+		this.currentModel = model;
+	}
+	
+	protected void fireValueChanged(final DateRangeModel<D> oldValue, final boolean isFromClient)
+	{
+		this.fireEvent(new DateRangeOverlayValueChangeEvent(this, oldValue, isFromClient));
 	}
 	
 	@Override
@@ -227,46 +246,59 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	{
 		return this.cbDateRange;
 	}
-
+	
 	public DatePicker getDpStart()
 	{
 		return this.dpStart;
 	}
-
+	
 	public DatePicker getDpEnd()
 	{
 		return this.dpEnd;
 	}
-
+	
 	// -- DATA --
 	public DateRangeModel<D> getModel()
 	{
-		return this.model;
-	}
-
-	public void setModel(final DateRangeModel<D> model)
-	{
-		this.model = model;
-		this.updateFromModel();
+		return this.currentModel;
 	}
 	
-	public void setReadOnly(boolean readOnly)
+	public void setModel(final DateRangeModel<D> model)
+	{
+		final DateRangeModel<D> oldValue = this.currentModel;
+		
+		this.currentModel = model;
+		this.updateComponentsFromModel(this.currentModel);
+		
+		this.fireValueChanged(oldValue, false);
+	}
+	
+	public void setReadOnly(final boolean readOnly)
 	{
 		this.readOnly = readOnly;
 		
-		this.binder.setReadOnly(readOnly);
+		this.cbDateRange.setReadOnly(readOnly);
+		
 		this.btnBackwardRange.setEnabled(!readOnly);
 		this.btnForwardRange.setEnabled(!readOnly);
 		
-		if(!readOnly)
-			this.updateFromModel();
+		if(readOnly)
+		{
+			this.dpStart.setReadOnly(true);
+			this.dpEnd.setReadOnly(true);
+		}
+		else
+		{
+			// Fix read-only if e.g. TODAY is selected
+			this.updateComponentsFromModel(this.getModelFromComponents());
+		}
 	}
 	
 	public boolean isReadOnly()
 	{
 		return this.readOnly;
 	}
-
+	
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public Registration addValueChangeListener(final ComponentEventListener<DateRangeOverlayValueChangeEvent> listener)
 	{
@@ -275,9 +307,28 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	public class DateRangeOverlayValueChangeEvent extends ComponentEvent<DateRangePickerOverlay<D>>
 	{
-		public DateRangeOverlayValueChangeEvent(final DateRangePickerOverlay<D> source)
+		private final DateRangeModel<D> oldValue;
+		private final boolean isFromClient;
+		
+		public DateRangeOverlayValueChangeEvent(
+			final DateRangePickerOverlay<D> source,
+			final DateRangeModel<D> oldValue,
+			final boolean isFromClient)
 		{
 			super(source, false);
+			this.oldValue = oldValue;
+			this.isFromClient = isFromClient;
+		}
+
+		public DateRangeModel<D> getOldValue()
+		{
+			return this.oldValue;
+		}
+
+		@Override
+		public boolean isFromClient()
+		{
+			return this.isFromClient;
 		}
 	}
 }

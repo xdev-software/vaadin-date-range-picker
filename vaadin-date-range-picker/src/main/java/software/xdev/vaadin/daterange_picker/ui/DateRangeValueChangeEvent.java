@@ -28,30 +28,10 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 public class DateRangeValueChangeEvent<D extends DateRange> extends ComponentValueChangeEvent<DateRangePicker<D>, DateRangeModel<D>>
 {
 	public DateRangeValueChangeEvent(
-		DateRangePicker<D> source)
+		final DateRangePicker<D> source,
+		final DateRangeModel<D> oldValue,
+		final boolean isFromClient)
 	{
-		super(source, source, null, false);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @deprecated Not implemented
-	 */
-	@Deprecated
-	@Override
-	public DateRangeModel<D> getOldValue()
-	{
-		return super.getOldValue();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @deprecated Not implemented
-	 */
-	@Deprecated
-	@Override
-	public boolean isFromClient()
-	{
-		return super.isFromClient();
+		super(source, source, oldValue, isFromClient);
 	}
 }
