@@ -325,7 +325,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		}
 	}
 	
-	public void updateFromModel(final boolean updateOverlay)
+	protected void updateFromModel(final boolean updateOverlay)
 	{
 		if(updateOverlay)
 		{
