@@ -1,3 +1,4 @@
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/daterangepicker-for-vaadin)
 [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Master%20CI)](https://github.com/xdev-software/vaadin-date-range-picker/actions?query=workflow%3A%22Master+CI%22)
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-date-range-picker)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-date-range-picker)
 [![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Develop%20CI/develop?label=build%20develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions?query=workflow%3A%22Develop+CI%22+branch%3Adevelop)
@@ -12,7 +13,7 @@ A Vaadin Flow DateRangePicker implementation
 
 ## Run the Demo
 * Checkout the repo
-* Run ``mvn clean package``
+* Run ``mvn clean install``
 * Navigate into ``vaadin-date-range-picker-demo`` 
 * Run ``mvn jetty:run``
 * Open http://localhost:8080
