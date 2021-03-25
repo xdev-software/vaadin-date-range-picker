@@ -91,7 +91,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected boolean closeOnOutsideClick = true;
 	
 	/*
-	 * UI-Comp
+	 * UI-Components
 	 */
 	protected final Button btnOverview = new Button();
 	
@@ -110,7 +110,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	public DateRangePicker(final DateRangeModel<D> defaultModel, final Collection<D> items)
 	{
-		this.model = defaultModel;
+		this.model = Objects.requireNonNull(defaultModel);
 		this.overlay.setItems(items);
 		
 		this.initUI();
@@ -299,7 +299,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"  if(event.target.id == 'overlay') {\r\n" +
 			"    return;\r\n" +
 			"  }\r\n" +
-			// Check if the click was done by this element
+			// Check if the click was done on this element
 			"  var isClickInside = spEl.contains(event.target);\r\n" +
 			"  if (!isClickInside) {\r\n" +
 			"    spEl.$server.clickOutsideOccured()\r\n" +
@@ -500,6 +500,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	@Override
 	public void setValue(final DateRangeModel<D> value)
 	{
+		Objects.requireNonNull(value);
+		
 		this.model = value;
 		this.updateFromModel(true);
 	}
@@ -521,6 +523,42 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return ComponentUtil.addListener(this, DateRangeValueChangeEvent.class, componentListener);
 	}
 	
+	/**
+	 * DateRangePicker always has a value<br>
+	 * However for compatibility reasons (with Vaadin) this returns {@code null}
+	 * @return {@code null}
+	 */
+	@Override
+	public DateRangeModel<D> getEmptyValue()
+	{
+		return null;
+	}
+	
+	/**
+	 * DateRangePicker always has a value<br>
+	 * Therefore this always returns {@code false}
+	 * 
+	 * @return {@code false}
+	 */
+	@Override
+	public boolean isEmpty()
+	{
+		return false;
+	}
+	
+	/**
+	 * Do not use this method, as it throws a {@link UnsupportedOperationException}<br>
+	 * The calling of clear is not supported because DateRangePicker always has a value<br>
+	 * Use {@link DateRangePicker#setValue(DateRangeModel)} instead.
+	 * 
+	 * @throws UnsupportedOperationException
+	 */
+	@Override
+	public void clear()
+	{
+		throw new UnsupportedOperationException("The calling of clear is not supported because DateRangePicker always has a value");
+	}
+	
 	@Override
 	public void setReadOnly(final boolean readOnly)
 	{
@@ -533,12 +571,23 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this.getOverlay().isReadOnly();
 	}
 	
+	/**
+	 * The required indicator is not implemented<br>
+	 * <br>
+	 * This method doesn't have any functionallity
+	 */
 	@Override
 	public void setRequiredIndicatorVisible(final boolean requiredIndicatorVisible)
 	{
 		// Not required/implemented
 	}
 	
+	/**
+	 * The required indicator is not implemented<br>
+	 * This will always return {@code false}
+	 * 
+	 * @return {@code false}
+	 */
 	@Override
 	public boolean isRequiredIndicatorVisible()
 	{

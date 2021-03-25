@@ -22,6 +22,7 @@ package software.xdev.vaadin.daterange_picker.ui;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -78,7 +79,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	public DateRangePickerOverlay(final DateRangePicker<D> dateRangePicker)
 	{
-		this.dateRangePicker = dateRangePicker;
+		this.dateRangePicker = Objects.requireNonNull(dateRangePicker);
 		this.currentModel = this.dateRangePicker.getValue();
 		
 		this.initUI();
@@ -238,6 +239,8 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	@Override
 	public void setItems(final Collection<D> items)
 	{
+		Objects.requireNonNull(items);
+		
 		this.getCbDateRange().setItems(items);
 	}
 	
