@@ -98,19 +98,19 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected final Div overlayContainer = new Div();
 	protected final DateRangePickerOverlay<D> overlay = new DateRangePickerOverlay<>(this);
 	
-	public DateRangePicker(final DateRangeModel<D> defaultModel)
+	public DateRangePicker(final DateRangeModel<D> initialModel)
 	{
-		this(defaultModel, new ArrayList<>());
+		this(initialModel, new ArrayList<>());
 	}
 	
-	public DateRangePicker(final DateRangeModel<D> defaultModel, final D[] items)
+	public DateRangePicker(final DateRangeModel<D> initialModel, final D[] items)
 	{
-		this(defaultModel, new ArrayList<>(Arrays.asList(items)));
+		this(initialModel, new ArrayList<>(Arrays.asList(items)));
 	}
 	
-	public DateRangePicker(final DateRangeModel<D> defaultModel, final Collection<D> items)
+	public DateRangePicker(final DateRangeModel<D> initialModel, final Collection<D> items)
 	{
-		this.model = Objects.requireNonNull(defaultModel);
+		this.model = Objects.requireNonNull(initialModel);
 		this.overlay.setItems(items);
 		
 		this.initUI();
