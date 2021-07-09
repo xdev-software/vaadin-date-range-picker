@@ -409,7 +409,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 */
 	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
 	{
-		this.overlay.setAllowRangeOverlap(allowRangeLimitExceeding);
+		this.overlay.setAllowRangeLimitExceeding(allowRangeLimitExceeding);
 	}
 	
 	// -- LABELS --

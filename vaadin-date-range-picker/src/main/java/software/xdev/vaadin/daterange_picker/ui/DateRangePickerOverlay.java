@@ -220,7 +220,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.btnBackwardRange.setEnabled(fastNavEnabled);
 		this.btnForwardRange.setEnabled(fastNavEnabled);
 		
-		if(!this.isAllowRangeOverlap())
+		if(!this.isAllowRangeLimitExceeding())
 		{
 			this.dpEnd.setMin(model.getStart());
 			this.dpStart.setMax(model.getEnd());
