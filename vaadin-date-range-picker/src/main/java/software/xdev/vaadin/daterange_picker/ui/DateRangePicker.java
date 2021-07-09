@@ -399,6 +399,19 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this.overlayContainer;
 	}
 	
+	// -- SET ALLOW RANGE LIMIT EXCEEDING
+	
+	/**
+	 * Allows the maximum start and end date to be greater or less
+	 * than the configured end or start date.
+	 * 
+	 * @param allowRangeLimitExceeding
+	 */
+	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.overlay.setAllowRangeOverlap(allowRangeLimitExceeding);
+	}
+	
 	// -- LABELS --
 	
 	/**
