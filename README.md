@@ -1,7 +1,7 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/daterangepicker-for-vaadin)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Master%20CI)](https://github.com/xdev-software/vaadin-date-range-picker/actions?query=workflow%3A%22Master+CI%22)
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-date-range-picker)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-date-range-picker)
-[![Build Develop](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Develop%20CI/develop?label=build%20develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions?query=workflow%3A%22Develop+CI%22+branch%3Adevelop)
+[![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Check%20Build/develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+![Vaadin 14+](https://img.shields.io/badge/Vaadin%20Platform/Flow-14+-00b4f0.svg)
 
 # vaadin-date-range-picker
 A Vaadin Flow DateRangePicker implementation
@@ -26,7 +26,7 @@ A Vaadin Flow DateRangePicker implementation
 </details>
 
 
-## Releasing
+## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/vaadin-date-range-picker/Release?label=Release)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/release.yml)
 If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
 When the release is finished do the following:

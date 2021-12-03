@@ -4,11 +4,24 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "04:00"
+    # Run it at a specific time so that we don't get emails all day long
+    time: "00:00"
   open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "*"
+    # GitHub actions are using git tags (v1 = v1.2 = v1.2.3) which should be compatible until a major change is performed
+    update-types: 
+    - "version-update:semver-minor"
+    - "version-update:semver-patch"
 - package-ecosystem: maven
   directory: "/"
   schedule:
     interval: daily
-    time: "04:00"
+    # Run it at a specific time so that we don't get emails all day long
+    time: "00:00"
   open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "com.vaadin:vaadin-bom"
+    versions: ">=15.0.0"
+  - dependency-name: "org.eclipse.jetty:jetty-maven-plugin"
+    versions: ">=10.0.0"
