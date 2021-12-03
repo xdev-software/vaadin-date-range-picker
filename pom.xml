@@ -8,7 +8,7 @@
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-date-range-picker-root</artifactId>
 	<packaging>pom</packaging>
-	<version>2.1.2</version>
+	<version>2.1.3-SNAPSHOT</version>
 
 	<name>Vaadin DateRangePicker Root Project</name>
 
