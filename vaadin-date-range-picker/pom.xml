@@ -57,7 +57,7 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>14.7.7</vaadin.version>
+		<vaadin.version>14.8.6</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -184,7 +184,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>3.3.2</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -216,7 +216,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.2.2</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -229,10 +229,10 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 						</manifestEntries>
 					</archive>
-					<!-- Generated file that shouldn't be included in add-ons -->
+					<!-- VAADIN files that shouldn't be included in add-ons -->
 					<excludes>
 						<exclude>
-							META-INF/VAADIN/config/flow-build-info.json
+							META-INF/VAADIN/
 						</exclude>
 					</excludes>
 				</configuration>
@@ -270,7 +270,7 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.8</version>
+						<version>1.6.12</version>
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh</serverId>
@@ -309,12 +309,12 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.2.0</version>
+						<version>3.2.2</version>
 						<configuration>
-							<!-- Generated file that shouldn't be included in add-ons -->
+							<!-- VAADIN files that shouldn't be included in add-ons -->
 							<excludes>
 								<exclude>
-									META-INF/VAADIN/config/flow-build-info.json
+									META-INF/VAADIN/
 								</exclude>
 							</excludes>
 						</configuration>
