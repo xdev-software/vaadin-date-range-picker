@@ -57,7 +57,7 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeResult;
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePickerOverlay<D extends DateRange> extends Composite<VerticalLayout> implements
 	HasItems<D>,
-	FlexComponent<VerticalLayout>
+	FlexComponent
 {
 	/*
 	 * Fields
