@@ -62,7 +62,7 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
  */
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayout> implements
-	FlexComponent<VerticalLayout>,
+	FlexComponent,
 	HasItems<D>,
 	DateRangeActions<D, DateRangePicker<D>>,
 	HasValue<DateRangeValueChangeEvent<D>, DateRangeModel<D>>
@@ -439,7 +439,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	/**
 	 * Uses the given {@link DateRange} and calculates with the current Date
 	 * the {@link DateRangeModel}, which is then
-	 * set by {@link DateRangePicker#setModel(DateRangeModel)}
+	 * set by {@link DateRangePicker#setValue(DateRangeModel)}
 	 * 
 	 * @param range
 	 */
