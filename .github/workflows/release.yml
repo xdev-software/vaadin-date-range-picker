@@ -159,7 +159,7 @@ jobs:
       working-directory: vaadin-date-range-picker
       
     - name: Upload asset
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: vaadin-directory-files
         path: vaadin-date-range-picker/target/vaadin-date-range-picker-*.zip
@@ -206,7 +206,7 @@ jobs:
       working-directory: vaadin-date-range-picker
 
     - name: Upload licenses - Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: dependencies-licenses
         path: vaadin-date-range-picker/target/site
