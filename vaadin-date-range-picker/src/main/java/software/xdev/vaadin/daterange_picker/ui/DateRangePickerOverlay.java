@@ -143,7 +143,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected void setTextFieldDefaultWidthFlexConform(final HasStyle component)
 	{
-		component.getStyle().set("--vaadin-text-field-default-width", "auto");
+		component.getStyle().set("--vaadin-field-default-width", "auto");
 	}
 	
 	protected void registerListeners()
