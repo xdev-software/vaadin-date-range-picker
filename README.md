@@ -11,6 +11,14 @@ A Vaadin Flow DateRangePicker implementation
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest#Installation)
 
+#### Compatibility with Vaadin
+
+| Vaadin version | DateRangePicker version |
+| --- | --- |
+| Vaadin 23+ (latest) | ``3+`` |
+| Vaadin 14 (LTS - former release model) | ``2.x`` |
+
+
 ## Run the Demo
 * Checkout the repo
 * Run ``mvn clean install``
