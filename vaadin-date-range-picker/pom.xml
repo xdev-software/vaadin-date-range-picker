@@ -54,7 +54,7 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>23.0.7</vaadin.version>
+		<vaadin.version>23.0.11</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
