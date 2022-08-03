@@ -10,13 +10,11 @@
 	<version>3.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Vaadin DateRangePicker Demo</name>
-
 	<inceptionYear>2020</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.com</url>
+		<url>https://xdev.software</url>
 	</organization>
 
 	<licenses>

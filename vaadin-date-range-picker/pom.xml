@@ -11,7 +11,6 @@
 	<packaging>jar</packaging>
 	<version>3.0.1-SNAPSHOT</version>
 
-	<name>DateRangePicker for Vaadin</name>
 	<description>DateRangePicker for Vaadin</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 
@@ -24,14 +23,14 @@
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.de</url>
+		<url>https://xdev.software</url>
 	</organization>
 
 	<developers>
 		<developer>
 			<name>XDEV Software</name>
 			<organization>XDEV Software</organization>
-			<url>https://www.xdev-software.de</url>
+			<url>https://xdev.software</url>
 		</developer>
 	</developers>
 

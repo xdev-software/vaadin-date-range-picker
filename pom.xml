@@ -10,11 +10,9 @@
 	<packaging>pom</packaging>
 	<version>3.0.1-SNAPSHOT</version>
 
-	<name>Vaadin DateRangePicker Root Project</name>
-
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.com</url>
+		<url>https://xdev.software</url>
 	</organization>
 
 	<modules>
