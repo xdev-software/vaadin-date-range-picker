@@ -6,7 +6,7 @@
 # vaadin-date-range-picker
 A Vaadin Flow DateRangePicker implementation
 
-![demo](demo.png)
+![demo](assets/demo.png)
 
 
 ## Installation
@@ -31,7 +31,7 @@ A Vaadin Flow DateRangePicker implementation
 <details>
   <summary>Show example</summary>
   
-  ![demo](demo.gif)
+  ![demo](assets/demo.gif)
 </details>
 
 
