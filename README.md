@@ -44,7 +44,6 @@ If the ``develop`` is ready for release, create a pull request to the ``master``
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
-* Add the release notes to the [GitHub release](https://github.com/xdev-software/vaadin-date-range-picker/releases/latest)
 * Upload the generated release asset zip into the [Vaadin Directory](https://vaadin.com/directory) and update the component there
 
 

@@ -72,7 +72,9 @@ jobs:
     - name: Get version
       id: version
       run: |
-       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "::set-output name=release::$version"
+        echo "::set-output name=releasenumber::${version//[!0-9]/}"
       working-directory: vaadin-date-range-picker
   
     - name: Commit and Push
@@ -93,6 +95,9 @@ jobs:
         release_name: v${{ steps.version.outputs.release }}
         commitish: master
         body: |
+          ## [Changelog](https://github.com/xdev-software/vaadin-date-range-picker/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
+          See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/vaadin-date-range-picker/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
+
           ## Installation
           Add the following lines to your pom:
           ```XML
