@@ -6,8 +6,8 @@
 
 
 	<groupId>com.xdev-software</groupId>
-	<artifactId>vaadin-addon-template-demo</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>vaadin-date-range-picker-demo</artifactId>
+	<version>3.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<inceptionYear>2020</inceptionYear>
@@ -57,7 +57,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.xdev-software</groupId>
-			<artifactId>vaadin-addon-template</artifactId>
+			<artifactId>vaadin-date-range-picker</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

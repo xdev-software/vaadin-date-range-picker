@@ -6,18 +6,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xdev-software</groupId>
-	<artifactId>vaadin-addon-template</artifactId>
+	<artifactId>vaadin-date-range-picker</artifactId>
 
 	<packaging>jar</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>3.0.1-SNAPSHOT</version>
 
 	<name>DateRangePicker for Vaadin</name>
 	<description>DateRangePicker for Vaadin</description>
-	<url>https://github.com/xdev-software/vaadin-addon-template</url>
+	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 
 	<scm>
-		<url>https://github.com/xdev-software/vaadin-addon-template</url>
-		<connection>https://github.com/xdev-software/vaadin-addon-template.git</connection>
+		<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
+		<connection>https://github.com/xdev-software/vaadin-date-range-picker.git</connection>
 	</scm>
 
 	<inceptionYear>2020</inceptionYear>
