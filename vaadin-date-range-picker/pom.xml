@@ -2,14 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-date-range-picker</artifactId>
-
-	<packaging>jar</packaging>
 	<version>3.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>DateRangePicker for Vaadin</name>
 	<description>DateRangePicker for Vaadin</description>
@@ -53,7 +51,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>23.1.4</vaadin.version>
+		<vaadin.version>23.2.1</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -160,7 +158,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.4.0</version>
+				<version>3.4.1</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -192,7 +190,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.2</version>
+				<version>3.3.0</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -285,7 +283,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
-						<version>3.2.2</version>
+						<version>3.3.0</version>
 						<configuration>
 							<!-- VAADIN files that shouldn't be included in add-ons -->
 							<excludes>
