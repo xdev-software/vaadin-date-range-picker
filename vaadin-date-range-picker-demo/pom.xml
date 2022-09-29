@@ -4,19 +4,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-date-range-picker-demo</artifactId>
 	<version>3.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Vaadin DateRangePicker Demo</name>
-
 	<inceptionYear>2020</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
-		<url>https://xdev-software.com</url>
+		<url>https://xdev.software/en</url>
 	</organization>
 
 	<licenses>
@@ -34,10 +31,9 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>23.0.7</vaadin.version>
+		<vaadin.version>23.2.2</vaadin.version>
 	</properties>
 
 
@@ -77,9 +73,9 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.46.v20220331</version>
+				<version>10.0.12</version>
 				<configuration>
-					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<scan>1</scan>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -100,6 +96,9 @@
 				<version>3.10.1</version>
 				<configuration>
 					<release>${maven.compiler.release}</release>
+					<compilerArgs>
+						<arg>-proc:none</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 			<plugin>
