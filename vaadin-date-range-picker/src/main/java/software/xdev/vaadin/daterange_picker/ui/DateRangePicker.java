@@ -164,7 +164,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	public Locale getFormatLocale()
 	{
-		return this.formatLocale.isPresent() ? this.formatLocale.get() : DEFAULT_LOCALE;
+		return this.formatLocale.orElse(DEFAULT_LOCALE);
 	}
 	
 	public DateRangePicker<D> withDateRangeLocalizerFunction(final ItemLabelGenerator<D> dateRangeLocalizerFunction)
