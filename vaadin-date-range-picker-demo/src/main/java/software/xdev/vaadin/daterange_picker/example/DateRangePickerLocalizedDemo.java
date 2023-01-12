@@ -115,22 +115,22 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	// @formatter:off
 	// List Must start with Sunday and ends with Saturday... Americans...
-	private static List<DayOfWeek> daysOfWeekSortedForDatepicker =
+	private static final List<DayOfWeek> daysOfWeekSortedForDatepicker =
 		Stream.concat(
 			Stream.of(DayOfWeek.SUNDAY),
 			Stream.of(DayOfWeek.values()).filter(dow -> !dow.equals(DayOfWeek.SUNDAY))
 				)
 		.collect(Collectors.toList());
 		
-	private static List<String> weekdays =
+	private static final List<String> weekdays =
 		daysOfWeekSortedForDatepicker.stream()
 			.map(dow -> dow.getDisplayName(TextStyle.FULL, Locale.GERMAN))
 			.collect(Collectors.toList());
-	private static List<String> weekdaysshort =
+	private static final List<String> weekdaysshort =
 		daysOfWeekSortedForDatepicker.stream()
 			.map(dow -> dow.getDisplayName(TextStyle.SHORT, Locale.GERMAN))
 			.collect(Collectors.toList());
-	private static List<String> months =
+	private static final List<String> months =
 		Stream.of(Month.values())
 			.map(m -> m.getDisplayName(TextStyle.FULL, Locale.GERMAN))
 			.collect(Collectors.toList());
@@ -138,18 +138,12 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	/**
 	 * Standard DatePickerI18N
-	 *
-	 * @return
 	 */
 	public static DatePickerI18n getDatePickerI18n()
 	{
 		final DatePickerI18n datepicker = new DatePickerI18n();
 		datepicker.setFirstDayOfWeek(1);
 		
-		datepicker.setWeek("Woche");
-		datepicker.setCalendar("Kalender");
-		
-		datepicker.setClear("Leeren");
 		datepicker.setCancel("Abbrechen");
 		datepicker.setToday("Heute");
 		
