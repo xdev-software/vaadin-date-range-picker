@@ -180,9 +180,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setStartLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withStartLabel(final String label)
 	{
@@ -192,9 +189,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setEndLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withEndLabel(final String label)
 	{
@@ -204,9 +198,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setDateRangeOptionsLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withDateRangeOptionsLabel(final String label)
 	{
