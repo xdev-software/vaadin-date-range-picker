@@ -9,8 +9,6 @@ public class CustomDateRanges
 		// No Impls
 	}
 	
-	// @formatter:off
-	
 	// No Today-DateRange
 	
 	public static final CustomDateRange DAY = new CustomDateRange()
@@ -38,8 +36,6 @@ public class CustomDateRanges
 		.withTag("has 12 months");
 	
 	// No Free-DateRange
-	
-	// @formatter:on
 	
 	public static CustomDateRange[] allValues()
 	{
