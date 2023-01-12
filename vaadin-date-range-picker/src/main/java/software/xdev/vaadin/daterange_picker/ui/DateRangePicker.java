@@ -284,7 +284,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"  var spEl = document.getElementById('" + this.getId().orElseThrow() + "');",
 			"  if (!spEl) {",
 			// If the element got detached/removed, then als delete the listener of the base element
-			"    document.removeEventListener('click'," + funcName + ")",
+			"    document.removeEventListener('click'," + funcName + ");",
 			"    return;",
 			"  }",
 			// Check if a Vaadin overlay caused the click
@@ -294,7 +294,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			// Check if the click was done on this element
 			"  var isClickInside = spEl.contains(event.target);",
 			"  if (!isClickInside) {",
-			"    spEl.$server.clickOutsideOccurred()",
+			"    spEl.$server.clickOutsideOccurred();",
 			"  }",
 			"}; ",
 			"document.body.addEventListener('click'," + funcName + ");"
