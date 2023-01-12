@@ -273,37 +273,38 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			return;
 		}
 		
-		final String funcName = "outsideClickFunc" + this.getId().get();
+		final String funcName = "outsideClickFunc" + this.getId().orElseThrow();
 		
 		// @formatter:off
-		final String jsCommand =
+		final String jsCommand = String.join(
+			"\r\n",
 			// Define Click-Function
-			"var " + funcName + " = function(event) {\r\n" +
+			"var " + funcName + " = function(event) {",
 			// Get the current Element
-			"  var spEl = document.getElementById('" + this.getId().get() + "');\r\n" +
-			"  if (!spEl) {\r\n" +
+			"  var spEl = document.getElementById('" + this.getId().orElseThrow() + "');",
+			"  if (!spEl) {",
 			// If the element got detached/removed, then als delete the listener of the base element
-			"    document.removeEventListener('click'," + funcName + ")\r\n" +
-			"    return;\r\n" +
-			"  }\r\n" +
+			"    document.removeEventListener('click'," + funcName + ")",
+			"    return;",
+			"  }",
 			// Check if a Vaadin overlay caused the click
-			"  if(event.target.id == 'overlay') {\r\n" +
-			"    return;\r\n" +
-			"  }\r\n" +
+			"  if(event.target.id == 'overlay') {",
+			"    return;",
+			"  }",
 			// Check if the click was done on this element
-			"  var isClickInside = spEl.contains(event.target);\r\n" +
-			"  if (!isClickInside) {\r\n" +
-			"    spEl.$server.clickOutsideOccured()\r\n" +
-			"  }\r\n" +
-			"}; \r\n" +
-			"document.body.addEventListener('click'," + funcName + ");";
-		// @formatter:on
+			"  var isClickInside = spEl.contains(event.target);",
+			"  if (!isClickInside) {",
+			"    spEl.$server.clickOutsideOccurred()",
+			"  }",
+			"}; ",
+			"document.body.addEventListener('click'," + funcName + ");"
+		);
 		
 		this.getContent().getElement().executeJs(jsCommand);
 	}
 	
 	@ClientCallable
-	protected void clickOutsideOccured()
+	protected void clickOutsideOccurred()
 	{
 		if(!this.isCloseOnOutsideClick())
 		{
