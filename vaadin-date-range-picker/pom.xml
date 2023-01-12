@@ -42,8 +42,6 @@
 	</licenses>
 
 	<properties>
-		<license.licenseName>apache_v2</license.licenseName>
-
 		<javaVersion>11</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
