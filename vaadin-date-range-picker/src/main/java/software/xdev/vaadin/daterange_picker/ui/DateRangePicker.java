@@ -1,24 +1,19 @@
-package software.xdev.vaadin.daterange_picker.ui;
-
-/*-
- * #%L
- * vaadin-date-range-picker
- * %%
- * Copyright (C) 2020 XDEV Software
- * %%
+/*
+ * Copyright © 2020 XDEV Software (https://xdev.software/en)
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * #L%
  */
+package software.xdev.vaadin.daterange_picker.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -164,7 +159,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	public Locale getFormatLocale()
 	{
-		return this.formatLocale.isPresent() ? this.formatLocale.get() : DEFAULT_LOCALE;
+		return this.formatLocale.orElse(DEFAULT_LOCALE);
 	}
 	
 	public DateRangePicker<D> withDateRangeLocalizerFunction(final ItemLabelGenerator<D> dateRangeLocalizerFunction)
@@ -180,9 +175,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setStartLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withStartLabel(final String label)
 	{
@@ -192,9 +184,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setEndLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withEndLabel(final String label)
 	{
@@ -204,9 +193,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Shortcut for {@link DateRangePicker#setDateRangeOptionsLabel(String)}
-	 * 
-	 * @param label
-	 * @return
 	 */
 	public DateRangePicker<D> withDateRangeOptionsLabel(final String label)
 	{
@@ -282,37 +268,38 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			return;
 		}
 		
-		final String funcName = "outsideClickFunc" + this.getId().get();
+		final String funcName = "outsideClickFunc" + this.getId().orElseThrow();
 		
 		// @formatter:off
-		final String jsCommand =
+		final String jsCommand = String.join(
+			"\r\n",
 			// Define Click-Function
-			"var " + funcName + " = function(event) {\r\n" +
+			"var " + funcName + " = function(event) {",
 			// Get the current Element
-			"  var spEl = document.getElementById('" + this.getId().get() + "');\r\n" +
-			"  if (!spEl) {\r\n" +
+			"  var spEl = document.getElementById('" + this.getId().orElseThrow() + "');",
+			"  if (!spEl) {",
 			// If the element got detached/removed, then als delete the listener of the base element
-			"    document.removeEventListener('click'," + funcName + ")\r\n" +
-			"    return;\r\n" +
-			"  }\r\n" +
+			"    document.removeEventListener('click'," + funcName + ");",
+			"    return;",
+			"  }",
 			// Check if a Vaadin overlay caused the click
-			"  if(event.target.id == 'overlay') {\r\n" +
-			"    return;\r\n" +
-			"  }\r\n" +
+			"  if(event.target.id == 'overlay') {",
+			"    return;",
+			"  }",
 			// Check if the click was done on this element
-			"  var isClickInside = spEl.contains(event.target);\r\n" +
-			"  if (!isClickInside) {\r\n" +
-			"    spEl.$server.clickOutsideOccured()\r\n" +
-			"  }\r\n" +
-			"}; \r\n" +
-			"document.body.addEventListener('click'," + funcName + ");";
-		// @formatter:on
+			"  var isClickInside = spEl.contains(event.target);",
+			"  if (!isClickInside) {",
+			"    spEl.$server.clickOutsideOccurred();",
+			"  }",
+			"}; ",
+			"document.body.addEventListener('click'," + funcName + ");"
+		);
 		
 		this.getContent().getElement().executeJs(jsCommand);
 	}
 	
 	@ClientCallable
-	protected void clickOutsideOccured()
+	protected void clickOutsideOccurred()
 	{
 		if(!this.isCloseOnOutsideClick())
 		{
