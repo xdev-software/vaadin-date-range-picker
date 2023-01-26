@@ -61,6 +61,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected DateRangePicker<D> dateRangePicker;
 	protected DateRangeModel<D> currentModel;
+	protected boolean allowRangeLimitExceeding = false;
 	
 	/*
 	 * UI-Comp
@@ -213,8 +214,11 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.btnBackwardRange.setEnabled(fastNavEnabled);
 		this.btnForwardRange.setEnabled(fastNavEnabled);
 		
-		this.dpEnd.setMin(model.getStart());
-		this.dpStart.setMax(model.getEnd());
+		if(!this.isAllowRangeLimitExceeding())
+		{
+			this.dpEnd.setMin(model.getStart());
+			this.dpStart.setMax(model.getEnd());
+		}
 		
 		this.cbDateRange.setValue(model.getDateRange());
 		this.dpStart.setValue(model.getStart());
@@ -301,6 +305,16 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	public Registration addValueChangeListener(final ComponentEventListener<DateRangeOverlayValueChangeEvent> listener)
 	{
 		return this.addListener(DateRangeOverlayValueChangeEvent.class, (ComponentEventListener)listener);
+	}
+	
+	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.allowRangeLimitExceeding = allowRangeLimitExceeding;
+	}
+	
+	public boolean isAllowRangeLimitExceeding()
+	{
+		return this.allowRangeLimitExceeding;
 	}
 	
 	public class DateRangeOverlayValueChangeEvent extends ComponentEvent<DateRangePickerOverlay<D>>

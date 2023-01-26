@@ -390,7 +390,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay Start-DatePicker
-	 * 
+	 *
 	 * @param label
 	 */
 	public void setStartLabel(final String label)
@@ -400,8 +400,16 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	}
 	
 	/**
+	 * Allows the maximum start and end date to be greater or less than the configured end or start date.
+	 */
+	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.overlay.setAllowRangeLimitExceeding(allowRangeLimitExceeding);
+	}
+	
+	/**
 	 * Sets the label for the overlay End-DatePicker
-	 * 
+	 *
 	 * @param label
 	 */
 	public void setEndLabel(final String label)
