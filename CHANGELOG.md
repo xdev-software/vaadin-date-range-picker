@@ -1,3 +1,6 @@
+## 3.0.3
+* Updated dependencies
+
 ## 3.0.2
 * Updated dependencies
   * Vaadin 23.3
