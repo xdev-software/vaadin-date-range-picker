@@ -1,3 +1,6 @@
+## 4.0.0
+* Added ``AllowRangeLimitExceeding``; default value is ``true``
+
 ## 3.0.3
 * Renamed ``defaultModel`` to ``initialModel``
 * Updated dependencies
