@@ -84,6 +84,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
 	protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
 	protected boolean closeOnOutsideClick = true;
+	protected boolean allowRangeLimitExceeding = true;
 	
 	/*
 	 * UI-Components
@@ -197,6 +198,15 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	public DateRangePicker<D> withDateRangeOptionsLabel(final String label)
 	{
 		this.setDateRangeOptionsLabel(label);
+		return this;
+	}
+	
+	/**
+	 * Shortcut for {@link DateRangePicker#setAllowRangeLimitExceeding(boolean)}
+	 */
+	public DateRangePicker<D> withAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.setAllowRangeLimitExceeding(allowRangeLimitExceeding);
 		return this;
 	}
 	
@@ -397,14 +407,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	}
 	
 	/**
-	 * Allows the maximum start and end date to be greater or less than the configured end or start date.
-	 */
-	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
-	{
-		this.overlay.setAllowRangeLimitExceeding(allowRangeLimitExceeding);
-	}
-	
-	/**
 	 * Sets the label for the overlay End-DatePicker
 	 *
 	 * @param label
@@ -424,6 +426,26 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		Objects.requireNonNull(label);
 		this.getOverlay().getCbDateRange().setLabel(label);
+	}
+	
+	// endregion
+	
+	// region AllowRangeLimitExceeding
+	
+	/**
+	 * Allows the maximum start and end date to be greater or less than the configured end or start date.
+	 * <p/>
+	 * This is only the case when {@link DateRange#isCalcable()} is <code>true</code>. Otherwise incorrect values (e.g.
+	 * start before end) could be set.
+	 */
+	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.allowRangeLimitExceeding = allowRangeLimitExceeding;
+	}
+	
+	public boolean isAllowRangeLimitExceeding()
+	{
+		return this.allowRangeLimitExceeding;
 	}
 	
 	// endregion
