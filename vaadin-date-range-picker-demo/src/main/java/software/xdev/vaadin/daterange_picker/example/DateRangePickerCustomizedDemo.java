@@ -49,14 +49,12 @@ public class DateRangePickerCustomizedDemo extends Composite<VerticalLayout>
 			final DateRangeModel<CustomDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
-			// @formatter:off
 			this.taResult.setValue(
 					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
 					"DateRange-Tag: " + modell.getDateRange().getTag() + "\r\n" +
 					"Start: " + modell.getStart() + "\r\n" +
 					"End: " + modell.getEnd()
 				);
-			// @formatter:on
 		});
 	}
 }
