@@ -1,3 +1,7 @@
+## 3.0.3
+* Renamed ``defaultModel`` to ``initialModel``
+* Updated dependencies
+
 ## 3.0.2
 * Updated dependencies
   * Vaadin 23.3
