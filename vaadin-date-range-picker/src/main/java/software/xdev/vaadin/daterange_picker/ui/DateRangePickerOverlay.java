@@ -214,11 +214,8 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.btnBackwardRange.setEnabled(fastNavEnabled);
 		this.btnForwardRange.setEnabled(fastNavEnabled);
 		
-		if(!this.isAllowRangeLimitExceeding())
-		{
-			this.dpEnd.setMin(model.getStart());
-			this.dpStart.setMax(model.getEnd());
-		}
+		this.dpEnd.setMin(!this.isAllowRangeLimitExceeding() ? model.getStart() : null);
+		this.dpStart.setMax(!this.isAllowRangeLimitExceeding() ? model.getEnd() : null);
 		
 		this.cbDateRange.setValue(model.getDateRange());
 		this.dpStart.setValue(model.getStart());
@@ -243,7 +240,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.getCbDateRange().setItems(items);
 	}
 	
-	// -- GETTER --
+	// region UI Getter
 	public ComboBox<D> getCbDateRange()
 	{
 		return this.cbDateRange;
@@ -259,7 +256,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		return this.dpEnd;
 	}
 	
-	// -- DATA --
+	// endregion
+	
+	// region Manage Data externally
 	public DateRangeModel<D> getModel()
 	{
 		return this.currentModel;
@@ -316,6 +315,9 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	{
 		return this.allowRangeLimitExceeding;
 	}
+	
+	// endregion
+	
 	
 	public class DateRangeOverlayValueChangeEvent extends ComponentEvent<DateRangePickerOverlay<D>>
 	{

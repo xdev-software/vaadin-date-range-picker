@@ -33,7 +33,6 @@ public final class SimpleDateRanges
 		// No Impls
 	}
 	
-	// @formatter:off
 	public static final SimpleDateRange TODAY = new SimpleDateRange()
 		.withKey("TODAY")
 		.withDefaultDesc("Today")
@@ -105,7 +104,6 @@ public final class SimpleDateRanges
 		.withDefaultDesc("Free")
 		.withMovable(false)
 		.withCalcable(false);
-	// @formatter:on
 	
 	public static SimpleDateRange[] allValues()
 	{

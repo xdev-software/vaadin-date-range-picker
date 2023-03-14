@@ -77,7 +77,6 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout>
 			final DateRangeModel<SimpleDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
-			// @formatter:off
 			this.taResult.setValue(
 					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
 					"Start: " + modell.getStart() + "\r\n" +
@@ -91,7 +90,6 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout>
 					+ "IsFromClient: " + ev.isFromClient()
 					
 				);
-			// @formatter:on
 		});
 		
 		this.updateBtnDarkMode();

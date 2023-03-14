@@ -30,7 +30,6 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	protected static final List<SimpleDateRange> DATERANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 	
-	// @formatter:off
 	private final DateRangePicker<SimpleDateRange> dateRangePicker =
 		new DateRangePicker<>(
 			() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
@@ -75,7 +74,6 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 		.withStartLabel("Start - Anfang")
 		.withEndLabel("End - Ende")
 		.withDateRangeOptionsLabel("Period - Zeitraum");
-	// @formatter:on
 	
 	private final TextArea taResult =
 		new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
@@ -103,17 +101,14 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 			final DateRangeModel<SimpleDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
-			// @formatter:off
 			this.taResult.setValue(
 					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
 					"Start: " + modell.getStart() + "\r\n" +
 					"End: " + modell.getEnd()
 				);
-			// @formatter:on
 		});
 	}
 	
-	// @formatter:off
 	// List Must start with Sunday and ends with Saturday... Americans...
 	private static final List<DayOfWeek> daysOfWeekSortedForDatepicker =
 		Stream.concat(
@@ -134,7 +129,6 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 		Stream.of(Month.values())
 			.map(m -> m.getDisplayName(TextStyle.FULL, Locale.GERMAN))
 			.collect(Collectors.toList());
-	// @formatter:on
 	
 	/**
 	 * Standard DatePickerI18N

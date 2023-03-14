@@ -126,13 +126,11 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		
 		if(paras.containsKey(QP_RANGE) && !paras.get(QP_RANGE).isEmpty())
 		{
-			// @formatter:off
 			final Optional<SimpleDateRange> optQueryDR =
 				DATERANGE_VALUES
 				.stream()
 				.filter(dr -> dr.getKey().equalsIgnoreCase(paras.get(QP_RANGE).get(0)))
 				.findFirst();
-			// @formatter:on
 			
 			if(optQueryDR.isPresent())
 			{
@@ -198,12 +196,10 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		{
 			final SimpleDateRange dr = dateRange;
 			
-			// @formatter:off
 			dateRange.calcFor(start)
 				.ifPresent(drcr ->
 						this.dateRangePicker.setValue(
 							new DateRangeModel<>(drcr.getStart(), drcr.getEnd(), dr)));
-			// @formatter:on
 			
 			if(dateRange != this.dateRangePicker.getDateRange() ||
 				start != null && !start.equals(this.dateRangePicker.getStart()))
