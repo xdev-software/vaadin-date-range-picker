@@ -16,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerCustomizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerLocalizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerParameterDemo;
+import software.xdev.vaadin.daterange_picker.example.DateRangePickerRangeExceedingDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerStyledDemo;
 
 @PageTitle("DateRangePicker Examples")
@@ -50,10 +51,26 @@ public class HomeView extends Composite<VerticalLayout>
 	protected void onAttach(final AttachEvent attachEvent)
 	{
 		this.grExamples.setItems(Arrays.asList(
-			new Example(DateRangePickerStyledDemo.NAV, "Styled-Demo", "dark mode 🌑  and more"),
-			new Example(DateRangePickerParameterDemo.NAV, "Parameter-Demo", "configuration is stored in QueryParameters"),
-			new Example(DateRangePickerLocalizedDemo.NAV, "Localized-Demo", "🌐 simple localization"),
-			new Example(DateRangePickerCustomizedDemo.NAV, "Customized-Demo", "usage of a customized DateRange")
+			new Example(
+				DateRangePickerStyledDemo.NAV,
+				"Styled-Demo",
+				"dark mode 🌑  and more"),
+			new Example(
+				DateRangePickerParameterDemo.NAV,
+				"Parameter-Demo",
+				"configuration is stored in QueryParameters"),
+			new Example(
+				DateRangePickerLocalizedDemo.NAV,
+				"Localized-Demo",
+				"🌐 simple localization"),
+			new Example(
+				DateRangePickerRangeExceedingDemo.NAV,
+				"RangeExceeding-Demo",
+				"usage of a range exceeding DateRange"),
+			new Example(
+				DateRangePickerCustomizedDemo.NAV,
+				"Customized-Demo",
+				"usage of a customized DateRange")
 		));
 	}
 	
