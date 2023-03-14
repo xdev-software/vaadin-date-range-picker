@@ -6,7 +6,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>vaadin-date-range-picker-demo</artifactId>
-	<version>3.0.3-SNAPSHOT</version>
+	<version>3.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<inceptionYear>2020</inceptionYear>
