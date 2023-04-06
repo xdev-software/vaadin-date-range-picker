@@ -17,7 +17,8 @@ A Vaadin Flow DateRangePicker implementation
 
 | Vaadin version | DateRangePicker version |
 | --- | --- |
-| Vaadin 23+ (latest) | ``3+`` |
+| Vaadin 24+ (latest) | ``4+`` |
+| Vaadin 23 | ``3.x`` |
 | Vaadin 14 (LTS - former release model) | ``2.x`` |
 
 

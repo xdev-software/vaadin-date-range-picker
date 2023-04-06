@@ -1,5 +1,13 @@
 ## 4.0.0
+
+⚠️<i>This release contains breaking changes</i>
+
+* Adds support for Vaadin 24+, drops support for Vaadin 23<br/>
+  <i>If you are still using Vaadin 14, use the ``3.x`` versions.</i>
+  * Requires Java 17+
 * Added ``AllowRangeLimitExceeding``; default value is ``true``
+* Fixed Broken overlay detection on Vaadin 24 #224 
+* Updated dependencies
 
 ## 3.0.3
 * Renamed ``defaultModel`` to ``initialModel``
