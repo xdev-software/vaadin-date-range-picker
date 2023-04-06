@@ -84,6 +84,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
 	protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
 	protected boolean closeOnOutsideClick = true;
+	protected boolean allowRangeLimitExceeding = true;
 	
 	/*
 	 * UI-Components
@@ -127,7 +128,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this(initialModelSupplier.get(), items);
 	}
 	
-	// -- Initializers --
+	// region Initializers
 	
 	public DateRangePicker<D> withCloseOnOutsideClick(final boolean closeOnOutsideClick)
 	{
@@ -200,7 +201,16 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this;
 	}
 	
-	// -- END Initializers --
+	/**
+	 * Shortcut for {@link DateRangePicker#setAllowRangeLimitExceeding(boolean)}
+	 */
+	public DateRangePicker<D> withAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.setAllowRangeLimitExceeding(allowRangeLimitExceeding);
+		return this;
+	}
+	
+	// endregion
 	
 	protected void initUI()
 	{
@@ -270,7 +280,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		
 		final String funcName = "outsideClickFunc" + this.getId().orElseThrow();
 		
-		// @formatter:off
 		final String jsCommand = String.join(
 			"\r\n",
 			// Define Click-Function
@@ -283,8 +292,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"    return;",
 			"  }",
 			// Check if a Vaadin overlay caused the click
-			"  if(event.target.id == 'overlay') {",
-			"    return;",
+			"  let parent = event.target;",
+			// Check all parents of clicked element
+			"  while(parent) {",
+			// Check if a vaadin overlay was clicked:
+			// Fist check if the tagName indicates a Vaadin overlay
+			// If not fallback to id='overlay'
+			"    let tagName = parent.tagName.toLowerCase();",
+			"    if((tagName.includes('vaadin') && tagName.includes('overlay')) || parent.id == 'overlay') {",
+			"      return;",
+			"    }",
+			"    parent = parent.parentElement;",
 			"  }",
 			// Check if the click was done on this element
 			"  var isClickInside = spEl.contains(event.target);",
@@ -322,7 +340,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		final DateTimeFormatter formatter =
 			DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
 		
-		// @formatter:off
 		this.btnOverview.setText(
 			this.model.getStart().format(formatter) +
 			(
@@ -331,7 +348,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 					" - " + this.model.getEnd().format(formatter)
 			)
 		);
-		// @formatter:on
 		
 		if(updateOverlay)
 		{
@@ -341,14 +357,12 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	protected void tryFixInvalidModel()
 	{
-		// @formatter:off
 		this.model.getDateRange()
 			.calcFor(this.model.getStart())
 			.ifPresent(result -> {
 				this.model.setStart(result.getStart());
 				this.model.setEnd(result.getEnd());
 			});
-		// @formatter:on
 	}
 	
 	protected void toggle()
@@ -369,7 +383,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this.expanded;
 	}
 	
-	// --- GET UI ELEMENTS ---
+	// region Get UI elements
 	
 	public DateRangePickerOverlay<D> getOverlay()
 	{
@@ -386,11 +400,13 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this.overlayContainer;
 	}
 	
-	// -- LABELS --
+	// endregion
+	
+	// region Labels
 	
 	/**
 	 * Sets the label for the overlay Start-DatePicker
-	 * 
+	 *
 	 * @param label
 	 */
 	public void setStartLabel(final String label)
@@ -401,7 +417,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay End-DatePicker
-	 * 
+	 *
 	 * @param label
 	 */
 	public void setEndLabel(final String label)
@@ -412,7 +428,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay DateRange-ComboBox
-	 * 
+	 *
 	 * @param label
 	 */
 	public void setDateRangeOptionsLabel(final String label)
@@ -421,13 +437,34 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.getOverlay().getCbDateRange().setLabel(label);
 	}
 	
-	// --- DATA ---
+	// endregion
+	
+	// region AllowRangeLimitExceeding
 	
 	/**
-	 * Uses the given {@link DateRange} and calculates with the current Date
-	 * the {@link DateRangeModel}, which is then
+	 * Allows the maximum start and end date to be greater or less than the configured end or start date.
+	 * <p/>
+	 * This is only the case when {@link DateRange#isCalcable()} is <code>true</code>. Otherwise incorrect values (e.g.
+	 * start before end) could be set.
+	 */
+	public void setAllowRangeLimitExceeding(final boolean allowRangeLimitExceeding)
+	{
+		this.allowRangeLimitExceeding = allowRangeLimitExceeding;
+	}
+	
+	public boolean isAllowRangeLimitExceeding()
+	{
+		return this.allowRangeLimitExceeding;
+	}
+	
+	// endregion
+	
+	// region Data
+	
+	/**
+	 * Uses the given {@link DateRange} and calculates with the current Date the {@link DateRangeModel}, which is then
 	 * set by {@link DateRangePicker#setValue(DateRangeModel)}
-	 * 
+	 *
 	 * @param range
 	 */
 	public void setDateRangeForToday(final D range)
@@ -570,9 +607,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	}
 	
 	/**
-	 * The required indicator is not implemented<br>
-	 * This will always return {@code false}
-	 * 
+	 * The required indicator is not implemented<br> This will always return {@code false}
+	 *
 	 * @return {@code false}
 	 */
 	@Override
@@ -580,4 +616,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	{
 		return false;
 	}
+	
+	// endregion
 }

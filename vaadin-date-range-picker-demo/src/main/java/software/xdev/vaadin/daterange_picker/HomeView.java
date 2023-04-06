@@ -16,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerCustomizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerLocalizedDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerParameterDemo;
+import software.xdev.vaadin.daterange_picker.example.DateRangePickerRangeExceedingDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerStyledDemo;
 
 @PageTitle("DateRangePicker Examples")
@@ -26,7 +27,6 @@ public class HomeView extends Composite<VerticalLayout>
 	
 	public HomeView()
 	{
-		// @formatter:off
 		this.grExamples
 			.addColumn(new ComponentRenderer<>(example -> {
 				final Anchor anchor = new Anchor(example.getRoute(), example.getName());
@@ -40,8 +40,6 @@ public class HomeView extends Composite<VerticalLayout>
 			}))
 			.setHeader("Available demos");
 		
-		// @formatter:on
-		
 		this.grExamples.setSizeFull();
 		this.grExamples.addThemeVariants(GridVariant.LUMO_COMPACT, GridVariant.LUMO_NO_BORDER);
 		
@@ -52,14 +50,28 @@ public class HomeView extends Composite<VerticalLayout>
 	@Override
 	protected void onAttach(final AttachEvent attachEvent)
 	{
-		// @formatter:off
 		this.grExamples.setItems(Arrays.asList(
-			new Example(DateRangePickerStyledDemo.NAV, "Styled-Demo", "dark mode 🌑  and more"),
-			new Example(DateRangePickerParameterDemo.NAV, "Parameter-Demo", "configuration is stored in QueryParameters"),
-			new Example(DateRangePickerLocalizedDemo.NAV, "Localized-Demo", "🌐 simple localization"),
-			new Example(DateRangePickerCustomizedDemo.NAV, "Customized-Demo", "usage of a customized DateRange")
+			new Example(
+				DateRangePickerStyledDemo.NAV,
+				"Styled-Demo",
+				"dark mode 🌑  and more"),
+			new Example(
+				DateRangePickerParameterDemo.NAV,
+				"Parameter-Demo",
+				"configuration is stored in QueryParameters"),
+			new Example(
+				DateRangePickerLocalizedDemo.NAV,
+				"Localized-Demo",
+				"🌐 simple localization"),
+			new Example(
+				DateRangePickerRangeExceedingDemo.NAV,
+				"RangeExceeding-Demo",
+				"usage of a range exceeding DateRange"),
+			new Example(
+				DateRangePickerCustomizedDemo.NAV,
+				"Customized-Demo",
+				"usage of a customized DateRange")
 		));
-		// @formatter:on
 	}
 	
 	
