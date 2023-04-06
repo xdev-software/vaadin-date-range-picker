@@ -2,7 +2,7 @@
 [![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-date-range-picker)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-date-range-picker)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-date-range-picker/checkBuild.yml?branch=develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_vaadin-date-range-picker&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_vaadin-date-range-picker)
-![Vaadin 23+](https://img.shields.io/badge/Vaadin%20Platform/Flow-23+-00b4f0.svg)
+![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0.svg)
 
 # vaadin-date-range-picker
 A Vaadin Flow DateRangePicker implementation
@@ -17,7 +17,8 @@ A Vaadin Flow DateRangePicker implementation
 
 | Vaadin version | DateRangePicker version |
 | --- | --- |
-| Vaadin 23+ (latest) | ``3+`` |
+| Vaadin 24+ (latest) | ``4+`` |
+| Vaadin 23 | ``3.x`` |
 | Vaadin 14 (LTS - former release model) | ``2.x`` |
 
 
