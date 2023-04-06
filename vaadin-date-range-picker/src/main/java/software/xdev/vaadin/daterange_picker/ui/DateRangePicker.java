@@ -292,8 +292,17 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 			"    return;",
 			"  }",
 			// Check if a Vaadin overlay caused the click
-			"  if(event.target.id == 'overlay') {",
-			"    return;",
+			"  let parent = event.target;",
+			// Check all parents of clicked element
+			"  while(parent) {",
+			// Check if a vaadin overlay was clicked:
+			// Fist check if the tagName indicates a Vaadin overlay
+			// If not fallback to id='overlay'
+			"    let tagName = parent.tagName.toLowerCase();",
+			"    if((tagName.includes('vaadin') && tagName.includes('overlay')) || parent.id == 'overlay') {",
+			"      return;",
+			"    }",
+			"    parent = parent.parentElement;",
 			"  }",
 			// Check if the click was done on this element
 			"  var isClickInside = spEl.contains(event.target);",
