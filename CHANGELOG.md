@@ -1,3 +1,6 @@
+## 4.0.1
+* Various dependency updates including Vaadin 24.1
+
 ## 4.0.0
 
 ⚠️<i>This release contains breaking changes</i>
