@@ -16,16 +16,7 @@
 		<url>https://xdev.software</url>
 	</organization>
 
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-
 	<properties>
-		<license.licenseName>apache_v2</license.licenseName>
-
 		<javaVersion>17</javaVersion>
 		<maven.compiler.release>${javaVersion}</maven.compiler.release>
 
@@ -35,9 +26,9 @@
 		<mainClass>software.xdev.vaadin.Application</mainClass>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.0.3</vaadin.version>
+		<vaadin.version>24.1.8</vaadin.version>
 
-		<org.springframework.boot.version>3.0.5</org.springframework.boot.version>
+		<org.springframework.boot.version>3.1.3</org.springframework.boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -134,16 +125,19 @@
 	<profiles>
 		<profile>
 			<id>production</id>
-			<properties>
-				<vaadin.productionMode>true</vaadin.productionMode>
-			</properties>
 			<dependencies>
+				<!-- Exclude development dependencies from production -->
 				<dependency>
 					<groupId>com.vaadin</groupId>
-					<artifactId>flow-server-production-mode</artifactId>
+					<artifactId>vaadin-core</artifactId>
+					<exclusions>
+						<exclusion>
+							<groupId>com.vaadin</groupId>
+							<artifactId>vaadin-dev</artifactId>
+						</exclusion>
+					</exclusions>
 				</dependency>
 			</dependencies>
-
 			<build>
 				<plugins>
 					<plugin>
