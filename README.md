@@ -31,7 +31,7 @@ A Vaadin Flow DateRangePicker implementation
 <details>
   <summary>Show example</summary>
   
-  ![demo](assets/demo.gif)
+  ![demo](assets/demo.avif)
 </details>
 
 ## Support
