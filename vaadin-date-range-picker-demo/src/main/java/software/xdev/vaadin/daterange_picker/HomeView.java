@@ -19,6 +19,7 @@ import software.xdev.vaadin.daterange_picker.example.DateRangePickerParameterDem
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerRangeExceedingDemo;
 import software.xdev.vaadin.daterange_picker.example.DateRangePickerStyledDemo;
 
+
 @PageTitle("DateRangePicker Examples")
 @Route("")
 public class HomeView extends Composite<VerticalLayout>
@@ -29,9 +30,9 @@ public class HomeView extends Composite<VerticalLayout>
 	{
 		this.grExamples
 			.addColumn(new ComponentRenderer<>(example -> {
-				final Anchor anchor = new Anchor(example.getRoute(), example.getName());
+				final Anchor anchor = new Anchor(example.route(), example.name());
 				
-				final Span spDesc = new Span(example.getDesc());
+				final Span spDesc = new Span(example.desc());
 				spDesc.getStyle().set("font-size", "90%");
 				
 				final VerticalLayout vl = new VerticalLayout(anchor, spDesc);
@@ -74,34 +75,7 @@ public class HomeView extends Composite<VerticalLayout>
 		));
 	}
 	
-	
-	static class Example
+	record Example(String route, String name, String desc)
 	{
-		private final String route;
-		private final String name;
-		private final String desc;
-		
-		public Example(final String route, final String name, final String desc)
-		{
-			super();
-			this.route = route;
-			this.name = name;
-			this.desc = desc;
-		}
-
-		public String getRoute()
-		{
-			return this.route;
-		}
-
-		public String getName()
-		{
-			return this.name;
-		}
-
-		public String getDesc()
-		{
-			return this.desc;
-		}
 	}
 }
