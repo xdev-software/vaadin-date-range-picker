@@ -25,7 +25,7 @@ import java.time.LocalDate;
  * @param <D> DateRange
  * @param <T> Implementer; returned as "Builder"
  */
-public interface DateRangeActions<D extends DateRange,T>
+public interface DateRangeActions<D extends DateRange, T>
 {
 	LocalDate getStart();
 	T setStart(final LocalDate start);

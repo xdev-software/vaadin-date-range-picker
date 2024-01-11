@@ -26,6 +26,7 @@ import java.time.temporal.TemporalAdjusters;
  * @author AB
  *
  */
+@SuppressWarnings("checkstyle:MagicNumber")
 public final class SimpleDateRanges
 {
 	private SimpleDateRanges()
