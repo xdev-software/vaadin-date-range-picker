@@ -3,6 +3,8 @@ package software.xdev.vaadin.daterange_picker.example;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -49,12 +51,15 @@ public class DateRangePickerCustomizedDemo extends Composite<VerticalLayout>
 			final DateRangeModel<CustomDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
-			this.taResult.setValue(
-					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
-					"DateRange-Tag: " + modell.getDateRange().getTag() + "\r\n" +
-					"Start: " + modell.getStart() + "\r\n" +
-					"End: " + modell.getEnd()
-				);
+			this.taResult.setValue(Map.of(
+					"DateRange", modell.getDateRange().getKey(),
+					"DateRange-Tag", modell.getDateRange().getTag(),
+					"Start", modell.getStart().toString(),
+					"End", modell.getEnd().toString()
+				).entrySet()
+				.stream()
+				.map(e -> e.getKey() + ": " + e.getValue())
+				.collect(Collectors.joining("\r\n")));
 		});
 	}
 }

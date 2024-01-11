@@ -59,6 +59,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		this.getContent().add(this.dateRangePicker);
 	}
 	
+	@SuppressWarnings("checkstyle:MagicNumber")
 	protected void onConfigChanged()
 	{
 		if(this.blockUpdates)
@@ -183,7 +184,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		// Check if free range is valid
 		if(dateRange == SimpleDateRanges.FREE)
 		{
-			if(start != null && end != null && !start.isAfter(end))
+			if(end != null && !start.isAfter(end))
 			{
 				this.dateRangePicker.setValue(new DateRangeModel<>(start, end, dateRange));
 			}
@@ -201,8 +202,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 						this.dateRangePicker.setValue(
 							new DateRangeModel<>(drcr.getStart(), drcr.getEnd(), dr)));
 			
-			if(dateRange != this.dateRangePicker.getDateRange() ||
-				start != null && !start.equals(this.dateRangePicker.getStart()))
+			if(dateRange != this.dateRangePicker.getDateRange() || !start.equals(this.dateRangePicker.getStart()))
 			{
 				invalidParameter = true;
 			}
