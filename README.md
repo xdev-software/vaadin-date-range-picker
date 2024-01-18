@@ -1,5 +1,5 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0?logo=vaadin)](https://vaadin.com/directory/component/daterangepicker-for-vaadin)
-[![Latest version](https://img.shields.io/maven-central/v/com.xdev-software/vaadin-date-range-picker?logo=apache%20maven)](https://mvnrepository.com/artifact/com.xdev-software/vaadin-date-range-picker)
+[![Latest version](https://img.shields.io/maven-central/v/software.xdev/vaadin-date-range-picker?logo=apache%20maven)](https://mvnrepository.com/artifact/software.xdev/vaadin-date-range-picker)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-date-range-picker/checkBuild.yml?branch=develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_vaadin-date-range-picker&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_vaadin-date-range-picker)
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
@@ -31,7 +31,7 @@ A Vaadin Flow DateRangePicker implementation
 <details>
   <summary>Show example</summary>
   
-  ![demo](assets/demo.gif)
+  ![demo](assets/demo.avif)
 </details>
 
 ## Support

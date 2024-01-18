@@ -340,13 +340,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		final DateTimeFormatter formatter =
 			DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(this.getFormatLocale());
 		
-		this.btnOverview.setText(
-			this.model.getStart().format(formatter) +
-			(
-				this.model.getStart().equals(this.model.getEnd()) ?
-					"" :
-					" - " + this.model.getEnd().format(formatter)
-			)
+		this.btnOverview.setText(this.model.getStart().format(formatter)
+			+ (this.model.getStart().equals(this.model.getEnd()) ? "" : " - " + this.model.getEnd().format(formatter))
 		);
 		
 		if(updateOverlay)
@@ -406,8 +401,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay Start-DatePicker
-	 *
-	 * @param label
 	 */
 	public void setStartLabel(final String label)
 	{
@@ -417,8 +410,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay End-DatePicker
-	 *
-	 * @param label
 	 */
 	public void setEndLabel(final String label)
 	{
@@ -428,8 +419,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	/**
 	 * Sets the label for the overlay DateRange-ComboBox
-	 *
-	 * @param label
 	 */
 	public void setDateRangeOptionsLabel(final String label)
 	{
@@ -464,8 +453,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	/**
 	 * Uses the given {@link DateRange} and calculates with the current Date the {@link DateRangeModel}, which is then
 	 * set by {@link DateRangePicker#setValue(DateRangeModel)}
-	 *
-	 * @param range
 	 */
 	public void setDateRangeForToday(final D range)
 	{
@@ -574,13 +561,14 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	 * Do not use this method, as it throws a {@link UnsupportedOperationException}<br>
 	 * The calling of clear is not supported because DateRangePicker always has a value<br>
 	 * Use {@link DateRangePicker#setValue(DateRangeModel)} instead.
-	 * 
-	 * @throws UnsupportedOperationException
+	 *
+	 * @throws UnsupportedOperationException DateRangePicker always has a value
 	 */
 	@Override
 	public void clear()
 	{
-		throw new UnsupportedOperationException("The calling of clear is not supported because DateRangePicker always has a value");
+		throw new UnsupportedOperationException(
+			"The calling of clear is not supported because DateRangePicker always has a value");
 	}
 	
 	@Override

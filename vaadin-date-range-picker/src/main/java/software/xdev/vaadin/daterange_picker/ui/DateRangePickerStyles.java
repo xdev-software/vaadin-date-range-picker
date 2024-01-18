@@ -21,21 +21,25 @@ package software.xdev.vaadin.daterange_picker.ui;
  * @author AB
  *
  */
-public interface DateRangePickerStyles
+public final class DateRangePickerStyles
 {
-	String LOCATION = "./styles/dateRangePicker.css";
+	private DateRangePickerStyles()
+	{
+	}
 	
-	String CLICKABLE = "date-range-picker-clickable";
+	public static final String LOCATION = "./styles/dateRangePicker.css";
 	
-	String BUTTON = "date-range-picker-button";
-	String OVERLAY_BASE = "date-range-picker-overlay-base";
-	String OVERLAY_LAYOUT = "date-range-picker-overlay-layout";
+	public static final String CLICKABLE = "date-range-picker-clickable";
+	
+	public static final String BUTTON = "date-range-picker-button";
+	public static final String OVERLAY_BASE = "date-range-picker-overlay-base";
+	public static final String OVERLAY_LAYOUT = "date-range-picker-overlay-layout";
 	
 	/*
 	 * FLEX
 	 */
-	String FLEX_CONTAINER = "flex-container";
+	public static final String FLEX_CONTAINER = "flex-container";
 	
-	String FLEX_CHILD_AUTOGROW = "flex-child-autogrow";
-	String FLEX_CHILD_CONTENTSIZE = "flex-child-contentsize";
+	public static final String FLEX_CHILD_AUTOGROW = "flex-child-autogrow";
+	public static final String FLEX_CHILD_CONTENTSIZE = "flex-child-contentsize";
 }

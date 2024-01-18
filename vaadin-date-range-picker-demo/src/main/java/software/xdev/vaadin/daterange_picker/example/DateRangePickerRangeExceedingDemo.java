@@ -2,7 +2,10 @@ package software.xdev.vaadin.daterange_picker.example;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
@@ -55,18 +58,28 @@ public class DateRangePickerRangeExceedingDemo extends Composite<VerticalLayout>
 			final DateRangeModel<SimpleDateRange> modell = ev.getValue();
 			
 			this.taResult.clear();
-			this.taResult.setValue(
-					"DateRange: " + modell.getDateRange().getKey() + "\r\n" +
-					"Start: " + modell.getStart() + "\r\n" +
-					"End: " + modell.getEnd() + "\r\n" +
-					(ev.getOldValue() != null ?
-						"OldValue-DateRange: " + ev.getOldValue().getDateRange().getKey() + "\r\n" +
-						"OldValue-Start: " + ev.getOldValue().getStart() + "\r\n" +
-						"OldValue-End: " + ev.getOldValue().getEnd()
-						: "OldValue: null")
-					+ "\r\n"
-					+ "IsFromClient: " + ev.isFromClient()
-				);
+			
+			final Map<String, String> results = new HashMap<>(Map.of(
+				"DateRange", modell.getDateRange().getKey(),
+				"Start", modell.getStart().toString(),
+				"End", modell.getEnd().toString(),
+				"IsFromClient", String.valueOf(ev.isFromClient())
+			));
+			if(ev.getOldValue() != null)
+			{
+				results.putAll(Map.of(
+					"OldValue-DateRange", ev.getOldValue().getDateRange().getKey(),
+					"OldValue-Start", ev.getOldValue().getStart().toString(),
+					"OldValue-End", ev.getOldValue().getEnd().toString()));
+			}
+			else
+			{
+				results.put("OldValue", "null");
+			}
+			this.taResult.setValue(results.entrySet()
+				.stream()
+				.map(e -> e.getKey() + ": " + e.getValue())
+				.collect(Collectors.joining("\r\n")));
 		});
 	}
 }

@@ -1,3 +1,7 @@
+## 4.0.2
+* ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
+* Updated dependencies
+
 ## 4.0.1
 * Various dependency updates including Vaadin 24.1
 

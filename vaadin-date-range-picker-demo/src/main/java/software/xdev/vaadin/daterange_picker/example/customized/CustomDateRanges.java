@@ -2,11 +2,11 @@ package software.xdev.vaadin.daterange_picker.example.customized;
 
 import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
 
-public class CustomDateRanges
+
+public final class CustomDateRanges
 {
 	private CustomDateRanges()
 	{
-		// No Impls
 	}
 	
 	// No Today-DateRange

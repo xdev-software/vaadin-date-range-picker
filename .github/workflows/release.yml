@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v4
       
     - name: Set up JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -101,11 +101,14 @@ jobs:
           Add the following lines to your pom:
           ```XML
           <dependency>
-             <groupId>com.xdev-software</groupId>
+             <groupId>software.xdev</groupId>
              <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
+
+          ### Additional notes
+          * [Spring-Boot] You may have to include ``software/xdev`` inside [``vaadin.whitelisted-packages``](https://vaadin.com/docs/latest/integrations/spring/configuration#configure-the-scanning-of-packages)
 
   publish_central: # Publish the code to central
     runs-on: ubuntu-latest
@@ -120,7 +123,7 @@ jobs:
         git pull
     
     - name: Set up JDK Apache Maven Central
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with: # running setup-java again overwrites the settings.xml
         java-version: '17'
         distribution: 'temurin'
@@ -133,8 +136,8 @@ jobs:
     - name: Publish to Apache Maven Central
       run: mvn -B deploy -Possrh
       env:
-        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
@@ -152,7 +155,7 @@ jobs:
         git pull
 
     - name: Setup - Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -163,7 +166,7 @@ jobs:
       working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
 
     - name: Upload licenses - Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dependencies-licenses
         path: ${{ env.PRIMARY_MAVEN_MODULE }}/target/site
@@ -223,9 +226,12 @@ jobs:
         git push origin
     
     - name: pull-request
-      uses: repo-sync/pull-request@v2
-      with:
-        destination_branch: "develop"
-        pr_title: "Sync back"
-        pr_body: "An automated PR to sync changes back"
-
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh_pr_up() { 
+          gh pr create "$@" || gh pr edit "$@" 
+        }
+        gh_pr_up -B "develop" \
+          --title "Sync back" \
+          --body "An automated PR to sync changes back"
