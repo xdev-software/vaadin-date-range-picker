@@ -9,8 +9,8 @@
 	<version>4.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>DateRangePicker for Vaadin</name>
-	<description>DateRangePicker for Vaadin</description>
+	<name>vaadin-date-range-picker</name>
+	<description>vaadin-date-range-picker</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 
 	<scm>
@@ -219,7 +219,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.1</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -250,7 +250,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.2.2</version>
+						<version>3.2.4</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
