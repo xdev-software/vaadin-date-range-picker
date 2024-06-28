@@ -42,9 +42,6 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 		DATERANGE_VALUES);
 	
-	/*
-	 * Fields
-	 */
 	private boolean blockUpdates = true;
 	
 	public DateRangePickerParameterDemo()

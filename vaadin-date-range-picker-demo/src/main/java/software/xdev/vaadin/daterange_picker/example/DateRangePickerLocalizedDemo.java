@@ -81,10 +81,6 @@ public class DateRangePickerLocalizedDemo extends Composite<VerticalLayout>
 	
 	private final Button btnToogleReadonly = new Button("Toogle Readonly");
 	
-	/*
-	 * Fields
-	 */
-	
 	public DateRangePickerLocalizedDemo()
 	{
 		this.initUI();
