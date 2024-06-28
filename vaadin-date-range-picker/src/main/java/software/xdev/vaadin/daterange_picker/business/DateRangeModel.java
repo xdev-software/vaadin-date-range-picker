@@ -16,6 +16,7 @@
 package software.xdev.vaadin.daterange_picker.business;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
@@ -77,69 +78,26 @@ public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, 
 		this.dateRange = dateRange;
 		return this;
 	}
-
+	
 	@Override
-	public int hashCode()
+	public boolean equals(final Object o)
 	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (this.dateRange == null ? 0 : this.dateRange.hashCode());
-		result = prime * result + (this.end == null ? 0 : this.end.hashCode());
-		result = prime * result + (this.start == null ? 0 : this.start.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj)
-	{
-		if(this == obj)
+		if(this == o)
 		{
 			return true;
 		}
-		if(obj == null)
+		if(!(o instanceof final DateRangeModel<?> that))
 		{
 			return false;
 		}
-		if(this.getClass() != obj.getClass())
-		{
-			return false;
-		}
-		final DateRangeModel<?> other = (DateRangeModel<?>)obj;
-		if(this.dateRange == null)
-		{
-			if(other.dateRange != null)
-			{
-				return false;
-			}
-		}
-		else if(!this.dateRange.equals(other.dateRange))
-		{
-			return false;
-		}
-		if(this.end == null)
-		{
-			if(other.end != null)
-			{
-				return false;
-			}
-		}
-		else if(!this.end.equals(other.end))
-		{
-			return false;
-		}
-		if(this.start == null)
-		{
-			if(other.start != null)
-			{
-				return false;
-			}
-		}
-		else if(!this.start.equals(other.start))
-		{
-			return false;
-		}
-		return true;
+		return Objects.equals(this.getStart(), that.getStart())
+			&& Objects.equals(this.getEnd(), that.getEnd())
+			&& Objects.equals(this.getDateRange(), that.getDateRange());
 	}
 	
-	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getStart(), this.getEnd(), this.getDateRange());
+	}
 }
