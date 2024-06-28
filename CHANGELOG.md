@@ -1,5 +1,6 @@
 ## 4.1.0
 * Updated to Vaadin 24.4
+* Minor code improvements
 
 ## 4.0.2
 * ⚠️ GroupId changed from ``com.xdev-software`` to ``software.xdev``
