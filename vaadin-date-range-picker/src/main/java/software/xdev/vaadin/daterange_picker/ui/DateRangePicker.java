@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -55,6 +56,7 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
  * @author AB
  *
  */
+@SuppressWarnings("PMD.GodClass")
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayout> implements
 	FlexComponent,
@@ -63,17 +65,12 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	HasValue<DateRangeValueChangeEvent<D>, DateRangeModel<D>>
 {
 	public static final Locale DEFAULT_LOCALE = Locale.US;
-	protected static int nextID = 0;
-	
-	protected static synchronized int getNextID()
-	{
-		return ++nextID;
-	}
+	protected static AtomicInteger nextID = new AtomicInteger(0);
 	
 	/*
 	 * Fields
 	 */
-	protected boolean expanded = false;
+	protected boolean expanded;
 	protected DateRangeModel<D> model;
 	
 	/*
@@ -215,7 +212,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	protected void initUI()
 	{
 		// Set an unique ID for each element
-		this.setId("DateRangePickerID" + getNextID());
+		this.setId("DateRangePickerID" + nextID.incrementAndGet());
 		
 		this.btnOverview.addClassNames(DateRangePickerStyles.BUTTON, DateRangePickerStyles.CLICKABLE);
 		this.btnOverview.setMinWidth("20em");
