@@ -1,6 +1,6 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0?logo=vaadin)](https://vaadin.com/directory/component/daterangepicker-for-vaadin)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/vaadin-date-range-picker?logo=apache%20maven)](https://mvnrepository.com/artifact/software.xdev/vaadin-date-range-picker)
-[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-date-range-picker/checkBuild.yml?branch=develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/vaadin-date-range-picker/check-build.yml?branch=develop)](https://github.com/xdev-software/vaadin-date-range-picker/actions/workflows/check-build.yml?query=branch%3Adevelop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_vaadin-date-range-picker&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_vaadin-date-range-picker)
 ![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
 
@@ -21,12 +21,10 @@ A Vaadin Flow DateRangePicker implementation
 | Vaadin 23 | ``3.x`` |
 | Vaadin 14 (LTS - former release model) | ``2.x`` |
 
-
 ## Run the Demo
 * Checkout the repo
 * Run ``mvn install && mvn -f vaadin-date-range-picker-demo spring-boot:run``
 * Open http://localhost:8080
-
 
 <details>
   <summary>Show example</summary>
@@ -41,4 +39,4 @@ If you need support as soon as possible and you can't wait for any pull request,
 See the [contributing guide](./CONTRIBUTING.md) for detailed instructions on how to get started with our project.
 
 ## Dependencies and Licenses
-View the [license of the current project](LICENSE) or the [summary including all dependencies](https://xdev-software.github.io/vaadin-date-range-picker/dependencies/)
+View the [license of the current project](LICENSE) or the [summary including all dependencies](https://xdev-software.github.io/vaadin-date-range-picker/dependencies)

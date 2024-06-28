@@ -6,16 +6,16 @@
 
 	<groupId>software.xdev</groupId>
 	<artifactId>vaadin-date-range-picker</artifactId>
-	<version>4.0.3-SNAPSHOT</version>
+	<version>4.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>DateRangePicker for Vaadin</name>
-	<description>DateRangePicker for Vaadin</description>
+	<name>vaadin-date-range-picker</name>
+	<description>vaadin-date-range-picker</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 
 	<scm>
 		<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
-		<connection>https://github.com/xdev-software/vaadin-date-range-picker.git</connection>
+		<connection>scm:git:https://github.com/xdev-software/vaadin-date-range-picker.git</connection>
 	</scm>
 
 	<inceptionYear>2020</inceptionYear>
@@ -49,7 +49,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependency-Versions -->
-		<vaadin.version>24.3.3</vaadin.version>
+		<vaadin.version>24.4.4</vaadin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -103,22 +103,29 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-core</artifactId>
-			<exclusions>
-				<!-- https://github.com/vaadin/flow/issues/18449 -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>copilot</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>4.0.0-M15</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.6.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>com.mycila</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>4.3</version>
+				<version>4.5</version>
 				<configuration>
 					<properties>
 						<email>${project.organization.url}</email>
@@ -162,7 +169,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
+				<version>3.13.0</version>
 				<configuration>
 					<release>${maven.compiler.release}</release>
 					<compilerArgs>
@@ -173,7 +180,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.6.3</version>
+				<version>3.7.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -191,7 +198,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -205,7 +212,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.2</version>
 				<configuration>
 					<archive>
 						<index>true</index>
@@ -234,9 +241,26 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>flatten-maven-plugin</artifactId>
+						<version>1.6.0</version>
+						<configuration>
+							<flattenMode>ossrh</flattenMode>
+						</configuration>
+						<executions>
+							<execution>
+								<id>flatten</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>flatten</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.1.0</version>
+						<version>3.2.4</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -259,7 +283,7 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.13</version>
+						<version>1.7.0</version>
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh</serverId>
@@ -279,16 +303,17 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>3.3.1</version>
+						<version>3.4.0</version>
 						<dependencies>
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.12.7</version>
+								<version>10.17.0</version>
 							</dependency>
 						</dependencies>
 						<configuration>
 							<configLocation>../.config/checkstyle/checkstyle.xml</configLocation>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						</configuration>
 						<executions>
 							<execution>
@@ -300,6 +325,47 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>pmd</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<version>3.23.0</version>
+						<configuration>
+							<includeTests>true</includeTests>
+							<printFailingErrors>true</printFailingErrors>
+							<rulesets>
+								<ruleset>../.config/pmd/ruleset.xml</ruleset>
+							</rulesets>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>net.sourceforge.pmd</groupId>
+								<artifactId>pmd-core</artifactId>
+								<version>7.3.0</version>
+							</dependency>
+							<dependency>
+								<groupId>net.sourceforge.pmd</groupId>
+								<artifactId>pmd-java</artifactId>
+								<version>7.3.0</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<!-- Required for reporting -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>3.4.0</version>
+					</plugin>
+				</plugins>
+			</reporting>
 		</profile>
 	</profiles>
 </project>

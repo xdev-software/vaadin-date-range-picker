@@ -32,10 +32,6 @@ public class DateRangePickerCustomizedDemo extends Composite<VerticalLayout>
 	private final TextArea taResult =
 		new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
 	
-	/*
-	 * Fields
-	 */
-	
 	public DateRangePickerCustomizedDemo()
 	{
 		this.initUI();

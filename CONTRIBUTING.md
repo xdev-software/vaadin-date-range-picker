@@ -10,7 +10,7 @@ We would absolutely love to get the community involved, and we welcome any form 
 ### Ways to help
 * **Report bugs**<br/>Create an issue or send a pull request
 * **Send pull requests**<br/>If you want to contribute code, check out the development instructions below.
-  * However when contributing new features, please first discuss the change you wish to make via issue with the owners of this repository before making a change. Otherwise your work might be rejected and your effort was pointless.
+  * However when contributing larger new features, please first discuss the change you wish to make via issue with the owners of this repository before making it.<br/>Otherwise your work might be rejected and your effort was pointless.
 
 We also encourage you to read the [contribution instructions by GitHub](https://docs.github.com/en/get-started/quickstart/contributing-to-projects).
 
@@ -20,13 +20,14 @@ We also encourage you to read the [contribution instructions by GitHub](https://
 You should have the following things installed:
 * Git
 * Java 21 - should be as unmodified as possible (Recommended: [Eclipse Adoptium](https://adoptium.net/temurin/releases/))
-* Maven
+* Maven (Note that the [Maven Wrapper](https://maven.apache.org/wrapper/) is shipped with the repo)
 
 ### Recommended setup
 * Install ``IntelliJ`` (Community Edition is sufficient)
   * Install the following plugins:
     * [Save Actions](https://plugins.jetbrains.com/plugin/22113) - Provides save actions, like running the formatter or adding ``final`` to fields
     * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
+      * You may consider disabling telemetry in the settings under ``Tools > Sonarlint -> About``
     * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``

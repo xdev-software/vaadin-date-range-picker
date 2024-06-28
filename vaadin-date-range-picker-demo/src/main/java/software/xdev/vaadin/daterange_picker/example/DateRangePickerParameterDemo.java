@@ -42,9 +42,6 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 		() -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
 		DATERANGE_VALUES);
 	
-	/*
-	 * Fields
-	 */
 	private boolean blockUpdates = true;
 	
 	public DateRangePickerParameterDemo()
@@ -112,7 +109,8 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 	{
 		UI.getCurrent().getPage().getHistory().replaceState(null, location);
 	}
-
+	
+	@SuppressWarnings({"PMD.CognitiveComplexity", "PMD.NPathComplexity"})
 	@Override
 	public void afterNavigation(final AfterNavigationEvent event)
 	{
