@@ -1,3 +1,6 @@
+## 4.1.1
+* Only use client-side locale for formatting when no ``formatLocale`` has been set #353
+
 ## 4.1.0
 * Updated to Vaadin 24.4
 * Minor code improvements

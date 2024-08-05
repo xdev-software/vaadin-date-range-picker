@@ -76,7 +76,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	/*
 	 * Config
 	 */
-	
+	protected boolean useClientSideLocale = true;
 	protected Optional<Locale> formatLocale = Optional.empty();
 	protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
 	protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
@@ -149,8 +149,15 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		return this.datePickerI18n;
 	}
 	
+	/**
+	 * Sets the locale used for formatting the "expand" button.
+	 * <p>If the locale is <code>null</code> (default) the clientside locale will be used or {@link Locale#US} if none
+	 * could be detected.
+	 * </p>
+	 */
 	public DateRangePicker<D> withFormatLocale(final Locale locale)
 	{
+		this.useClientSideLocale = locale == null;
 		this.formatLocale = Optional.ofNullable(locale);
 		return this;
 	}
@@ -265,7 +272,10 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 	
 	protected void setLocaleFromClient()
 	{
-		this.formatLocale = Optional.ofNullable(VaadinService.getCurrentRequest().getLocale());
+		if(this.useClientSideLocale)
+		{
+			this.formatLocale = Optional.ofNullable(VaadinService.getCurrentRequest().getLocale());
+		}
 	}
 	
 	protected void addClickOutsideListener()
