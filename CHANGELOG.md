@@ -1,3 +1,12 @@
+## 4.2.0
+* Improved styling
+  * Overlay now has the same minimum width as the underlying DateRangePicker
+    * The default is ``20em``, this can be changed using ``--date-range-picker-min-width``
+  * Layouts inside the overlay now use the full available width
+  * Removed excess top padding from input components
+  * Refactored CSS class names (should cause less conflicts now)
+* Updated to Vaadin 24.5
+
 ## 4.1.1
 * Only use client-side locale for formatting when no ``formatLocale`` has been set #353
 
@@ -13,7 +22,6 @@
 * Various dependency updates including Vaadin 24.1
 
 ## 4.0.0
-
 ⚠️<i>This release contains breaking changes</i>
 
 * Adds support for Vaadin 24+, drops support for Vaadin 23<br/>
@@ -32,12 +40,10 @@
   * Vaadin 23.3
 
 ## 3.0.1
-
 * Updated dependencies
   * Vaadin 23.2
 
 ## 3.0.0
-
 ⚠️<i>This release contains breaking changes</i>
 
 * Adds support for Vaadin 23+, drops support for Vaadin 14 #155<br/>

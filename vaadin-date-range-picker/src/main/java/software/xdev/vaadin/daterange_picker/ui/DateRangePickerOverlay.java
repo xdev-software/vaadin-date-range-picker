@@ -55,7 +55,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	/*
 	 * Fields
 	 */
-	protected boolean readOnly = false;
+	protected boolean readOnly;
 	
 	protected DateRangePicker<D> dateRangePicker;
 	protected DateRangeModel<D> currentModel;
@@ -84,14 +84,16 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.btnBackwardRange
 			.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
 		
-		this.cbDateRange.addClassName(DateRangePickerStyles.FLEX_CHILD_AUTOGROW);
+		this.cbDateRange.addClassNames(
+			DateRangePickerStyles.FLEX_CHILD_AUTOGROW,
+			DateRangePickerStyles.PADDING_TOP_XS);
 		this.setTextFieldDefaultWidthFlexConform(this.cbDateRange);
 		
 		this.btnForwardRange
 			.addClassNames(DateRangePickerStyles.FLEX_CHILD_CONTENTSIZE, DateRangePickerStyles.CLICKABLE);
 		
 		final HorizontalLayout hlRange = new HorizontalLayout();
-		hlRange.addClassNames(DateRangePickerStyles.FLEX_CHILD_AUTOGROW, DateRangePickerStyles.FLEX_CONTAINER);
+		hlRange.addClassNames(DateRangePickerStyles.OVERLAY_LAYOUT_ROW);
 		hlRange.setAlignItems(Alignment.BASELINE);
 		hlRange.setJustifyContentMode(JustifyContentMode.BETWEEN);
 		hlRange.setMargin(false);
@@ -103,13 +105,12 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 		this.initDatePicker(this.dpEnd);
 		
 		final HorizontalLayout hlDatepickers = new HorizontalLayout();
-		hlDatepickers.addClassNames(DateRangePickerStyles.FLEX_CHILD_AUTOGROW, DateRangePickerStyles.FLEX_CONTAINER);
+		hlDatepickers.addClassNames(DateRangePickerStyles.OVERLAY_LAYOUT_ROW);
 		hlDatepickers.setMargin(false);
 		hlDatepickers.setSpacing(true);
 		hlDatepickers.setPadding(false);
 		hlDatepickers.add(this.dpStart, this.dpEnd);
 		
-		this.addClassName(DateRangePickerStyles.FLEX_CONTAINER);
 		this.add(hlRange, hlDatepickers);
 		this.getContent().setPadding(true);
 	}
@@ -117,7 +118,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	protected void initDatePicker(final DatePicker dp)
 	{
 		this.setTextFieldDefaultWidthFlexConform(dp);
-		dp.addClassName(DateRangePickerStyles.FLEX_CHILD_AUTOGROW);
+		dp.addClassNames(DateRangePickerStyles.FLEX_CHILD_AUTOGROW, DateRangePickerStyles.PADDING_TOP_XS);
 		dp.setWeekNumbersVisible(true);
 	}
 	

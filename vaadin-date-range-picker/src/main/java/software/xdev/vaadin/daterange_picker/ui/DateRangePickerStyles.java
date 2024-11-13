@@ -31,12 +31,14 @@ public final class DateRangePickerStyles
 	public static final String BUTTON = "date-range-picker-button";
 	public static final String OVERLAY_BASE = "date-range-picker-overlay-base";
 	public static final String OVERLAY_LAYOUT = "date-range-picker-overlay-layout";
+	public static final String OVERLAY_LAYOUT_ROW = "date-range-picker-overlay-layout-row";
 	
 	/*
 	 * FLEX
 	 */
-	public static final String FLEX_CONTAINER = "flex-container";
+	public static final String FLEX_CHILD_AUTOGROW = "date-range-picker-flex-child-autogrow";
+	public static final String FLEX_CHILD_CONTENTSIZE = "date-range-picker-flex-child-contentsize";
 	
-	public static final String FLEX_CHILD_AUTOGROW = "flex-child-autogrow";
-	public static final String FLEX_CHILD_CONTENTSIZE = "flex-child-contentsize";
+	// Used to remove Vaadin's default padding which adds a lot of blank space to the overlay
+	public static final String PADDING_TOP_XS = "date-range-picker-padding-top-xs";
 }

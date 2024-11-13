@@ -219,7 +219,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.setId("DateRangePickerID" + nextID.incrementAndGet());
 		
 		this.btnOverview.addClassNames(DateRangePickerStyles.BUTTON, DateRangePickerStyles.CLICKABLE);
-		this.btnOverview.setMinWidth("20em");
 		this.btnOverview.setWidthFull();
 		
 		this.btnOverview.setDisableOnClick(true);
