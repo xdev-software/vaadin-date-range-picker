@@ -23,7 +23,6 @@ import java.util.function.Function;
 
 /**
  * Basic implementation of {@link DateRange}
- * @author AB
  *
  * @param <SELF> implementer
  */

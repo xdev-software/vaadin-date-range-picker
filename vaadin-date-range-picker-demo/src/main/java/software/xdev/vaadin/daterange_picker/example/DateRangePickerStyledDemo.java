@@ -3,8 +3,10 @@ package software.xdev.vaadin.daterange_picker.example;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
@@ -15,15 +17,20 @@ public class DateRangePickerStyledDemo extends AbstractSimpleChangeDemo
 {
 	public static final String NAV = "styled";
 	
-	private final Button btnDarkMode = new Button("Toogle theme");
+	private final Button btnDarkMode = new Button("Toggle theme");
 	
 	public DateRangePickerStyledDemo()
 	{
 		this.initUI();
 	}
 	
+	@SuppressWarnings("checkstyle:MagicNumber")
 	protected void initUI()
 	{
+		this.dateRangePicker.setWidthFull();
+		
+		this.taResult.setSizeFull();
+		
 		this.btnDarkMode.addClickListener(ev ->
 		{
 			final ThemeList themeList = UI.getCurrent().getElement().getThemeList();
@@ -40,11 +47,13 @@ public class DateRangePickerStyledDemo extends AbstractSimpleChangeDemo
 			this.updateBtnDarkMode();
 		});
 		
-		this.taResult.setSizeFull();
+		final SplitLayout splitLayout = new SplitLayout(this.dateRangePicker, new Div());
+		splitLayout.setSplitterPosition(25);
+		splitLayout.setWidthFull();
 		
 		this.getContent().setPadding(false);
 		this.getContent().add(
-			new VerticalLayout(this.dateRangePicker),
+			splitLayout,
 			new VerticalLayout(this.taResult, this.btnDarkMode));
 		this.getContent().getChildren().forEach(comp -> ((HasSize)comp).setHeight("50%"));
 		this.getContent().setHeightFull();

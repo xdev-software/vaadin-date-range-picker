@@ -52,11 +52,8 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
 
 /**
  * Represents a Date-Range-Picker
- * 
- * @author AB
- *
  */
-@SuppressWarnings("PMD.GodClass")
+@SuppressWarnings({"PMD.GodClass", "java:S1948"})
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayout> implements
 	FlexComponent,
@@ -222,7 +219,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
 		this.setId("DateRangePickerID" + nextID.incrementAndGet());
 		
 		this.btnOverview.addClassNames(DateRangePickerStyles.BUTTON, DateRangePickerStyles.CLICKABLE);
-		this.btnOverview.setMinWidth("20em");
 		this.btnOverview.setWidthFull();
 		
 		this.btnOverview.setDisableOnClick(true);

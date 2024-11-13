@@ -19,8 +19,6 @@ import java.time.LocalDate;
 
 /**
  * Actions which can be done with a {@link DateRangeModel}
- * 
- * @author AB
  *
  * @param <D> DateRange
  * @param <T> Implementer; returned as "Builder"
