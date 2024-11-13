@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<licensePluginReport goal="FORMAT" timestamp="1722857646594">
-    <module artifactId="vaadin-date-range-picker" groupId="software.xdev" version="4.1.1"/>
+<licensePluginReport goal="FORMAT" timestamp="1731499439564">
+    <module artifactId="vaadin-date-range-picker" groupId="software.xdev" version="4.2.0"/>
     <files>
         <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/AbstractDateRange.java" result="NOOP"/>
         <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/DateRange.java" result="NOOP"/>
