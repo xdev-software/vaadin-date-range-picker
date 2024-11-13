@@ -22,9 +22,6 @@ import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
 
 /**
  * Model for {@link DateRangePicker}
- * 
- * @author AB
- *
  */
 public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, DateRangeModel<D>>
 {

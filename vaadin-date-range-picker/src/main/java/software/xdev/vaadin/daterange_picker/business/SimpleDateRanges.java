@@ -22,16 +22,12 @@ import java.time.temporal.TemporalAdjusters;
 
 /**
  * Contains predefined {@link SimpleDateRange SimpleDateRanges}
- * 
- * @author AB
- *
  */
 @SuppressWarnings("checkstyle:MagicNumber")
 public final class SimpleDateRanges
 {
 	private SimpleDateRanges()
 	{
-		// No Impls
 	}
 	
 	public static final SimpleDateRange TODAY = new SimpleDateRange()

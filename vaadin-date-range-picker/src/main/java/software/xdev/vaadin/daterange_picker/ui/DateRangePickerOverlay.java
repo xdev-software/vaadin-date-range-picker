@@ -45,10 +45,8 @@ import software.xdev.vaadin.daterange_picker.business.DateRangeResult;
 
 /**
  * Overlay of the expanded {@link DateRangePicker}
- * 
- * @author AB
- *
  */
+@SuppressWarnings("java:S1948")
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePickerOverlay<D extends DateRange> extends Composite<VerticalLayout> implements
 	HasItems<D>,

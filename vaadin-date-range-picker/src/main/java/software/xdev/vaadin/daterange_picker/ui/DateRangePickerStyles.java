@@ -17,9 +17,6 @@ package software.xdev.vaadin.daterange_picker.ui;
 
 /**
  * Styles for the {@link DateRangePicker}
- * 
- * @author AB
- *
  */
 public final class DateRangePickerStyles
 {

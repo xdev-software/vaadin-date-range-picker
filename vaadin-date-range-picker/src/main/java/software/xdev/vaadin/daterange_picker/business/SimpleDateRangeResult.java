@@ -19,9 +19,6 @@ import java.time.LocalDate;
 
 /**
  * Simple implementation of {@link DateRangeResult}
- * 
- * @author AB
- *
  */
 public class SimpleDateRangeResult implements DateRangeResult
 {
