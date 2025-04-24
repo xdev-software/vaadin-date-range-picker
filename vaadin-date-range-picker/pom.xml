@@ -9,8 +9,8 @@
 	<version>4.2.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>vaadin-date-range-picker</name>
-	<description>vaadin-date-range-picker</description>
+	<name>DateRangePicker for Vaadin</name>
+	<description>DateRangePicker for Vaadin</description>
 	<url>https://github.com/xdev-software/vaadin-date-range-picker</url>
 
 	<scm>

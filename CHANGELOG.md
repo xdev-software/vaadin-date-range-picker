@@ -1,3 +1,7 @@
+## 4.2.1
+* Fix naming so that Vaadin Directory sync works [#318](https://github.com/xdev-software/vaadin-addon-template/issues/318)
+* Updated dependencies
+
 ## 4.2.0
 * Improved styling
   * Overlay now has the same minimum width as the underlying DateRangePicker
