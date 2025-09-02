@@ -226,7 +226,7 @@
 			Trying to manually manage threads usually gets quickly out of control and may result in various problems like uncontrollable spawning of threads.
 			Threads can also not be cancelled properly.
 
-			Use managed Thread services like ``ExecutorService`` and ``CompletableFuture`` instead.
+			Use managed Thread services like `ExecutorService` and `CompletableFuture` instead.
 		</description>
 		<priority>3</priority>
 		<properties>
