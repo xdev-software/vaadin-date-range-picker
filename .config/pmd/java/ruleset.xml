@@ -42,6 +42,7 @@
 	<rule ref="category/java/codestyle.xml/NoPackage"/>
 	<rule ref="category/java/codestyle.xml/PrematureDeclaration"/>
 	<rule ref="category/java/codestyle.xml/UnnecessarySemicolon"/>
+	<rule ref="category/java/codestyle.xml/VariableCanBeInlined"/>
 
 	<rule ref="category/java/design.xml">
 		<!-- Sometimes abstract classes have just fields -->
@@ -138,6 +139,7 @@
 	<rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators"/>
 	<rule ref="category/java/errorprone.xml/AvoidUsingOctalValues"/>
 	<rule ref="category/java/errorprone.xml/BrokenNullCheck"/>
+	<rule ref="category/java/errorprone.xml/CollectionTypeMismatch"/>
 	<rule ref="category/java/errorprone.xml/ComparisonWithNaN"/>
 	<rule ref="category/java/errorprone.xml/DoNotCallGarbageCollectionExplicitly"/>
 	<rule ref="category/java/errorprone.xml/DontImportSun"/>
@@ -155,7 +157,7 @@
 	<rule ref="category/java/errorprone.xml/SingletonClassReturningNewInstance"/>
 	<rule ref="category/java/errorprone.xml/UnconditionalIfStatement"/>
 	<rule ref="category/java/errorprone.xml/UnnecessaryCaseChange"/>
-	<rule ref="category/java/errorprone.xml/UselessOperationOnImmutable"/>
+	<rule ref="category/java/errorprone.xml/UselessPureMethodCall"/>
 
 
 	<rule ref="category/java/multithreading.xml">
