@@ -153,6 +153,8 @@
 	<rule ref="category/java/errorprone.xml/MisplacedNullCheck"/>
 	<rule ref="category/java/errorprone.xml/MoreThanOneLogger"/>
 	<rule ref="category/java/errorprone.xml/NonStaticInitializer"/>
+	<rule ref="category/java/errorprone.xml/ReplaceJavaUtilCalendar"/>
+	<rule ref="category/java/errorprone.xml/ReplaceJavaUtilDate"/>
 	<rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock"/>
 	<rule ref="category/java/errorprone.xml/SingletonClassReturningNewInstance"/>
 	<rule ref="category/java/errorprone.xml/UnconditionalIfStatement"/>
