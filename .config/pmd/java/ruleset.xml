@@ -1066,7 +1066,7 @@ public static String good(CompletableFuture<String> complFuture) throws Exceptio
 //MethodDeclaration//MethodCall[
 	pmd-java:matchesSig('org.apache.hc.client5.http.impl.classic.HttpClientBuilder#create()')
     or pmd-java:matchesSig('org.apache.hc.client5.http.impl.classic.HttpClients#custom()')
-    or pmd-java:matchesSig('org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder#build()'
+    or pmd-java:matchesSig('org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder#build()')
 ]
 [ancestor::MethodDeclaration//ClassType[pmd-java:typeIs('org.springframework.http.HttpEntity')
 	or pmd-java:typeIs('org.springframework.http.ResponseEntity')]
