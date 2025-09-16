@@ -185,6 +185,9 @@
 		<!-- Handled by checkstyle -->
 		<exclude name="RedundantFieldInitializer"/>
 
+		<!-- Not in use and resource intensive -->
+		<exclude name="UseIOStreamsWithApacheCommonsFileItem"/>
+
 		<!-- Nowadays optimized by compiler; No code bloating needed -->
 		<exclude name="UseStringBufferForStringAppends"/>
 	</rule>
