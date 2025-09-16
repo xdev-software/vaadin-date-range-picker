@@ -841,6 +841,8 @@ public class GoodPerson implements Comparable<Person> {
 			Solution: Use a dedicated thread pool with enough threads to get proper parallelism.
 			The number of threads in the common pool is equal to the number of CPUs and meant to utilize all of them.
 			It assumes CPU-intensive non-blocking processing of in-memory data.
+
+			See also: [_Be Aware of ForkJoinPool#commonPool()_](https://dzone.com/articles/be-aware-of-forkjoinpoolcommonpool)
 		</description>
 		<priority>2</priority>
 		<properties>
@@ -897,22 +899,25 @@ public class Foo {
 
 	<rule name="AvoidCommonPoolForFutureAsync"
 		language="java"
-		message="Avoid using the common thread pool for Future.supplyAsync, use a separate pool"
+		message="Avoid using the common thread pool, use a separate pool"
 		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
 		<description>
-			Future.supplyAsync is typically used for remote calls. By default, it uses the common pool.
+			CompletableFuture.supplyAsync/runAsync is typically used for remote calls.
+			By default it uses the common pool.
 			The number of threads in the common pool is equal to the number of CPU's, which is suitable for in-memory processing.
 			For I/O, however, this number is typically not suitable because most time is spent waiting for the response and not in CPU.
 			The common pool must not be used for blocking calls.
 
-			Solution: A separate, properly sized, pool of threads (an Executor) should be used for the async calls.	
+			Solution: A separate, properly sized pool of threads (an Executor) should be used for the async calls.
+
+			See also: [_Be Aware of ForkJoinPool#commonPool()_](https://dzone.com/articles/be-aware-of-forkjoinpoolcommonpool)
 		</description>
 		<priority>2</priority>
 		<properties>
 			<property name="xpath">
 				<value>
 <![CDATA[
-//MethodCall[pmd-java:matchesSig('java.util.concurrent.CompletableFuture#supplyAsync(_)')]
+//MethodCall[pmd-java:matchesSig('java.util.concurrent.CompletableFuture#supplyAsync(_)') or pmd-java:matchesSig('java.util.concurrent.CompletableFuture#runAsync(_)')]
 ]]>
 				</value>
 			</property>
