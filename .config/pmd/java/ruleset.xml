@@ -448,7 +448,7 @@ String good_replaceInnerLineBreakBySpace() {
 		</example>
 	</rule>
 
-	<!-- CHANGED: Only match parameter-less constructor -->
+	<!-- CHANGED: Only match parameter-less constructor (Optimization) -->
 	<rule name="AvoidInMemoryStreamingDefaultConstructor"
 		language="java"
 		message="Default buffer capacity is used which usually needs expensive expansions"
@@ -500,7 +500,7 @@ class Good {
 
 			Solution: Use a static field-to-enum-value Map. Access time is O(1), provided the hashCode is well-defined.
 			Implement a fromString method to provide the reverse conversion by using the map.
-			</description>
+		</description>
 		<priority>3</priority>
 		<properties>
 			<property name="xpath">
@@ -565,7 +565,7 @@ public enum Fruit {
 
 			Solution: Usually a pattern is a literal, not dynamic and can be compiled only once. Assign it to a private static field. 
 			java.util.Pattern objects are thread-safe so they can be shared among threads.
-			</description>
+		</description>
 		<priority>2</priority>
 		<properties>
 			<property name="xpath">
