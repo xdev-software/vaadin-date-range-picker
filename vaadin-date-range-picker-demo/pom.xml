@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>software.xdev</groupId>
 		<artifactId>vaadin-date-range-picker-root</artifactId>
-		<version>4.2.3-SNAPSHOT</version>
+		<version>4.2.3</version>
 	</parent>
 
 	<artifactId>vaadin-date-range-picker-demo</artifactId>
-	<version>4.2.3-SNAPSHOT</version>
+	<version>4.2.3</version>
 	<packaging>jar</packaging>
 
 	<organization>
