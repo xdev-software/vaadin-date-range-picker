@@ -17,6 +17,7 @@
 	<rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP"/>
 	<rule ref="category/java/bestpractices.xml/ConstantsInInterface"/>
 	<rule ref="category/java/bestpractices.xml/ExhaustiveSwitchHasDefault"/>
+	<rule ref="category/java/bestpractices.xml/LabeledStatement"/>
 	<rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons"/>
 	<!-- CheckStyle can't handle this switch behavior -> delegated to PMD -->
 	<rule ref="category/java/bestpractices.xml/NonExhaustiveSwitch"/>
@@ -149,6 +150,7 @@
 	<rule ref="category/java/errorprone.xml/DontUseFloatTypeForLoopIndices"/>
 	<rule ref="category/java/errorprone.xml/EqualsNull"/>
 	<rule ref="category/java/errorprone.xml/IdempotentOperations"/>
+	<rule ref="category/java/errorprone.xml/IdenticalConditionalBranches"/>
 	<rule ref="category/java/errorprone.xml/ImplicitSwitchFallThrough"/>
 	<rule ref="category/java/errorprone.xml/InstantiationToGetClass"/>
 	<rule ref="category/java/errorprone.xml/InvalidLogMessageFormat"/>
