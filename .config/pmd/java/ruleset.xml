@@ -213,11 +213,11 @@
 		message="StringBuilder/StringBuffer should not be used"
 		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
 		<description>
-Usually all cases where `StringBuilder` (or the outdated `StringBuffer`) is used are either due to confusing (legacy) logic or may be replaced by a simpler string concatenation.
+Usually all cases where `StringBuilder` (or the outdated `StringBuffer`) is used are either due to confusing (legacy) logic or in situations where it may be easily replaced by a simpler string concatenation.
 
 Solution:
 * Do not use `StringBuffer` because it's thread-safe and usually this is not needed
-* If `StringBuilder` is only used in a simple method (like `toString`) and is effectively inlined: Use a simpler string concatenation (`"a" + x + "b"`). This will be optimized by the Java compiler internally.
+* If `StringBuilder` is only used in a simple method (like `toString`) and is effectively inlined: Use a simpler string concatenation (`"a" + x + "b"`). This will be [optimized by the Java compiler internally](https://docs.oracle.com/javase/specs/jls/se25/html/jls-15.html#jls-15.18.1).
 * In all other cases: 
 	* Check what is happening and if it makes ANY sense! If for example a CSV file is built here consider using a proper library instead!
 	* Abstract the Strings into a DTO, join them together using a collection (or `StringJoiner`) or use Java's Streaming API instead
@@ -239,8 +239,8 @@ Solution:
 		message="Setters of java.lang.System should not be called unless really needed"
 		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
 		<description>
-Calling setters of java.lang.System usually indicates bad design and likely causes unexpected behavior.
-For example, it may break when multiple Threads are setting the value.
+Calling setters of `java.lang.System` usually indicates bad design and likely causes unexpected behavior.
+For example, it may break when multiple Threads are working with the same value.
 It may also overwrite user defined options or properties.
 
 Try to pass the value only to the place where it's really needed and use it there accordingly.
@@ -352,7 +352,8 @@ You can suppress this warning when you properly sanitized the name.
 Nearly every known usage of (Java) Object Deserialization has resulted in [a security vulnerability](https://cloud.google.com/blog/topics/threat-intelligence/hunting-deserialization-exploits?hl=en).
 Vulnerabilities are so common that there are [dedicated projects for exploit payload generation](https://github.com/frohoff/ysoserial).
 
-Java Object Serialization may also fail to deserialize when the underlying classes are changed.
+Java Object Serialization may also fail to deserialize properly when the underlying classes are changed.
+This can result in unexpected crashes when outdated data is deserialized.
 
 Use proven data interchange formats like JSON instead.
 		</description>
@@ -374,7 +375,8 @@ Use proven data interchange formats like JSON instead.
 	<rule name="VaadinNativeHTMLIsUnsafe"
 		language="java"
 		message="Unescaped native HTML is unsafe and will result in XSS vulnerabilities"
-		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" >
+		class="net.sourceforge.pmd.lang.rule.xpath.XPathRule"
+		externalInfoUrl="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML">
 		<description>
 Do not use native HTML! Use Vaadin layouts and components to create required structure.
 If you are 100% sure that you escaped the value properly and you have no better options you can suppress this.
