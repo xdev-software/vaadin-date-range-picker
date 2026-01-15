@@ -127,7 +127,10 @@
 		<module name="StaticVariableName"/>
 		<module name="StringLiteralEquality"/>
 		<module name="SuppressWarningsHolder"/>
-		<module name="TodoComment"/>
+		<module name="TodoComment">
+			<!-- Default is "TODO:" -->
+			<property name="format" value="TODO"/>
+		</module>
 		<module name="TypecastParenPad"/>
 		<module name="TypeName"/>
 		<module name="UnnecessaryParentheses"/>
