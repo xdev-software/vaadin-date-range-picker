@@ -129,7 +129,7 @@
 		<module name="SuppressWarningsHolder"/>
 		<module name="TodoComment">
 			<!-- Default is "TODO:" -->
-			<property name="format" value="TODO"/>
+			<property name="format" value="(?i)(TODO)"/>
 		</module>
 		<module name="TypecastParenPad"/>
 		<module name="TypeName"/>
