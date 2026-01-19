@@ -9,7 +9,7 @@ import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.spring.annotation.EnableVaadin;
 
 
-@SuppressWarnings({"checkstyle:HideUtilityClassConstructor", "PMD.UseUtilityClass"})
+@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @SpringBootApplication
 @EnableVaadin
 @Push
