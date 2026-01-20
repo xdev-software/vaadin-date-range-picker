@@ -1,7 +1,7 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0?logo=vaadin)](https://vaadin.com/directory/component/template-placeholder)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/template-placeholder?logo=apache%20maven)](https://mvnrepository.com/artifact/software.xdev/template-placeholder)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/template-placeholder/check-build.yml?branch=develop)](https://github.com/xdev-software/template-placeholder/actions/workflows/check-build.yml?query=branch%3Adevelop)
-![Vaadin 24+](https://img.shields.io/badge/Vaadin%20Platform/Flow-24+-00b4f0)
+![Vaadin 25+](https://img.shields.io/badge/Vaadin%20Platform/Flow-25+-00b4f0)
 
 # template-placeholder
 A Vaadin Template Repo

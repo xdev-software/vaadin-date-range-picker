@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        java: [17, 21, 25]
+        java: [21, 25]
         distribution: [temurin]
     steps:
     - uses: actions/checkout@v6
@@ -126,7 +126,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        java: [17]
+        java: [21]
         distribution: [temurin]
     steps:
     - uses: actions/checkout@v6
