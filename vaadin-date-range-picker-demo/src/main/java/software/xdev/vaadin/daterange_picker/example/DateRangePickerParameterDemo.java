@@ -82,22 +82,22 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 	
 	private void updateCurrentUrl()
 	{
-		final Map<String, String> queryParaMap = new LinkedHashMap<>();
-		queryParaMap.put(QP_RANGE, this.dateRangePicker.getDateRange().getKey().toLowerCase());
+		final Map<String, String> queryParams = new LinkedHashMap<>();
+		queryParams.put(QP_RANGE, this.dateRangePicker.getDateRange().getKey().toLowerCase());
 		
 		if(this.dateRangePicker.getDateRange() != SimpleDateRanges.TODAY)
 		{
-			queryParaMap.put(QP_RANGE_START, this.dateRangePicker.getStart().toString());
+			queryParams.put(QP_RANGE_START, this.dateRangePicker.getStart().toString());
 		}
 		
 		if(this.dateRangePicker.getDateRange() == SimpleDateRanges.FREE)
 		{
-			queryParaMap.put(QP_RANGE_END, this.dateRangePicker.getEnd().toString());
+			queryParams.put(QP_RANGE_END, this.dateRangePicker.getEnd().toString());
 		}
 		
 
 		final Map<String, List<String>> queryParas = new LinkedHashMap<>();
-		for(final Entry<String, String> entry : queryParaMap.entrySet())
+		for(final Entry<String, String> entry : queryParams.entrySet())
 		{
 			queryParas.put(entry.getKey(), Collections.singletonList(entry.getValue()));
 		}
