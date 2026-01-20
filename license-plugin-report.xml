@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<licensePluginReport goal="FORMAT" timestamp="1768900421611">
+    <module artifactId="vaadin-date-range-picker" groupId="software.xdev" version="5.0.0"/>
+    <files>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/AbstractDateRange.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/DateRange.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/DateRangeActions.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/DateRangeModel.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/DateRangeResult.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/SimpleDateRange.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/SimpleDateRangeResult.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/business/SimpleDateRanges.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/ui/DateRangePicker.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/ui/DateRangePickerOverlay.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/ui/DateRangePickerStyles.java" result="NOOP"/>
+        <file path="src/main/java/software/xdev/vaadin/daterange_picker/ui/DateRangeValueChangeEvent.java" result="NOOP"/>
+    </files>
+</licensePluginReport>
