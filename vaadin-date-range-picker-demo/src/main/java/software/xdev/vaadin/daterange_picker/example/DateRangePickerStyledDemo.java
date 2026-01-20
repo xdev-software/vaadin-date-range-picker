@@ -33,15 +33,14 @@ public class DateRangePickerStyledDemo extends AbstractSimpleChangeDemo
 		
 		this.btnDarkMode.addClickListener(ev ->
 		{
-			final ThemeList themeList = UI.getCurrent().getElement().getThemeList();
-			
-			if(themeList.contains(Lumo.DARK))
+			final ThemeList themes = UI.getCurrent().getElement().getThemeList();
+			if(themes.contains(Lumo.DARK))
 			{
-				themeList.remove(Lumo.DARK);
+				themes.remove(Lumo.DARK);
 			}
 			else
 			{
-				themeList.add(Lumo.DARK);
+				themes.add(Lumo.DARK);
 			}
 			
 			this.updateBtnDarkMode();
