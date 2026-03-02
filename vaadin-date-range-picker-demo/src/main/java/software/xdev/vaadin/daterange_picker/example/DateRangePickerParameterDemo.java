@@ -133,7 +133,7 @@ public class DateRangePickerParameterDemo extends Composite<VerticalLayout> impl
 			
 			if(optQueryDR.isPresent())
 			{
-				dateRange = optQueryDR.get();
+				dateRange = optQueryDR.orElseThrow();
 			}
 			else
 			{
