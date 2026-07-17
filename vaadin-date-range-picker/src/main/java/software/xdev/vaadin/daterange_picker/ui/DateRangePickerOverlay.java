@@ -174,14 +174,10 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
 	
 	protected void calcModel(final Optional<DateRangeResult> optResult, final DateRangeModel<D> model)
 	{
-		if(optResult.isEmpty())
-		{
-			return;
-		}
-		
-		final DateRangeResult result = optResult.get();
-		model.setStart(result.getStart());
-		model.setEnd(result.getEnd());
+		optResult.ifPresent(result -> {
+			model.setStart(result.getStart());
+			model.setEnd(result.getEnd());
+		});
 	}
 	
 	protected void onValueChange(final Function<DateRangeModel<D>, Optional<DateRangeResult>> calcFunc)

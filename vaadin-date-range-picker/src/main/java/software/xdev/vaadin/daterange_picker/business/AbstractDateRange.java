@@ -34,14 +34,8 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
 	private String defaultDesc;
 	private Function<LocalDate, Optional<DateRangeResult>> calcForFunc;
 	private BiFunction<LocalDate, Integer, Optional<DateRangeResult>> moveFunc = (date, count) ->
-	{
-		if(this.optMovePeriod.isEmpty())
-		{
-			return Optional.empty();
-		}
-		
-		return this.calcForFunc.apply(count != 0 ? date.plus(this.optMovePeriod.get().multipliedBy(count)) : date);
-	};
+		this.optMovePeriod.flatMap(movePeriod ->
+			this.calcForFunc.apply(count != 0 ? date.plus(movePeriod.multipliedBy(count)) : date));
 	private boolean movable = true;
 	private boolean calcable = true;
 	private boolean setable = true;
