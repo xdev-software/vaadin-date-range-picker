@@ -1,0 +1,44 @@
+.date-range-picker-clickable {
+	cursor: pointer;
+}
+
+.date-range-picker-button {
+	margin-bottom: 0;
+	border-radius: 0;
+	color: var(--lumo-body-text-color);
+	min-width: var(--date-range-picker-min-width, 20em);
+}
+
+.date-range-picker-overlay-base {
+	position: relative;
+}
+
+.date-range-picker-overlay-layout {
+	display: flex;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-color: var(--lumo-base-color);
+	border: 1px solid var(--lumo-contrast-5pct);
+	border-top: none;
+	min-width: var(--date-range-picker-min-width, 20em);
+}
+
+.date-range-picker-overlay-layout-row {
+	width: 100%;
+	flex: 1 1 auto;
+	display: flex;
+}
+
+.date-range-picker-flex-child-autogrow {
+	flex: 1 1 auto;
+}
+
+.date-range-picker-flex-child-contentsize {
+	flex: 0 1 auto;
+}
+
+.date-range-picker-padding-top-xs {
+	padding-top: var(--lumo-space-xs);
+}
